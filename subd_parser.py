@@ -1,9 +1,11 @@
+import argparse
 import os
 import re
 
 import errno
 from random import shuffle
 
+import sys
 from django.template import Template, Context, Engine
 
 question_regexp = re.compile(r'('
@@ -17,46 +19,52 @@ question_regexp = re.compile(r'('
 
 options_regexp = re.compile('(([A-E]\. )((.|\n)+?))(?=([A-E]\. |$))')
 
-directory = 'questions'
 
+def get_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-i', '--input', dest='input', default='RK1_questions.txt', help='Input file with questions')
+    parser.add_argument('-d', '--dir', dest='dir', default='RK1_questions', help="Output dir which holds result html's")
+    return parser.parse_args()
 
-# Document faults:
-# Queestion 66
-# Qustion:86
-# Qustion:101
-# 151 without answer
 
 def main():
+    args = get_args()
+
     try:
-        os.makedirs(directory)
+        os.makedirs(args.dir)
     except OSError as e:
         if e.errno != errno.EEXIST:
-            raise
+            print('Error occurred:', e)
+            sys.exit(1)
 
-    with open('template.html') as template_file:
-        template = Template(template_file.read(), engine=Engine())
+    try:
 
-    with open('questions.txt') as file:
-        questions = [el[0] for el in question_regexp.findall(file.read())]
-        length = len(questions)
-        print(length)
-        for question in questions:
-            question = question_regexp.search(question)
-            options = [(el[1], without_line_breaks(el[2])) for el in options_regexp.findall(question.group('options'))]
-            # shuffle(options)
-            number = int(question.group('number'))
-            with open(os.path.join(directory, f'question{question.group("number")}.html'), 'w') as html:
-                context = Context({
-                    'title': without_line_breaks(question.group('title')),
-                    'prev': str(number - 1) if number > 1 else None,
-                    'next': str(number + 1) if number < length else None,
-                    'text': without_line_breaks(question.group('text')),
-                    'options': options,
-                    'answer': without_line_breaks(question.group('answer')),
-                    'explanation': without_line_breaks(question.group('explanation')),
-                    'length': str(length),
-                })
-                html.write(template.render(context))
+        with open('template.html') as template_file:
+            template = Template(template_file.read(), engine=Engine())
+
+        with open(args.input) as file:
+            questions = [el[0] for el in question_regexp.findall(file.read())]
+            length = len(questions)
+            for question in questions:
+                question = question_regexp.search(question)
+                options = [(el[1], without_line_breaks(el[2])) for el in options_regexp.findall(question.group('options'))]
+                # shuffle(options)
+                number = int(question.group('number'))
+                with open(os.path.join(args.dir, f'question{question.group("number")}.html'), 'w') as html:
+                    context = Context({
+                        'title': without_line_breaks(question.group('title')),
+                        'prev': str(number - 1) if number > 1 else None,
+                        'next': str(number + 1) if number < length else None,
+                        'text': without_line_breaks(question.group('text')),
+                        'options': options,
+                        'answer': without_line_breaks(question.group('answer')),
+                        'explanation': without_line_breaks(question.group('explanation')),
+                        'length': str(length),
+                    })
+                    html.write(template.render(context))
+        print('done')
+    except (OSError, IOError) as e:
+        print('Error occurred:', e)
 
 
 def without_line_breaks(s: str):
