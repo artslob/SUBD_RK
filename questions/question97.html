@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 97</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>V$SQLSTATS</p>',
+            
+                '<p><span class="hided B">B. </span>V$SQLAREA</p>',
+            
+                '<p><span class="hided C">C. </span>V$SQL_BIND_DATA</p>',
+            
+                '<p><span class="hided D">D. </span>V$SQL</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 97</h3>
+    <p>Which of the following Dynamic Performance views contain information relevant to SQL Tuning?Each correct answer represents a part of the solution. Choose all that apply..</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>V$SQLSTATS</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>V$SQLAREA</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>V$SQL_BIND_DATA</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>V$SQL</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A,B,C,D</p>
+
+    
+        <p class="hided">Explanation:Answer options D, B, A and C are correct. Dynamic views containing information relevant to theSQL tuning are V$SQL, V$SQLAREA, V$SQLSTATS, and V$SQL_BIND_DATA. V$SQL listsstatistics on shared SQL area without the GROUP BY clause and contains one row for each childof the original SQL text entered. Statistics displayed in V$SQL are normally updated at the end ofquery execution. However, for long running queries, they are updated every 5 seconds. Thismakes it easy to see the impact of long running SQL statements while they are still in progress .V$SQLAREA lists statistics on shared SQL area and contains one row per SQL string. It providesstatistics on SQL statements that are in memory, parsed, and ready for execution. V$SQLSTATSreturns basic performance statistics for SQL cursors, with each row representingthe data for aunique combination of SQL text and optimizer plan (that is, unique combination of SQL_ID, andPLAN_HASH_VALUE). The column definitions for columns in V$SQLSTATS are identical tothose in the V$SQL and V$SQLAREA views. However, the V$SQLSTATS view differs fromV$SQL and V$SQLAREA in that it is faster, more scalable, and has a greater data retention(the statistics may still appear in this view, even after the cursor has been aged out of the sharedpool). Note that V$SQLSTATS contains a subset of columns that appear in V$SQL andV$SQLAREA. For each distinct bind variable in each cursor owned by the session querying theV$SQL_BIND_DATA view, this view describes: Actual bind data, if the bind variable is userdefined The underlying literal, if the CURSOR_SHARING parameter is set to FORCE and thebind variable is system.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question96.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question98.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

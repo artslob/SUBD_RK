@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 79</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Execute the CATALOG command.</p>',
+            
+                '<p><span class="hided B">B. </span>Reset the recovery catalog.</p>',
+            
+                '<p><span class="hided C">C. </span>Register the database with the recovery catalog.</p>',
+            
+                '<p><span class="hided D">D. </span>Create a recovery catalog.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 79</h3>
+    <p>You work as a Database Administrator for Federal Inc. The company uses an Oracle database.You create backups and copies by using the operating system commands. Now, you want to useRecovery Manager (RMAN) for backup and recovery operations. Moreover, you want to use arecovery catalog as the RMAN repository. Which of the following steps will you take toaccomplish this? Each correct answer represents a part of the solution. Choose all that apply.</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Execute the CATALOG command.</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Reset the recovery catalog.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Register the database with the recovery catalog.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Create a recovery catalog.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A,C,D</p>
+
+    
+        <p class="hided">Explanation:Answer options D, C, and A are correct.RMAN uses a central information repository called recovery catalog in order to store metadataabout backup and recovery operations. However, if a recovery catalog is not created, RecoveryManager uses the target database&#39;s (the database that RMAN is backing up or restoring) controlfile as the RMAN repository for storing the information necessary for backup and recoveryoperations. In this scenario, after creating the recovery catalog, you will be required to register thetarget database with the recovery catalog. The database must be registered with the recoverycatalog before the recovery catalog can store the metadata about backup and recoveryoperations performed in the database. After registering the database , you will also be required toexecute the CATALOG command. The CATALOG command adds the information about the pre-existing backups and copies to the recovery catalog.B is incorrect. A recovery catalog needs to be reset in order to work with a database that hasbeen opened using the RESETLOGS option. However, in this scenario, you do not need toreset the recovery catalog.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question78.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question80.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 93</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>SQL Repair Advisor</p>',
+            
+                '<p><span class="hided B">B. </span>SQL Optimizer</p>',
+            
+                '<p><span class="hided C">C. </span>SQL Access Advisor</p>',
+            
+                '<p><span class="hided D">D. </span>SQL Tuning Advisor</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 93</h3>
+    <p>Which of the following advisors within the Oracle advisory framework will analyze a single SQLstatement and make recommendations for performance improvement?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>SQL Repair Advisor</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>SQL Optimizer</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>SQL Access Advisor</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>SQL Tuning Advisor</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: D</p>
+
+    
+        <p class="hided">Explanation:Answer option D is correct.The SQL Tuning Advisor takes one or more SQL statements and performs an analysis todetermine what can be done to improve the performance of the SQL statement(s).Recommendations include rewriting the SQL statement, adding indexes, or even changinginitialization parameters or memory component sizes such as the SGA size or buffer cache. TheSQL Tuning Advisor is accessed via tools such as Top SQL, the Automatic SQL Tuning Advisor,or the Top Sessions interface from within EM. In contrast, the SQL Access Advisor takes abroader view of SQL tuning. It considers a larger subset of SQL statements, such as all SQLstatements run within a specified time period or from a SQL Tuning Set (STS). The SQL Accessadvisor may recommend additional indexes as well as materialized views to improveperformance. The SQL Repair Advisor analyzes a SQL statement that causes a critical error andrecords the results in the Automatic Diagnostic Repository (ADR). It may recommend a patch tofix the problem, or may provide an alternate execution plan to avoid causing an error in the future.Other advisors within the advisory framework include memory advisors that monitor usage of theSGA and PGA and recommend optimal settings for these memory structures including thesubstructures within them, such as the library cache and the large pool.A is incorrect. The SQL Repair Advisor only makes recommendations for SQL statements thatcause a critical error in the ADR.B is incorrect. There is no such advisor such as the SQL Optimizer, although the Oracle optimizeruses statistics to determine the best execution plan.C is incorrect. The SQL Access Advisor analyzes groups of SQL statements that run during thesame time period, not one or two SQL statements in isolation as the SQL Tuning Advisor does.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question92.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question94.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

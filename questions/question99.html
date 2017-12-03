@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 99</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>User error</p>',
+            
+                '<p><span class="hided B">B. </span>Instance failure</p>',
+            
+                '<p><span class="hided C">C. </span>Process failure</p>',
+            
+                '<p><span class="hided D">D. </span>Media failure</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 99</h3>
+    <p>Which of the following types of failures is the cause of automatic Instance Recovery?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>User error</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Instance failure</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Process failure</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Media failure</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B</p>
+
+    
+        <p class="hided">Explanation:Answer option B is correct. Instance failure occurs when any problem prevents an instance fromcontinuing work. Instance failure can result from hardware problem such as a power outage, orsoftware problem such as an operating system failure. When an instance failure occurs, the datain the buffers of the system global area is not written to the data files. After an instance failure,Oracle automatically performs instance recovery.A is incorrect. User error requires a database to be recovered to a point in time before the erroroccurred. For example, a user could accidentally drop a table. To enable recovery from usererrors and accommodate other unique recovery requirements, Oracle provides exact point-in-time recovery. For example, if a user accidentally drops a table, the database can berecovered to the instant in time before the table was dropped.C is incorrect. Process failure results from a failure in a user process accessing Oracle, such asan abnormal disconnection or process termination. The background process PMONautomatically detects the failed user process, rolls back the uncommitted transaction of theuser process, and releases any resources that the process was using.D is incorrect. An error can occur when trying to write or read a file on disk that is required tooperate the database. A common example is a disk head failure, which causes the loss of allfiles on a disk drive. A disk failure requires you to restore lost files and then perform mediarecovery. Unlike instance recovery, media recovery must be initiated by the user.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question98.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question100.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

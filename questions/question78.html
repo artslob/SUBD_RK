@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 78</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>GRANT ADMINISTER_RESOURCE_MANAGER TO ANDREW;</p>',
+            
+                '<p><span class="hided B">B. </span>DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE( GRANTEE_NAME=&gt; &#39;ANDREW&#39;, PRIVILEGE_NAME =&gt; &#39;ADMINISTER_RESOURCE_MANAGER&#39;,ADMIN_OPTION =&gt; FALSE);</p>',
+            
+                '<p><span class="hided C">C. </span>DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE( GRANTEE_NAME=&gt; &#39;ANDREW&#39;, PRIVILEGE_NAME =&gt; &#39;ADMINISTER_RESOURCE_MANAGER&#39;,ADMIN_OPTION =&gt; TRUE);</p>',
+            
+                '<p><span class="hided D">D. </span>GRANT ADMINISTER_RESOURCE_MANAGER TO ANDREW WITH ADMIN OPTION;</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 78</h3>
+    <p>You work as a Database Administrator for Gentech Inc. The company uses an Oracle database.The database contains several resource consumer groups. Andrew joins the company as anAssistant Database Administrator. You are required to grant him theADMINISTER_RESOURCE_MANAGER privilege so that he is able to manage resourceconsumer groups in the database. You also want to ensure that Andrew is able to grant thisprivilege to other users in the database. Which of the following statements will you use toaccomplish this?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>GRANT ADMINISTER_RESOURCE_MANAGER TO ANDREW;</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE( GRANTEE_NAME=&gt; &#39;ANDREW&#39;, PRIVILEGE_NAME =&gt; &#39;ADMINISTER_RESOURCE_MANAGER&#39;,ADMIN_OPTION =&gt; FALSE);</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE( GRANTEE_NAME=&gt; &#39;ANDREW&#39;, PRIVILEGE_NAME =&gt; &#39;ADMINISTER_RESOURCE_MANAGER&#39;,ADMIN_OPTION =&gt; TRUE);</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>GRANT ADMINISTER_RESOURCE_MANAGER TO ANDREW WITH ADMIN OPTION;</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question77.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question79.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

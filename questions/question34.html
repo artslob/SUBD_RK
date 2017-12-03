@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 34</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>The database instance will not start and you must re-create the TEMPtablespace in MOUNTmode.</p>',
+            
+                '<p><span class="hided B">B. </span>The database instance will not start and you will have to drop the old TEMPtablespace inNOMOUNT mode.</p>',
+            
+                '<p><span class="hided C">C. </span>Thetempfile is re-created at the original location, a message is written to the alert log, and thedatabase starts normally.</p>',
+            
+                '<p><span class="hided D">D. </span>The database starts normally, a message is written to the alert log, and the DBA mustmanually re-create the TEMPtablespace.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 34</h3>
+    <p>You lose all of the datafiles in your TEMP tablespace after the database shuts down. When thedatabase starts again, what happens?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>The database instance will not start and you must re-create the TEMPtablespace in MOUNTmode.</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>The database instance will not start and you will have to drop the old TEMPtablespace inNOMOUNT mode.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Thetempfile is re-created at the original location, a message is written to the alert log, and thedatabase starts normally.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>The database starts normally, a message is written to the alert log, and the DBA mustmanually re-create the TEMPtablespace.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+        <p class="hided">Explanation:If the database starts with a missing tempfile , the instance re-creates it and writes a message inthe alert log. If the original location is not available, the DBA will have to create a new onemanually after startup.A and B are incorrect because the database will start even if the tempfile location is not available.D is incorrect because the DBA does not need to re-create the tempfile (s) manually unless theoriginal file system location is unavailable.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question33.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question35.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

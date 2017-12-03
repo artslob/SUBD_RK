@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 81</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Connect to theCatalogBase database by using the CatOwner user account.</p>',
+            
+                '<p><span class="hided B">B. </span>Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account.</p>',
+            
+                '<p><span class="hided C">C. </span>Grant the SYSDBA system privilege to theCatOwner user account.</p>',
+            
+                '<p><span class="hided D">D. </span>Execute the CREATE CATALOG command.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 81</h3>
+    <p>You work as a Database Administrator for your company. The company uses an Oracle databasenamed OraBase. You use Recovery Manager (RMAN) for backup and recovery operations. Youwant to create a recovery catalog to store the metadata about the backup and recoveryoperations. You create a database named CatalogBase in which you will store the recoverycatalog. You also create a database user account named CatOwner in the CatalogBasedatabase, which will hold the tables and views constituting the recovery catalog. What else willyou need to do in order to create the recovery catalog? Each correct answer represents a part ofthe solution. Choose all that apply.</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Connect to theCatalogBase database by using the CatOwner user account.</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Grant the SYSDBA system privilege to theCatOwner user account.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Execute the CREATE CATALOG command.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A,B,D</p>
+
+    
+        <p class="hided">Explanation:Answer options B, A, and D are correct.The RECOVERY_CATALOG_OWNER pre-defined role includes the privileges that allow thecatalog owner to maintain and query the recovery catalog. Therefore, you will be required to grantthe role to the CatOwner user account. After granting the role, you will be required to connect tothe CatalogBase database by using the CatOwner user account. After connecting to thedatabase, you can create the recovery catalog by executing the CREATE CATALOG command.Answer optionC is incorrect. The SYSDBA system privilege is required for performing database administrativetasks, such as creating a database, altering a database, and starting up and shutting down anOracle instance. You do not need to grant the SYSDBA system privilege to the CatOwner useraccount, as this user account will not be used to administer the database. The CatOwner useraccount will be used to only hold the catalog tables and views.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question80.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question82.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 5</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>If you have the flash recovery area set toautoextend, the backup will continue with no problem.</p>',
+            
+                '<p><span class="hided B">B. </span>The database will hang until you add more space to the flash recovery area.</p>',
+            
+                '<p><span class="hided C">C. </span>RMAN will delete obsolete backups from the flash recovery area to accommodate newbackups.</p>',
+            
+                '<p><span class="hided D">D. </span>The RMAN backup will hang until you add more space to the flash recovery area.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 5</h3>
+    <p>Your flash recovery area becomes full when you are running an RMAN backup (and has not yetreached the value specified by DB_RECOVERY_FILE_DEST). It is the destination for archivedredo log files and backups. What will happen to the database? (Choose the best answer.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>If you have the flash recovery area set toautoextend, the backup will continue with no problem.</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>The database will hang until you add more space to the flash recovery area.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>RMAN will delete obsolete backups from the flash recovery area to accommodate newbackups.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>The RMAN backup will hang until you add more space to the flash recovery area.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+        <p class="hided">Explanation:RMAN will delete files from the flash recovery area if they are obsolete according to the definedretention policy.A is incorrect because you cannot configure the flash recovery area for autoextend .B is incorrect because the RMAN backup will fail, but the database will continue to run as long asspace is available in the flash recovery area for archived redo log files or it is an optionaldestination.D is incorrect because the RMAN backup will attempt to clean up obsolete files, and failing that, itwill terminate the backup with an error message.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question4.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question6.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

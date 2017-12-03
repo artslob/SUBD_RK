@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 92</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Media failure</p>',
+            
+                '<p><span class="hided B">B. </span>Instance failure</p>',
+            
+                '<p><span class="hided C">C. </span>Statement failure</p>',
+            
+                '<p><span class="hided D">D. </span>Process failure</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 92</h3>
+    <p>Martha is an employee in Tech-Mart Inc. The company uses an Oracle database. The databasecontains a table named Employees for storing employee records. Martha is performing an insertoperation on the Employees table. After some time, the insert operation fails. Which of thefollowing types of failures has occurred?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Media failure</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Instance failure</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Statement failure</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Process failure</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+        <p class="hided">Explanation:Answer option C is correct.A statement failure occurs when there is a logical failure in the handling of a statement in anOracle program. For example, when all extents of a table (in other words, the number of extentsspecified in the MAXEXTENTS parameter of the CREATE TABLE statement) are allocated andcompletely filled with data, a valid INSERT statement cannot insert a row because no space isavailable. Therefore, the statement fails.If a statement failure occurs, the Oracle software oroperating system returns an error. A statement failure does not require any recovery step. Oracleautomatically resolves the statement failure by rolling back the effects of the statement andreturning control to the application. The user can execute the statement again after the problemindicated by the error message is corrected. For example, if insufficient extents are allocated, thedatabase administrator (DBA) needs to allocate more extents so that the user&#39;s statement can beexecuted.A is incorrect. A media failure occurs when a physical problem prevents Oracle from writing orreading a database file that is required for continuing the database operation. For example,when a disk head crashes, all the database files on the disk drive are lost. Disk failure canaffect a variety of files, including the data files, redo log files, and control files. Because thedatabase instance cannot continue to function properly, it cannot write the data from thedatabase buffer cache of the system global area (SGA) to the data files. The appropriaterecovery from a media failure depends on the files affected. Media failure is the primaryconcern of a backup and recovery strategy because it typically requires restoring some or allthe database files and the application of redo data during the recovery.B is incorrect. An instance failure is a termination of an Oracle instance due to a hardwareproblem (e.g., power outage) or software problem (e.g., an operating system crash) thatprevents the Oracle instance from continuing its work. An instance failure always occurs whena database is not cleanly shut down (i.e., the database is shut down using the SHUTDOWNABORT command). When an instance failure occurs, the data in the database buffer cache isnot written to data files. Therefore, after an instance failure, the associated database requiresinstance recovery to recover the lost data. After an instance failure, Oracle automaticallyperforms an instance recovery when the instance is restarted. The system monitor (SMON)background process is responsible for performing the instance recovery. An instance recoverydoes not require any manual interference. Oracle automatically applies the data stored inonline redo log files and undo segments in order to recover the lost data and roll back theuncommitted transactions, respectively.D is incorrect. A process failure is a failure in a user, server, or background process of an Oracleinstance such as an abnormal disconnection or process termination. When a process failureoccurs, the failed subordinate process cannot continue its work, although the other processesof the Oracle instance can continue. The process monitor (PMON) background processdetects aborted user, server, or background processes. If the aborted process is a user orserver process, PMON automatically resolves the failure by rolling back the current transactionof the aborted process and releasing the resources that this process was using. However, ifthe aborted process is a background process, the Oracle instance cannot continue to functionproperly. Therefore, the Oracle instance must be shut down and re-started in order to resolvethe issue.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question91.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question93.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

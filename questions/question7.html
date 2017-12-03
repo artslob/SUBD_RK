@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 7</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>You have lost a data file and one or more of the archived redo log files are missing.</p>',
+            
+                '<p><span class="hided B">B. </span>Several widespread logical errors have occurred in the database in the last day.</p>',
+            
+                '<p><span class="hided C">C. </span>You want to create a test database as of a point in time in the past.</p>',
+            
+                '<p><span class="hided D">D. </span>You have lost a data file and you have all archived redo log files available. E.You have lost one of the copies of the control file.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 7</h3>
+    <p>For which of the following scenarios would you use user-managed incomplete recovery? (Chooseall that apply.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>You have lost a data file and one or more of the archived redo log files are missing.</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Several widespread logical errors have occurred in the database in the last day.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>You want to create a test database as of a point in time in the past.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>You have lost a data file and you have all archived redo log files available. E.You have lost one of the copies of the control file.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A, B, C</p>
+
+    
+        <p class="hided">Explanation:A is correct because you cannot perform a full recovery with missing archived redo log files.B is correct because incomplete recovery can be performed to bring the database back to a pointin time before the severe logical corruptions occurred.C is correct because you can easily copy the database and recover it to a point in time in the pastfor regression testing.D is incorrect because you can perform complete recovery if you have lost a datafile and have allarchived redo log files since the last backup of the datafile . E is incorrect because you do notneed to perform recovery if only one copy of the control file is missing.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question6.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question8.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

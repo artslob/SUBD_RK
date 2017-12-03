@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 21</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>RECOVERY_CATALOG</p>',
+            
+                '<p><span class="hided B">B. </span>CATALOGjDWNER</p>',
+            
+                '<p><span class="hided C">C. </span>RECOVERY_CATALOG_OWNER</p>',
+            
+                '<p><span class="hided D">D. </span>SYSDBA</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 21</h3>
+    <p>You want to designate one of the Linux system administrators as the recovery catalog owner.Which role must you grant to her Oracle user account?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>RECOVERY_CATALOG</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>CATALOGjDWNER</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>RECOVERY_CATALOG_OWNER</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>SYSDBA</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+        <p class="hided">Explanation:The predefined role RECOVERY_CATALOG_OWNER includes the system privileges ALTERSESSION, CREATE CLUSTER, CREATE DATABASE LINK, CREATE PROCEDURE, CREATESEQUENCE, CREATE SESSION, CREATE SYNONYM, CREATE TABLE, CREATE TRIGGER,CREATE TYPE, and CREATE VIEW.A, B are wrong because the RECOVERY_CATALOG and CATALOG_OWNER roles do not exist.D is wrong because it provides the recovery catalog owner with more system privileges thannecessary.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question20.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question22.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

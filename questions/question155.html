@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 155</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>1, 4, 5, 3 (2 is not required.)</p>',
+            
+                '<p><span class="hided B">B. </span>1, 4, 3, 5 (2 is not required.)</p>',
+            
+                '<p><span class="hided C">C. </span>1, 2, 4, 5 (3 is not required.)</p>',
+            
+                '<p><span class="hided D">D. </span>2, 1, 5, 3, 4</p>',
+            
+                '<p><span class="hided E">E. </span>1, 2, 4, 5, 3</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 155</h3>
+    <p>Your company wants to upgrade the current production database to the RAC environment. Toperform testing before migrating to the RAC environment, you performed the workload capture onthe production database to record the peak workload. You set up the test RAC database andwant to replay the recorded workload on the testmachine. Note the following steps that you mayrequire to replay the database workload:1) Preprocess the captured workload.2) Restart the database in RESTRICTED mode.3) Set up the Replay Clients.4) Restore the test database to the point when the capture started.5) Remap connections.Arrange the steps required in the correct sequence to accomplish this task on the test machine.</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>1, 4, 5, 3 (2 is not required.)</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>1, 4, 3, 5 (2 is not required.)</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>1, 2, 4, 5 (3 is not required.)</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>2, 1, 5, 3, 4</p>-->
+    <!---->
+        <!--<p><span class="hided E">E. </span>1, 2, 4, 5, 3</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A</p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question154.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question156.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

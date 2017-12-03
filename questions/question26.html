@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 26</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>IDENTIFY FAILURE</p>',
+            
+                '<p><span class="hided B">B. </span>REPAIR FAILURE</p>',
+            
+                '<p><span class="hided C">C. </span>CHANGE FAILURE</p>',
+            
+                '<p><span class="hided D">D. </span>ADVISE FAILURE E.RESET FAILURE</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 26</h3>
+    <p>You are using the RMAN Data Recovery Advisor functionality. When an error occurs, which of thefollowing commands can you use to monitor and maintain failures? (Choose all that apply.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>IDENTIFY FAILURE</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>REPAIR FAILURE</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>CHANGE FAILURE</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>ADVISE FAILURE E.RESET FAILURE</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B,C,D</p>
+
+    
+        <p class="hided">Explanation:In addition to REPAIR, CHANGE, and ADVISE FAILURE, you can use the LIST FAILUREcommand to see if any unresolved failures exist.A and E are incorrect because the commands IDENTIFY FAILURE and RESET FAILURE do notexist.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question25.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question27.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

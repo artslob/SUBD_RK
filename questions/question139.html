@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 139</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Only the incident metadata and dumps are stored in the Automatic Diagnostic Repository(ADR).</p>',
+            
+                '<p><span class="hided B">B. </span>The problem key is the same as the incident number.</p>',
+            
+                '<p><span class="hided C">C. </span>The database sends an incident alert to the Oracle Enterprise Manager Database Home page.</p>',
+            
+                '<p><span class="hided D">D. </span>Every problem has a problem key, which is a text string that describes the problem.</p>',
+            
+                '<p><span class="hided E">E. </span>The database makes an entry into the alert log file when problems and incidents occur.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 139</h3>
+    <p>Which statements are true regarding the concept of problems and incidents in the faultdiagnosability infrastructure for Oracle Database 11g? (Choose all that apply.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Only the incident metadata and dumps are stored in the Automatic Diagnostic Repository(ADR).</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>The problem key is the same as the incident number.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>The database sends an incident alert to the Oracle Enterprise Manager Database Home page.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Every problem has a problem key, which is a text string that describes the problem.</p>-->
+    <!---->
+        <!--<p><span class="hided E">E. </span>The database makes an entry into the alert log file when problems and incidents occur.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C,D,E</p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question138.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question140.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

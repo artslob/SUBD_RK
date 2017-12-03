@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 166</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>archived redo logs generated after the last datafile backups</p>',
+            
+                '<p><span class="hided B">B. </span>one autobackup of the control file</p>',
+            
+                '<p><span class="hided C">C. </span>one autobackup of the spfile</p>',
+            
+                '<p><span class="hided D">D. </span>a backup of all datafiles i e the password file</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 166</h3>
+    <p>To recover from the loss of the entire database, including all current control files, all online redolog files, and all parameter files, what backups are required, at a minimum, torestore thedatabase successfully? (choose all that apply.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>archived redo logs generated after the last datafile backups</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>one autobackup of the control file</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>one autobackup of the spfile</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>a backup of all datafiles i e the password file</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A, B, D</p>
+
+    
+        <p class="hided">Explanation:To recover your database fully, you need a backup of all datafiles, all archived log files createdsince the last datafile backup, and an autobackup of the control file. c and e are incorrectbecause you can easily re-create the password file, and rman creates a dummy spfile duringrecovery.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question165.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+</body>
+</html>

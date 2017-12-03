@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 89</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Data file</p>',
+            
+                '<p><span class="hided B">B. </span>Control file</p>',
+            
+                '<p><span class="hided C">C. </span>Segment</p>',
+            
+                '<p><span class="hided D">D. </span>Data block</p>',
+            
+                '<p><span class="hided E">E. </span>Redo log fileF. ExtentG. TablespaceChoose the logical components of an Oracle database and place them in ascending order.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 89</h3>
+    <p>DRAG DROP</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Data file</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Control file</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Segment</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Data block</p>-->
+    <!---->
+        <!--<p><span class="hided E">E. </span>Redo log fileF. ExtentG. TablespaceChoose the logical components of an Oracle database and place them in ascending order.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A,F,C,G</p>
+
+    
+        <p class="hided">Explanation:At the lowest level of granularity, Oracle stores data in data blocks. A data block is the smallestlogical unit of data storage in Oracle. It corresponds to a specific number of bytes of physicaldatabase space. The size of a data block is specified by the DB_BLOCK_SIZE initializationparameter at the time of database creation. It cannot be changed after database creation. Thesize of a data block is usually a multiple of the operating system&#39;s block size. It can vary from 2KBto 32KB, depending upon the operating system. If the size of a data block is not specified, bydefault it is taken as 4KB on most operating systems. Oracle requests data in multiples of datablocks. A data block is also called a logical block, Oracle block, or page. The next level of logicaldatabase storage is an extent. An extent is a logical storage unit that contains data of acorresponding segment. An extent consists of contiguous data blocks, and a segment is made upof one or more extents. Whenever a segment is created, an initial extent is assigned to it, eventhough the segment may be empty at the moment. When the extent corresponding to a segmentis full, a new extent is automatically allocated to the segment. When a segment is dropped, theextents corresponding to the segment are again available for use by other segments. The level oflogical database storage above an extent is a segment. A segment is a set of extents allocatedfor a specific database object such as a table, index, cluster etc. When a database object iscreated, Oracle allocates a segment to it. This segment contains at least one extent that in turncontains at least one data block. A single segment holds all the data of the correspondingdatabase object. A segment can belong to only one tablespace , but it can be associated tomultiple data files. Extents allocated to a segment can belong to multiple data files, but datablocks allocated to an extent can belong to only one data file. The highest level of logicaldatabase storage is a tablespace . A tablespace is a logical database structure for storingdatabase segments. By default, each Oracle database has a single tablespace , known asSYSTEM, which stores data dictionary tables and indexes. Other tablespaces may also beconfigured for a database for performing some specific tasks such as: ? Partial backup andrecovery operation ? Allocation of quotas for users Additional tablespaces can also be created asper the requirements of the applications installed on the system. Such tablespaces can be usedfor storing application specific segments. Data files, redo log files, and control files are thephysical, but not the logical components of an Oracle database contain at least one control file.However, the recommended number of control files is two or more. A database can contain amaximum of eight control files. However, a control file may belong to only one database.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question88.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question90.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

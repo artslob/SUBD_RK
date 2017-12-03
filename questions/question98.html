@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 98</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>CONFIGURE RETENTION POLICY TO NONE;</p>',
+            
+                '<p><span class="hided B">B. </span>CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS;</p>',
+            
+                '<p><span class="hided C">C. </span>CONFIGURE RETENTION POLICY TO REDUNDANCY 5;</p>',
+            
+                '<p><span class="hided D">D. </span>CONFIGURE RETENTION POLICY CLEAR;</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 98</h3>
+    <p>You work as a Database Administrator for Gentech Inc. The company uses an Oracle database.You use Recovery Manager (RMAN) for backup and recovery operations. You do not perform aregular backup of the database. You want to implement a backup retention policy for the backupsand copies that you create with RMAN. Through the retention policy, you want to ensure that onebackup of each data file is retained for at least five days. Which of the following RMANcommands will you use to accomplish this?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>CONFIGURE RETENTION POLICY TO NONE;</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS;</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>CONFIGURE RETENTION POLICY TO REDUNDANCY 5;</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>CONFIGURE RETENTION POLICY CLEAR;</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B</p>
+
+    
+        <p class="hided">Explanation:Answer option B is correct.The Recovery Manager (RMAN) provides the CONFIGURE RETENTION POLICY command tocreate a persistent and automatic backup retention policy for controlling how long backups andcopies should be retained. When a backup retention policy is in effect, RMAN considers thebackups and copies of data files and control files as obsolete (i.e., the backups and copies are nolonger needed for media recovery), according to the criteria specified in the CONFIGURERETENTION POLICY command. The REPORT OBSOLETE and DELETE OBSOLETEcommands can be executed periodically or regularly to view obsolete files and to delete them,respectively. The retention policy is continuous. As the data file, control file, and archived redo logbackups are produced over time, RMAN keeps track of them and decides which to retain andwhich to mark as obsolete. RMAN does not automatically delete the backups or copies. The termobsolete does not mean the same as expired. A backup or copy is obsolete when the REPORTOBSOLETE or DELETE OBSOLETE command determines, based on the user-defined retentionpolicy, that the backup or copy is not needed for media recovery. However, a backup or copyexpires only when RMAN performs a crosscheck and finds that the file is missing from the harddisk or the media manager has returned &quot;not found&quot; for the file. In brief, obsolete means &quot;notneeded,&quot; whereas expired means &quot;not found.&quot; Besides affecting the data file and control filebackups, the retention policy affects archived redo logs and archived redo log backups. First,RMAN decides which data file and control file backups are obsolete. Then, RMAN considers thearchived redo log backups (that are older than the oldest data file or control file backup that mustbe retained) as obsolete. There are two mutually exclusive options for implementing a backupretention policy.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question97.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question99.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

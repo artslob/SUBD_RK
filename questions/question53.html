@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 53</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>The Automatic Memory Manager (AMM)</p>',
+            
+                '<p><span class="hided B">B. </span>The SQL Tuning Advisor</p>',
+            
+                '<p><span class="hided C">C. </span>The Segment Advisor</p>',
+            
+                '<p><span class="hided D">D. </span>The SQL Access Advisor</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 53</h3>
+    <p>You have a very large table that your users access frequently. Which of the following advisors willrecommend any indexes to improve the performance of queries against this table?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>The Automatic Memory Manager (AMM)</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>The SQL Tuning Advisor</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>The Segment Advisor</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>The SQL Access Advisor</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: D</p>
+
+    
+        <p class="hided">Explanation:The SQL Access Advisor analyzes all SQL running during a given time period and recommendsindexes and materialized views to improve the overall performance of the database.A is incorrect because there is no such advisor as the Automatic Memory Manager.B is incorrect because the SQL Tuning Advisor looks only at a single SQL statement andprovides recommendations.C is incorrect because the Segment Advisor recommends segment shrink when table and indexsegments are heavily fragmented.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question52.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question54.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

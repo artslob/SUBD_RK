@@ -1,0 +1,2576 @@
+Question: 1
+You are not sure if Flashback Database is enabled. What database column and view can you
+query to see if the flashback logs are being created in the flash recovery area?
+A. Query the initialization parameter FLASHBACK_DATABASE in VJINSTANCE.
+B. Query the FLASHBACK_ENABLED column in VJDATABASE.
+C. Query the FLASHBACK column in VJDATABASE..
+D. Query the FLASHBACK_ON column in VJDATABASE.
+Answer: D
+Explanation:
+To enable Flashback Database, you use the command ALTER DATABASE FLASHBACK ON.
+Your database must be in ARCHIVELOG mode, you must have the flash recovery area
+configured, and you must have DB_FLASHBACK_RETENTION_TARGET set to an appropriate
+value.
+A, B, and C are incorrect because they all specify columns that do not exist.
+Question: 2
+What dynamic performance view can you query to list the supported platforms for transportable
+tablespaces?
+A. V$TRANSPORTABLE_PLATFORM
+B. V$TRANSPORTABLE_TABLESPACE
+C. V$SUPPORTED_PLATFORMS
+D. V$DATABASE PLATFORM
+Answer: A
+Explanation:
+You use the PLATFORM_NAME and ENDIAN_FORMAT columns to determine the supported
+endian formats for all supported platforms. B, C, and D are incorrect because none of these views
+exist.
+Question: 3
+You issue the following command to enable block change tracking: SQL> ALTER DATABASE
+ENABLE BLOCK CHANGE TRACKING; However, you receive an error message, and the
+tracking file is not created. What is a possible reason for the error message?
+A. The parameter DB_RECOVERY_FILE_DEST is not set.
+B. You must use ALTER SYSTEM instead. )
+C. Your database must be in the MOUNT state to create the block change tracking file.
+D. The parameter DB_CREATE_FILE_DEST is not set.
+Answer: D
+Explanation:
+Unless you explicitly specify a location for the block change tracking file using the USING FILE
+clause, the file is created using Oracle Managed Files (OMF), which requires a destination in the
+parameter DB_CREATE_FILE_DEST.
+A is incorrect because DB_RECOVERY_FILE_DEST specifies the location of the flash recovery
+area.
+B is incorrect because the tracking file is created at the database level, not the system level.
+C is incorrect because you can create the tracking file when the database is OPEN; however, to
+rename the tracking file, the database must be in the MOUNT state.
+Question: 4
+You are restoring and recovering a database to a new host. What data dictionary view will you
+use to identify the names of the datafiles on the new database?
+A. DBA_DATAFILE
+B. VJTABLESPACE
+C. VJDATAFILE
+D. V$DATAFILE_COPY
+E. VJBACKUP DATAFILE
+Answer: C
+Explanation:
+V$DATAFILE lists all the datafiles for the new database, and you will use these names in the SET
+NEWNAME command within the RMAN RUN block. A is incorrect because no data dictionary
+view called DBA_DATAFILE exists, and even if it did exist, the view would not be available when
+the database is in the MOUNT state. B, D, and E arencorrect because these views do not contain
+information about datafile names on the new host.
+Question: 5
+Your flash recovery area becomes full when you are running an RMAN backup (and has not yet
+reached the value specified by DB_RECOVERY_FILE_DEST). It is the destination for archived
+redo log files and backups. What will happen to the database? (Choose the best answer.)
+A. If you have the flash recovery area set toautoextend, the backup will continue with no problem.
+B. The database will hang until you add more space to the flash recovery area.
+C. RMAN will delete obsolete backups from the flash recovery area to accommodate new
+backups.
+D. The RMAN backup will hang until you add more space to the flash recovery area.
+Answer: C
+Explanation:
+RMAN will delete files from the flash recovery area if they are obsolete according to the defined
+retention policy.
+A is incorrect because you cannot configure the flash recovery area for autoextend .
+B is incorrect because the RMAN backup will fail, but the database will continue to run as long as
+space is available in the flash recovery area for archived redo log files or it is an optional
+destination.
+D is incorrect because the RMAN backup will attempt to clean up obsolete files, and failing that, it
+will terminate the backup with an error message.
+Question: 6
+You want to ensure the recoverability of the recovery catalog itself. Which of the following steps
+should you implement to maximize recoverability? (Choose all that apply.)
+A. Configure the database for ARCHIVELOG mode.
+B. Use BACKUP DATABASE PLUS ARCHIVELOG when you back up the recovery catalog.
+C. Put the recovery catalog in the target database, and include a backup of the recovery catalog
+with every backup.
+D. Use BACKUP DATABASE PLUS ARCHIVELOG when you back up the recovery catalog.
+E. Back up the recovery catalog to disk and tape after each target database backup (in other
+words, two separate media types).
+Answer: A, B, D, E
+Explanation:
+These are all best practices for a recovery catalog that also apply to any mission-critical
+database. C is incorrect because you should never store the recovery catalog database in the
+target database.
+Question: 7
+For which of the following scenarios would you use user-managed incomplete recovery? (Choose
+all that apply.)
+A. You have lost a data file and one or more of the archived redo log files are missing.
+B. Several widespread logical errors have occurred in the database in the last day.
+C. You want to create a test database as of a point in time in the past.
+D. You have lost a data file and you have all archived redo log files available. E.
+You have lost one of the copies of the control file.
+Answer: A, B, C
+Explanation:
+A is correct because you cannot perform a full recovery with missing archived redo log files.
+B is correct because incomplete recovery can be performed to bring the database back to a point
+in time before the severe logical corruptions occurred.
+C is correct because you can easily copy the database and recover it to a point in time in the past
+for regression testing.
+D is incorrect because you can perform complete recovery if you have lost a datafile and have all
+archived redo log files since the last backup of the datafile . E is incorrect because you do not
+need to perform recovery if only one copy of the control file is missing.
+Question: 8
+You want to leverage resource consumer groups when using the Scheduler. Which Scheduler
+object uses resource plans directly?
+A. A lightweight job
+B. Ajob class
+C. Ajob chain
+D. A program
+Answer: B
+Explanation:
+You create a job class with CREATE_JOB_CLASS and specify a resource consumer group with
+the RESOURCE_CONSUMER_GROUP parameter. You can also specify a resource plan with
+CREATE_WINDOW.
+A is incorrect because you cannot directly link a lightweight job with a consumer group.
+C is incorrect because job chains only specify conditional execution and sequencing among a set
+of related jobs.
+D is incorrect because you cannot directly associate a program with a resource plan
+or resource consumer group
+Question: 9
+You need to recover the database after a disk is lost but you are missing two archived redo log
+files. You need to run the RMAN RECOVER DATABASE UNTIL command. In what database
+state can you perform this recovery?
+A. OPEN
+B. MOUNT
+C. RESTRICTED
+D. NOMOUNT
+Answer: B
+Explanation:
+You must have the control file open but cannot open the datafiles during recovery.
+A is incorrect because the database cannot be open during a full database recovery.
+C is incorrect because RESTRICTED mode is the same as OPEN, except restricted to users with
+SYSDBA privileges.
+D is incorrect because NOMOUNT does not open the control file, and you need to control file
+contents to perform recovery.
+Question: 10
+Which of the following methods can you use to enable duplexed RMAN backups? (Choose two
+answers.)
+A. Use the initialization parameter RMAN_BACKUP_COPIES.
+B. Use the BACKUP COPIES option in the RMAN CONFIGURE command.
+C. Use the BACKUP COPIES option in the ALLOCATE CHANNEL command.
+D. Use the COPIES option in the RMAN BACKUP command.
+Answer: B,D
+Explanation:
+You configure backup copies either in the CONFIGURE command for the device type or during
+the backup itself in the BACKUP command.
+A is incorrect because no such initialization parameter controls RMAN backup copies.
+C is incorrect because you cannot control the number of backup copies in the ALLOCATE
+command.
+Question: 11
+Which of the following tablespaces can be recovered while the database is online? (Choose all
+that apply.)
+A. USERS
+B. UNDO
+C. SYSAUX
+D. SYSTEM 3
+E. EXAMPLE
+Answer: A,C,E
+Explanation:
+The USERS, SYSAUX, and EXAMPLE tablespaces are not considered critical tablespaces , so
+the database can be OPEN when these tablespaces are recovered.
+B and D are incorrect because the database will not open without the SYSTEM or UNDO
+tablespaces .
+Question: 12
+Which of the following methods can you use to run a job chain? (Choose all that apply.
+A. Create and schedule a job with CREATEJOB of type CHAIN.
+B. Create and schedule a chain using the CREATE_CHAIN procedure.
+C. Create and schedule a chain using the CREATE_JOB_CHAIN procedure.
+D. Use the START_CHAIN procedure.
+E. Use the RUN_CHAIN procedure.
+Answer: A,E
+Explanation:
+You can initiate a job chain by creating and scheduling a job with CREATE_JOB of type CHAIN,
+or you can use the RUN_CHAIN procedure.
+B is incorrect because CREATE_CHAIN creates only the chain container and not any of the
+steps; therefore, you cannot run it.
+C and D are incorrect because there are no such procedures as CREATE_JOB_CHAIN or
+START_CHAIN
+Question: 13
+Which of the following commands successfully allocates a channel? (Choose all that apply.)
+A. ALLOCATE CHANNEL T2 TYPE TAPE;
+B. ALLOCATE CHANNEL T2 TYPE SBT;
+C. ALLOCATE CHANNEL DB2 TYPE DISK PARMS='SBT_LIBRARY=mmv.so';
+D. ALLOCATE CHANNEL T1 TYPE DISK;
+Answer: B,D
+Explanation:
+Only two valid media types exist for ALLOCATE CHANNEL: DISK and TAPE. Each type allows
+only certain parameters such as FORMAT and PARMS.
+A is incorrect because there is no such type TAPE.
+C is incorrect because you cannot specify media manager library settings for a backup to disk.
+Question: 14
+To enable remote connections to the database using the password file, what values should
+REMOTE_LOGIN_PASSWORDFILE have? (Choose all that apply.)
+A. NONE
+B. SHARED
+C. EXCLUSIVE
+D. REMOTE
+Answer: B,C
+Explanation:
+The value of REMOTE_LOGIN_PASSWORDFILE can be either SHARED or EXCLUSIVE to
+allow both SYS and non-SYS users to connect to the database remotely (instead of using
+operating system authentication).
+A is incorrect because a value of NONE requires operating system authentication to connect to
+the database as a privileged user.
+D is incorrect because the value REMOTE is not valid for REMOTE_LOGIN_PASSWORDFILE.
+Question: 15
+You want to use Flashback Transaction Query to identify the SQL needed to reverse a
+transaction in the HR. EMPLOYEES table. Where can you find out the value of the transaction ID
+column XID to use when you query FLASHBACK_TRANSACTION_QUERY? (Choose the best
+answer.)
+A. From the VERSIONS_XID column of HR. EMPLOYEES
+B. FromLogMiner
+C. From the XID column of HR.EMPLOYEES
+D. From the VERSIONS XID column of FLASHBACK VERSION QUERY
+Answer: A
+Explanation:
+Every table has the pseudo-column VERSIONS_XID that you can query for a transaction ID of a
+past transaction with the AS OF clause.
+B is incorrect because LogMiner only queries the contents of online and archived redo log files
+and is much more cumbersome that using an AS OF query.
+C is incorrect because XID is not a pseudo-column.
+D is incorrect because there is no such column VERSIONS_XID of the table
+FLASHBACK_VERSION_QUERY; you need to have the XID or SCN before querying
+FLASHBACK_VERSION_QUERY and retrieve the SQL to reverse the transaction.
+Question: 16
+Setting which of the following initialization parameters enables Automatic Memory Management?
+A. MEMORYJARGET
+B. MEMORY_MAX_TARGET
+C. SGATARGET
+D. PGA AGGREGATE TARGET
+Answer: A
+Explanation:
+When you set MEMORY_TARGET, the SGA and PGA memory areas will be dynamically tuned
+as a whole, although you can specify minimum values for the SGA with SGA_TARGET and for
+the PGA with PGA_AGGREGATE_TARGET.
+B is incorrect because MEMORY_MAX_TARGET specifies a maximum value for
+MEMORY_TARGET but does not trigger AMM.
+C is incorrect because SGA_TARGET sets only a minimum value for the SGA when AMM is
+enabled and specifies autotuning of the SGA when MEMORY_TARGET is set to zero or not
+set.
+D is incorrect because PGA_AGGREGATE_TARGET sets a minimum value for the PGA only
+when AMM is enabled.
+Question: 17
+You configure AUTOBACKUP to ON in an RMAN session. When will RMAN back up the control
+file? (Choose all that apply.)
+A. When you run an RMAN BACKUP command
+B. When you run an RMAN ALLOCATE command
+C. When you add or drop a table in the SYSTEMtablespace
+D. When you change the physical structure of the database, such as dropping atablespace
+E. When you specify the INCLUDING CONTROLFILE clause
+Answer: A
+Explanation:
+EXPLANATION:
+When you set MEMORY_TARGET, the SGA and PGA memory areas will be dynamically tuned
+as a whole, although you can specify minimum values for the SGA with SGA_TARGET and for
+the PGA with PGA_AGGREGATE_TARGET.
+B is incorrect because MEMORY_MAX_TARGET specifies a maximum value for
+MEMORY_TARGET but does not trigger AMM.
+C is incorrect because SGA_TARGET sets only a minimum value for the SGA when AMM is
+enabled and specifies autotuning of the SGA when MEMORY_TARGET is set to zero or not
+set.
+D is incorrect because PGA_AGGREGATE_TARGET sets a minimum value for the PGA only
+when AMM is enabled.
+Question: 18
+Which of the following two parameters must you specify to use a flash recovery area for all of
+your backups? (Choose two answers.)
+A. DB_RECOVERY_FILE_DEST_SIZE
+B. DB_RECYCLE_CACHE_SIZE
+C. DB_RECOVERY_FILE_DEST
+D. DB RECOVERY FILE SIZE
+Answer: A,C
+Explanation:
+DB_RECOVERY_FILE_DEST_SIZE specifies the maximum space used by the recovery-related
+files, even if more or less space is available at the destination. DB_RECOVERY_FILE_DEST
+specifies the location for all recovery-related files.
+B is incorrect because DB_RECYCLE_CACHE_SIZE does not control any aspect of the flash
+recovery area.
+D is incorrect because there is no such parameter as DB_RECOVERY_FILE_SIZE.
+Question: 19
+Your database is not using an RMAN recovery catalog. Which of the following commands are not
+available to you in this scenario? (Choose all that apply.)
+A. CONFIGURE RETENTION . . .
+B. BACKUP . . .KEEP FOREVER
+C. DELETE . . . EXPIRED
+D. REPORT SCHEMA ... AT
+Answer: B,D
+Explanation:
+B and D are correct. If you are using the control file only for RMAN backups, backup information
+may age out of the control file and therefore will not be kept forever. In addition, schema changes
+are stored only in a recovery catalog but not in the control file.
+A is incorrect because you can configure RMAN parameters whether or not a recovery catalog is
+configured.
+C is incorrect because you can always delete backups that are older or outside the defined
+retention policy.
+Question: 20
+Which of the following dynamic performance views can you use to show the total CPU time for a
+consumer group? (Choose the best answer.)
+A. V$RSRC_CONSUMER_GROUP
+B. V$SESSTAT
+C. V$SYSSTAT
+D. V$RSRC CONSUMER GRP
+Answer: A
+Explanation:
+The column CONSUMED_CPU_TIME shows the total CPU used for the consumer group, by all
+sessions in the consumer group.
+B is incorrect because V$SESSTAT shows the CPU time only at the session level.
+C is incorrect because V$SYSSTAT shows the cumulative CPU time for all sessions.
+D is incorrect because the dynamic performance view V$RSRC_CONSUMER_GRP does not
+exist.
+Question: 21
+You want to designate one of the Linux system administrators as the recovery catalog owner.
+Which role must you grant to her Oracle user account?
+A. RECOVERY_CATALOG
+B. CATALOGjDWNER
+C. RECOVERY_CATALOG_OWNER
+D. SYSDBA
+Answer: C
+Explanation:
+The predefined role RECOVERY_CATALOG_OWNER includes the system privileges ALTER
+SESSION, CREATE CLUSTER, CREATE DATABASE LINK, CREATE PROCEDURE, CREATE
+SEQUENCE, CREATE SESSION, CREATE SYNONYM, CREATE TABLE, CREATE TRIGGER,
+CREATE TYPE, and CREATE VIEW.
+A, B are wrong because the RECOVERY_CATALOG and CATALOG_OWNER roles do not exist.
+D is wrong because it provides the recovery catalog owner with more system privileges than
+necessary.
+Question: 22
+Fill in the blanks to make the following statement true: You use the________ command so that
+the view_______ contains the specified name associated with the session in the
+_________column.
+A. ALTER SESSION ENABLE RESUMABLE TIMEOUT . . . NAME 'statement description',
+DBA_RESUMABLE_STATEMENT, NAME
+B. ALTER SESSION ENABLE RESUMABLE TIMEOUT . . . NAME 'statement description',
+DBA_RESUMABLE, NAME
+C. ALTER SESSION ENABLE RESUMABLE TIMEOUT . . . NAME 'statement description',
+DBA_RESUMABLE, SQL_NAME
+D. ALTER USER ENABLE RESUMABLE TIMEOUT . . . NAME 'statement description',
+DBA_RESUMABLE, NAME
+Answer: B
+Explanation:
+You use the NAME parameter in ALTER SESSION to create a description of the SQL to make it
+easier for the DBA to identify a resumable statement when it runs out of space.
+A is incorrect because there is no such view as DBA_RESUMABLE_STATEMENT.
+C is incorrect because there is no such column as SQL_NAME in DBA_RESUMABLE.
+D is incorrect because you use ALTER SESSION and not ALTER USER to set the name of the
+statement that may trigger resumable space allocation.
+Question: 23
+You execute this command: CONFIGURE RETENTION POLICY CLEAR; What is the retention
+policy set to after running the command?
+A. Retention is set to the default of REDUNDANCY 1.
+B. No retention policy will be defined.
+C. Retention will be set according to the value of the initialization parameter
+CONTROL_FILE_RECORD_KEEP_TIME.
+D. Retention is set to RECOVERY WINDOW OF 4 DAYS.
+E. Retention is set to the default of REDUNDANCY 2.
+Answer: A
+Explanation:
+By default, RMAN keeps one full copy of the database.
+B is incorrect because a retention policy is defined.
+C is incorrect because there is no relationship between the RMAN records in the control file and
+the retention policy.
+D and E are incorrect because they are not the default values for the RMAN retention policy.
+Question: 24
+You lose an entire redo log group that is in the CURRENT state. What happens to the database
+instance and how can you recover from the lost redo log group?
+A. The instance will hang until you clear the redo log group.
+B. The instance will shut down or crash and you can perform complete recovery using the
+archived redo log files.
+C. The instance will skip to the next redo log group.
+D. The instance will shut down or crash and you will have to perform cancel-based recovery.
+Answer: D
+Explanation:
+The instance will shut down or crash when the current redo log file group is lost and you will have
+to perform cancel-based recovery because the lost redo log group contained committed
+transactions.
+A is incorrect because the instance will shut down or crash, and you cannot clear a redo log
+group that is missing.
+B is incorrect because you cannot perform complete recovery with a missing redo
+log file group in the CURRENT state.
+C is incorrect because Oracle cannot skip a redo log file group.
+Question: 25
+Identify the correct relationships between resource consumer groups, resource plan directives,
+and resource plans. (Choose all that apply.)
+A. Only one resource plan can be active at a time.
+B. A user can be a member of only one resource consumer group.
+C. One resource plan can have multiple plan directives.
+D. A user can be assigned to more than one resource plan.
+Answer: A,C
+Explanation:
+Only one resource plan is in effect at any given time. In addition, a resource plan can use a
+hierarchical method to allocate resources at different percentages depending on priority.
+B is incorrect because a user can be a member of multiple consumer groups.
+D is incorrect because you cannot assign users directly to resource plans, only to consumer
+groups.
+Question: 26
+You are using the RMAN Data Recovery Advisor functionality. When an error occurs, which of the
+following commands can you use to monitor and maintain failures? (Choose all that apply.)
+A. IDENTIFY FAILURE
+B. REPAIR FAILURE
+C. CHANGE FAILURE
+D. ADVISE FAILURE E.
+RESET FAILURE
+Answer: B,C,D
+Explanation:
+In addition to REPAIR, CHANGE, and ADVISE FAILURE, you can use the LIST FAILURE
+command to see if any unresolved failures exist.
+A and E are incorrect because the commands IDENTIFY FAILURE and RESET FAILURE do not
+exist.
+Question: 27
+You are using TISPITR to recover one or more tablespaces to a previous time in point or back to
+a specific SCN. What included in the recovery set? (Choose all that apply.)
+A. A copy of the SYSTEMtablespace
+B. A copy of the SYSAUXtablespace
+C. A copy of the UNDOtablespace
+D. A temporarytablespace for exported database objects from the auxiliary instance.
+E. Thedatafiles from the tablespaces to be recovered
+Answer: E
+Explanation:
+The recovery set includes only the datafiles from the tablespaces to be recovered.
+A, B, C, and D are incorrect. None of these objects is included in the recovery set; instead, all of
+them are included except for the UNDO tablespace .
+Question: 28
+You are using a recovery catalog and you lose all copies of your control file. Which of the
+following sets commands will you use to restore the control file before you recover the database?
+A. SET DBID 188390190; RESTORE CONTROLFILE;
+B. SET DBID 188390190; RESTORE CONTROLFILE FROM AUTOBACKUP;
+C. RESTORE CONTROLFILE FROM AUTOBACKUP;
+D. RESTORE CONTROLFILE;
+Answer: D
+Explanation:
+If you are using a recovery catalog, you do not need to set the DBID or specify AUTOBACKUP.
+A is incorrect because you do not need to specify the DBID when you restore the control file
+using a recovery catalog.
+B is incorrect because you do not need to specify the DBID or AUTOBACKUP when you use a
+recovery catalog.
+C is incorrect because although this command will work, you do not need to specify
+AUTOBACKUP when you use a recovery catalog.
+Question: 29
+Identify the advantage of recovery an image copy of a datafile during RMAN backup. (Choose all
+that apply.)
+A. During media recovery, fewer incremental updates need to be applied to the last image copy.
+B. The overhead for the block change tracking file is minimal.
+C. You do not need to perform additional image copy backups.
+D. You no longer need to duplex your backups.
+E. The time required to perform the backup and incremental updates to the image copy is
+reduced.
+Answer: A,C
+Explanation:
+During media recovery, RMAN can start with the incrementally updated image copy and
+potentially apply fewer archived redo log files, significantly reducing recovery time. With an
+incrementally updated image copy, any subsequent image copy will be identical to the
+incrementally updated image copy.
+B is incorrect because a block change tracking file reduces the time it takes RMAN to identify
+changed blocks.
+D is incorrect because duplexed backups is still a valid backup method to increase the number of
+backup copies. E is incorrect because the incremental update will add a slight amount of
+overhead during the backup but can dramatically reduce the recovery time.
+Question: 30
+After you unregister a database from a recovery catalog, what happens to the backup metadata
+in the recovery catalog?
+A. You mustmigrate the backup metadata from the recovery catalog to the control file before
+unregistering the database from the recovery catalog.
+B. The backup metadata is maintained in the control file for a number of days specified by the
+initialization parameter CONTROL_FILE_RECORD_KEEP_TIME and immediately removed
+from the recovery catalog.
+C. The backup metadata is retained in the control file, and the database structure metadata
+remains in the recovery catalog.
+D. The backup metadata is maintained in the control file and in the recovery catalog for a number
+of days specified by the initialization parameter CONTROL FILE RECORD KEEP TIME.
+Answer: B
+Explanation:
+The backup metadata is always maintained in the control file for a number of days specified by
+the initialization parameter CONTROL_FILE_RECORD_KEEP_TIME.
+A is incorrect because the control file always maintains the backup metadata and no migration is
+required.
+C is incorrect because all metadata for a database is removed from the recovery catalog
+when it is unregistered. D is incorrect because a database's metadata is removed immediately
+from the recovery catalog when it is unregistered.
+Question: 31
+You switch from Automatic Memory Management (AMM) to Automatic Shared Memory
+Management (ASMM) by executing this statement: alter system set memory_target = 0;
+Next, you restart the instance and set these values: alter system set sga_max_size = 10gb;
+alter system set sga_target = 8gb; alter system set shared_pool_size = 1 gb; How do the values
+of SGA_TARGET, SGA_MAX_SIZE, and SHARED_POOL_SIZE vary throughout the day?
+(Choose the best answer.)
+A. SGA_TARGET varies up to SGA_MAX_SIZE, which depends on the number of users running
+DML
+B. SGA_TARGET can fall below 8GB if the PGA is low on memory.
+C. SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never is above 1GB.
+D. SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never falls below 1GB.
+Answer: D
+Explanation:
+When you enable ASMM by setting SGA_TARGET, the value does not change automatically and
+the SHARED_POOL_SIZE can grow and shrink as long as it does not fall below 1GB.
+A is incorrect because SGA_TARGET will not change dynamically; however, it can be changed
+by the DBA as long as it is less than the value of SGA_MAX_SIZE.
+B is incorrect because the value of SGA_TARGET does not change and has no effect on the
+PGA memory size since AMM is not enabled.
+C is incorrect because the value of SHARED_POOL_SIZE can vary above 1GB but is
+never lower than 1GB.
+Question: 32
+Which two dynamic performance views can you use to identify files that need to be backed up,
+regardless of whether you are in ARCHIVELOG mode or NOARCHIVELOG mode?
+A. V$DATAFILE and VJLOGFILE
+B. V$DATAFILE and VJTEMPFILE
+C. V$LOG and VJLOGFILE
+D. V$DATAFILE and VJCONTROLFILE
+Answer: D
+Explanation:
+The view V$DATAFILE contains all datafiles and V$CONTROLFILE contains a list of all copies of
+the control file.
+A is wrong because you do not need to back up the online redo log files.
+B is wrong because you do not need to back up datafiles from temporary tablespaces , which do
+not contain any permanent objects, and can be easily re-created if lost.
+C is wrong because online redo log files do not need to be backed up and V$LOG contains
+information about online redo log file groups, not individual files.
+Question: 33
+You want to create an archival backup for historical purposes. Where can you store the archival
+backup?
+A. To a disk location outside of the recovery area or a tape group
+B. To a disk device or the flash recovery area
+C. In the flash recovery area only
+D. To a tape device or the flash recovery area
+E. On any combination of disk and tape devices
+Answer: A
+Explanation:
+An archival backup can be stored only on a disk device outside of the flash recovery area or to a
+tape group.
+B is incorrect because you cannot save an archival backup to the flash recovery area.
+C is incorrect because you can save archival backups to tape or disk but not to the flash recovery
+area.
+D is incorrect because you cannot save archival backups to the flash recovery area.
+E is incorrect because archival backups must reside on a single device type.
+Question: 34
+You lose all of the datafiles in your TEMP tablespace after the database shuts down. When the
+database starts again, what happens?
+A. The database instance will not start and you must re-create the TEMPtablespace in MOUNT
+mode.
+B. The database instance will not start and you will have to drop the old TEMPtablespace in
+NOMOUNT mode.
+C. Thetempfile is re-created at the original location, a message is written to the alert log, and the
+database starts normally.
+D. The database starts normally, a message is written to the alert log, and the DBA must
+manually re-create the TEMPtablespace.
+Answer: C
+Explanation:
+If the database starts with a missing tempfile , the instance re-creates it and writes a message in
+the alert log. If the original location is not available, the DBA will have to create a new one
+manually after startup.
+A and B are incorrect because the database will start even if the tempfile location is not available.
+D is incorrect because the DBA does not need to re-create the tempfile (s) manually unless the
+original file system location is unavailable.
+Question: 35
+Which of the following segment types can you shrink using Oracle's segment shrink functionality?
+(Choose all that apply.)
+A. Undo segments
+B. Index segments
+C. Temporary segments
+D. Data segments
+Answer: B,D
+Explanation:
+You can shrink data segments and index segments separately.
+A and C are incorrect. You cannot shrink undo or temporary segments. They are managed
+internally and do not need to be shrunk, because all space in an undo or temporary segment is
+released after being used; thus, no free space exists to compact.
+Question: 36
+You are creating a duplicate (auxiliary) database for testing purposes. Which of the following
+initialization parameter files can you use on the auxiliary database to specify the filenames on the
+new database? (Choose all that apply.)
+A. CONTROL_FILE_NAME_CONVERT
+B. LOG_FILE_NAME_CONVERT
+C. DB_FILE_NAME_CONVERT
+D. DB_CREATE_FILE_DEST
+E. CONTROL_FILES
+Answer: B,C,E
+Explanation:
+When you create an auxiliary database, your control files, datafiles , and online log files will most
+likely not be in the same location as the source database. Thus, you can use CONTROL_FILES,
+DB_FILE_NAME_CONVERT, and LOG_FILE_NAME_CONVERT to specify the new locations.
+A is incorrect because the parameter CONTROL_FILE_NAME_CONVERT does not exist.
+D is incorrect because DB_CREATE_FILE_DEST is the location Oracle uses to create database
+objects when you are using Oracle Managed Files (OMF).
+Question: 37
+Which of the following DML operations use a significant portion of the PGA? (Choose all that
+apply.)
+A. Hash joins
+B. Buffers for bulk load operations
+C. Full table scans
+D. Bitmap merges
+E. Bitmap create
+Answer: A,B,D,E
+Explanation:
+In addition to hash joins, bulk load operations, bitmap merge, and bitmap create operations, the
+PGA is used for sorting operations triggered by ORDER BY, GROUP BY, and ROLLUP, any of
+which are used in a SELECT statement.
+C is incorrect because full table scans use an insignificant amount of memory in the PGA but a
+significant amount of memory in the SGA buffer cache.
+Question: 38
+You are using RMAN to perform a fast switch to image copies for recovery purposes. You need to
+perform a SET NEWNAME command as part of the fast switch. What is the primary restriction
+when using SET NEWNAME? (Choose the best answer.)
+A. The SET NEWNAME is available only within a RUN block.
+B. The SET NEWNAME is available only as a standalone RMAN command.
+C. You can use SET NEWNAME only for non-SYSTEMdatafiles.
+D. The SET NEWNAME can change only the filename itself and not the directory path.
+Answer: A
+Explanation:
+You use SET NEWNAME in a RUN block to identify the target location for the recovered image
+copy when you run the RESTORE command.
+B is incorrect because SET NEWNAME is available only within a RUN block.
+C is incorrect because you can use SET NEWNAME for any datafile .
+D is incorrect because SET NEWNAME specifies the entire pathname and filename for the
+restored image file.
+Question: 39
+Which of the following statements is true regarding lightweight jobs? (Choose all that apply.
+A. You can use EM to create a lightweight job.
+B. A lightweight job generates minimum redo when it runs.
+C. A lightweight job is stored in the same table as other jobs.
+D. You use the CREATE_LIGHTWEIGHT_JOB procedure to create a lightweight job.
+Answer: B
+Explanation:
+In addition to generating minimal redo, a lightweight job must also use an existing template to
+create it.
+A is incorrect because EM cannot specify a JOB_STYLE of LIGHTWEIGHT.
+C is incorrect because lightweight jobs are not database objects that need to be created or
+dropped.
+D is incorrect because there is no such procedure as CREATE_LIGHTWEIGHT_JOB. Instead,
+you use CREATE_JOB with A JOB_STYLE of LIGHTWEIGHT.
+Question: 40
+As the DBA, you run this command on the recovery catalog database: SQL> GRANT
+RECOVERY_CATALOG_OWNER TO KMSHELT; what privileges do the user KMSHELT have?
+A. KMSHELT can create users that own virtual private catalogs.
+B. KMSHELT can immediately use an existing virtual catalog on the recovery catalog database.
+C. KMSHELT can register a new database in her Virtual Private Catalog (VPC).
+D. KMSHELT can potentially own a VPC but will not be able to unless the DBA grants other
+privileges first.
+Answer: D
+Explanation:
+The DBA of the recovery catalog database must either grant the RMAN REGISTER DATABASE
+privilege or grant the RMAN CATALOG FOR DATABASE privilege on an existing database
+before KMSHELT can use the VPC.
+A is incorrect because KMSHELT has only the privilege either to register a database or use an
+existing registered catalog.
+B is incorrect because the DBA has to grant additional privileges to KMSHELT.
+C is incorrect because she needs the RMAN REGISTER DATABASE privilege first.
+Question: 41
+You drop the table ORDERJTEM, and because you have the RECYCLEBIN initialization
+parameter set to ON, the table and its indexes are moved to the recycle bin. Which of the
+following are valid names for these two objects in the recycle bin?
+A. BINJORDERJTEMJO BIN$ORDERJTEM_PK! I; 0
+B. BIN$QR9ZZ=49X2Z$0BIN$QR8ZZ=W9X2Z$0
+C. BIN$ORDER_ITEM$0BIN$ORDERJTEM$1
+D. BIN$QR9ZZ=49X2Z$0BIN!i;C!R9ZZ=49X2Z!i;i
+Answer: B
+Explanation:
+Every item in the recycle bin contains up to a 26-character identifier that is unique across the
+database.
+A and C are incorrect because the recycle bin name does not use the original object name.
+D is incorrect because the value between the two $ symbols must be unique. The value after the
+second $ is an Oracle-assigned version number.
+Question: 42
+You create and execute a stored local script using the following commands: create script user
+backup
+{
+backup as copy tablespace users; delete noprompt obsolete;
+}
+execute script user_backup; What happens when you run these commands?
+A. The script does not run because it must be executed within a RUN block.
+B. An image copy of the USERStablespace occurs and all previous backups and archived redo
+logs outside of the retention period or retention policy are deleted.
+C. The script creation step fails because you must explicitly allocate one or more channels with a
+stored script.
+D. The script does not run because you must specify a target database when you use a local
+script.
+Answer: A
+Explanation:
+Stored scripts, whether they are local or global, must be run within a RUN block as follows: run
+{execute script user_ backup ; }.
+B is wrong because a script must be enclosed in a RUN block.
+C is wrong because you can include a channel allocation or use the default channel in the RUN
+command containing the EXECUTE SCRIPT command.
+D is wrong because both local and global scripts apply only to the currently connected target
+database.
+Question: 43
+Which of the following can be a performance bottleneck in RMAN? (Choose all that apply.
+A. Reading data
+B. Writing data
+C. Allocating channels
+D. Validating blocks
+E. Copying blocks
+F. Multiplexing backups
+Answer: A,B,D,E
+Explanation:
+All of these operations can potentially be the slowest operation of the backup.
+C is incorrect because channel allocation happens once during a backup and is therefore not a
+bottleneck. F is wrong because multiplexing backups will likely reduce the impact of a
+bottleneck.
+Question: 44
+Which of the following cannot be used as input to the SQL Tuning Advisor? (Choose all that
+apply.)
+A. A single SQL statement provided by a user
+B. An existing SQL Tuning Set (STS)
+C. A preprocessed Database Replay workload
+D. A schema name
+E. SQL statement identified in EM as using excessive resources
+Answer: C,D
+Explanation:
+You cannot use Database Replay workloads or an entire schema name as input to the SQL
+Tuning Advisor. However, you can specify single SQL statements.
+A, B, and E are incorrect because single SQL statements and SQL Tuning Sets can be provided
+as input to the SQL Tuning Advisor.
+Question: 45
+You run the following query against the dynamic performance view V$ASM_DISKGROUP: SQL>
+select group_number, name, type, total_mb, free_mb 2 from v$asm diskgroup;
+GROUP_NUMBER NAME TYPE TOTAL MB FREE MB
+1 DATA NORMAL 24568 20798
+2 RECOV NORMAL 24568 24090
+3 DATA2 HIGH 16376 16221
+What can you infer about the disk group DATA2?
+A. Disk group DATA2 is mirrored at the operating system level or with a RAID array.
+B. The TYPE column specifies disk group performance, not the redundancy level.
+C. Disk group DATA2 is mirrored threefold or more.
+D. Disk group DATA2 is mirrored with two disks in the failure group.
+Answer: C
+Explanation:
+If the TYPE column is HIGH, then the disk group is mirrored with at least three disks.
+A is incorrect because if the disk group was mirrored at the operating system level or not at all,
+the TYPE column would have a value of EXTERN.
+B is incorrect because TYPE reflects the redundancy level, not performance level.
+D is incorrect because a value of NORMAL in the TYPE column indicates a redundancy level of
+two.
+Question: 46
+Identify the statement that is true about Flashback Data Archive. (Choose the best answer.)
+A. You can use multipletablespaces for an archive, and each archive can have its own retention
+time.
+B. You can have one archive, and for eachtablespace that is part of the archive you can specify a
+different retention period.
+C. You can use multipletablespaces for an archive, and you can have more than one default
+archive per retention period.
+D. If you specify a default archive, it must exist in only onetablespace.
+Answer: B
+Explanation:
+A Flashback Data Archive can span multiple tablespaces , each archive can have its own
+retention period, and you can specify one and only one default archive for CREATE TABLE or
+ALTER TABLE . . . FLASHBACK ARCHIVE commands.
+A, C, and D are incorrect. These combinations of Flashback Archive Conditions are incorrect.
+Question: 47
+How many copies of the alert log are stored in the directory specified by the initialization
+parameter DIAGNOSTIC_DEST?
+A. One per database
+B. One per instance
+C. Two per database
+D. Two per instance
+E. One per incident directory
+Answer: D
+Explanation:
+The alert log is stored in XML format in the alert subdirectory and in text format in the trace
+subdirectory. The alert log as well as all other diagnostic information is maintained per instance
+(for each instance).
+A is incorrect because an alert log exists for each database instance, which is the case in a RAC
+environment.
+B is incorrect because the alert log is stored in both XML and text formats.
+C is incorrect because two copies of the alert log exist per instance, not per database. E is
+incorrect because the alert log is not stored in an incident directory.
+Question: 48
+You lose all control file copies and your datafiles are intact, but your online log files are
+unavailable. Mow do you recover the database in this situation?
+A. Re-create the control file and open the database with RESETLOGS.
+B. Restore a backup copy of the control file, perform incomplete recovery, and manually specify
+the names of the online redo log files. Also, open the database with RESETLOGS.
+C. Restore a backup copy of the control file, perform complete recovery, and open the database
+with RESETLOGS.
+D. Restore a backup copy of the control file, perform incomplete recovery, and open the database
+with RESETLOGS.
+Answer: A
+Explanation:
+You will lose some committed transactions because the online logs are not available.
+B is incorrect because this solution applies only if both the online logs are available and the
+datafiles are current.
+C is incorrect because this scenario applies only if the online logs are available but the datafiles
+are not current.
+D is incorrect because this scenario applies only if the online logs are unavailable and the
+datafiles are not current.
+Question: 49
+You need to determine the proper target time for TSPITR. What methods can you use to
+determine the correct target time? (Choose all that apply.)
+A. Flashback Database
+B. Flashback Version Query
+C. Flashback Transaction Query
+D. Flashback Query
+E. Flashback Drop
+F. Flashback Data Archive
+Answer: B,C,D
+Explanation:
+You can use Flashback Version Query, Flashback Transaction Query, or Flashback Query to look
+at the data or DML as of a point in time from the past with which to identify the correct SCN or
+timestamp for tablespace recovery.
+A is incorrect because Flashback Database brings the entire database back to a point in time in
+the past. E is wrong because Flashback Drop retrieves dropped tables from the recycle bin. F is
+wrong because Flashback Data Archive stores change history for one or more tables, much as
+the UNDO tablespace maintains change history for the entire database.
+Question: 50
+When you perform a whole database backup with the command BACKUP DATABASE PLUS
+ARCHIVELOG, which database objects are included in the backup? (Choose the best answer.)
+A. Alldatafiles and archived log files. The control file is included if you add the CONTROLFILE
+keyword, and the SPFILE is included if your configuration includes automatic backup of the
+SPFILE.
+B. Alldatafiles and archived log files. The SPFILE is included if you add the SPFILE keyword, and
+the control file is included if your configuration includes automatic backup of the control file.
+C. Alldatafiles and archived log files; after the operation successfully completes, the archived log
+files are automatically deleted.
+D. Alldatafiles and archived log files only, regardless of the current RMAN settings.
+Answer: B
+Explanation:
+The command backs up all datafiles plus the archived log files. It backs up the SPFILE if you
+include the SPFILE keyword, and it backs up the control file if autobackup of the control file is
+configured.
+A is incorrect because no such CONTROLFILE keyword exists, and you cannot specify
+autobackup of the SPFILE alone.
+C is incorrect because archived log files are deleted only if you include the DELETE INPUT
+option.
+D is incorrect because configured RMAN settings specify other files included in the backup.
+Question: 51
+You want to perform some maintenance on your ASM disk groups. As a result, you want to
+prevent RDBMS instances from connecting to the ASM instance, but you do not want to shut
+down the ASM instance. What command will achieve this objective?
+A. ALTER SYSTEM ENABLE RESTRICTED SESSION
+B. ALTER SYSTEM SUSPEND
+C. ALTER SYSTEM KILL SESSION
+D. ALTER SYSTEM SHUTDOWN IMMEDIATE
+Answer: A
+Explanation:
+Running ALTER SYSTEM ENABLE RESTRICTED SESSION prevents connections from RDBMS
+instances.
+B is incorrect because SUSPEND is valid only for an RDBMS instance.
+C is incorrect because KILL SESSION will disconnect a user's session, but it will not prevent new
+connections.
+D is incorrect because this command is not syntactically correct.
+Question: 52
+You can use the EM Support Workbench for which of the following tasks? (Choose all correct
+answers.)
+A. Run recommended repairs.
+B. Manually run a health check.
+C. Close problems and incidents.
+D. Generate additional SQL test cases to help Oracle Support solve the problem.
+E. View problems and incidents.
+Answer: B,C,D,E
+Explanation:
+B, C, D, and E are correct. You can use the Support Workbench for viewing problems and
+incidents, manually running health checks, generating additional dumps and test cases for Oracle
+Support, creating and tracking a service request to Oracle Support, collecting all data related to a
+problem and packaging it, and closing the problem when it has been resolved.
+A is incorrect because the EM Support Workbench cannot run recommended repairs. However,
+you can initiate advisors that can recommend repairs.
+Question: 53
+You have a very large table that your users access frequently. Which of the following advisors will
+recommend any indexes to improve the performance of queries against this table?
+A. The Automatic Memory Manager (AMM)
+B. The SQL Tuning Advisor
+C. The Segment Advisor
+D. The SQL Access Advisor
+Answer: D
+Explanation:
+The SQL Access Advisor analyzes all SQL running during a given time period and recommends
+indexes and materialized views to improve the overall performance of the database.
+A is incorrect because there is no such advisor as the Automatic Memory Manager.
+B is incorrect because the SQL Tuning Advisor looks only at a single SQL statement and
+provides recommendations.
+C is incorrect because the Segment Advisor recommends segment shrink when table and index
+segments are heavily fragmented.
+Question: 54
+Which of the following are valid reasons for using a duplicate database? (Choose all that apply.)
+A. You want to test a new application's performance with no impact to the production database.
+B. You want to perform Flashback Table on a group of tables without impacting user transactions.
+C. You want to test an upgrade from Oracle Database 11 g R1 to Oracle Database 11 g R2.
+D. You want to test backup and recovery procedures.
+Answer: A,C,D
+Explanation:
+They are all valid reasons to use a duplicate database.
+B is incorrect because you can perform Flashback Table on the source database with minimal
+impact to user transactions.
+Question: 55
+Your CUSTOMER_ORDER and ORDERJTEMS table is updated daily with both phone orders
+and Internet orders. During an ad-hoc maintenance operation, an operations specialist
+accidentally deletes several items from an order placed last week. Which flashback feature will
+minimize the loss of recent updates to the ORDERJTEMS table and easily retrieve the missing
+rows? (Choose the best answer.)
+A. Flashback Data Archive
+B. Flashback Version Query
+C. Flashback Query
+D. Flashback Transaction Query
+E. Flashback Table
+Answer: C
+Explanation:
+You can use INSERT INTO . . . SELECT . . . AS OF to retrieve the lost rows, specifying a
+timestamp value right before the accidental deletion.
+A is incorrect because Flashback Data Archive makes it easier to retain historical data but does
+not directly retrieve the missing rows.
+B is incorrect because even though Flashback Versions Query makes it easy to see versions of a
+row within a specific time period, you will have to perform additional steps to insert the missing
+data.
+D is incorrect because you can access all the changes made for a given transaction, but you
+need to know the transaction ID and still have to insert the missing rows. E is incorrect
+because even though Flashback Table will rewind the table to a point in time before the rows
+were deleted, you will lose all recent transactions to the table.
+Question: 56
+You define your national character set as AL16UTF16. What datatypes will store Unicode data?
+(Choose all that apply.)
+A. NVARCHAR2
+B. XMLTYPE
+C. NCLOB
+D. NBLOB
+E. LONG I
+F. NCHAR
+Answer: A,C,F
+Explanation:
+When the database's national character set is defined as UTF8 or AL16UTF16, you can store
+Unicode data in NVARCHAR2, NCLOB, and NCHAR datatypes .
+B is incorrect because the database character set applies to XMLTYPE data and not the national
+character set.
+D is incorrect because there is no such datatype as NBLOB. E is incorrect because
+LONG datatypes do not store Unicode data and they are supported only for backward
+compatibility using the database character set.
+Question: 57
+Which of the following archived log file configurations is the most ideal configuration per Oracle's
+recommendation?
+A. Use a flash recovery area mirrored on an external RAID system only.
+B. Archive to the flash recovery area and one location outside of the flash recovery area.
+C. Set two archived log destinations to non-flash recovery areas.
+D. Use a flash recovery area mirrored on an ASM disk group only.
+Answer: D
+Explanation:
+The highest performance and ease of maintenance configuration is a single destination to a flash
+recovery area stored in a mirrored ASM disk group.
+A, B, and C are viable options but do not maximize performance, ease of maintenance, and
+recoverability.
+Question: 58
+Which of the following database objects are not candidates for RMAN image copies? (Choose all
+that apply.)
+A. Datafiles
+B. Online redo log files
+C. Flashback log files
+D. Archived redo log files
+E. Password files
+Answer: B,C,E
+Explanation:
+B, C, and E cannot be backed up as image copies. You should never back up online redo log files
+under any circumstances, you do not need to back up flashback logs, and password files cannot
+be backed up by RMAN.
+A is incorrect because any datafile can be backed up as an RMAN image copy. D is incorrect
+because you can back up archived redo log files as image copies.
+Question: 59
+You inadvertently delete some RMAN backups with operating system commands. You perform
+additional backups from RMAN again but you need to remove the deleted backups from the
+recovery catalog. What commands can you use to clean up the catalog? (Choose all that apply.)
+A. DELETE EXPIRED
+B. CROSSCHECK
+C. DELETE OBSOLETE
+D. UNCATALOG
+E DELETE UNAVAILABLE
+Answer: B,D
+Explanation:
+The CROSSCHECK command compares the backups in the catalog to the actual backups on
+disk, and the UNCATALOG command unconditionally removes a backup from the recovery
+catalog.
+A is incorrect because DELETE EXPIRED removes only entries from the recovery catalog whose
+status is EXPIRED.
+C is incorrect because DELETE OBSOLETE deletes only backups that are no longer needed to
+satisfy the retention policy. E is incorrect because the command DELETE UNAVAILABLE does
+not exist.
+Question: 60
+You frequently have multiple RMAN sessions running, and you want to be able to easily identify
+each job via the CLIENTJNFO column of the dynamic performance view VJSESSION. What
+RMAN command can you run to set the value for this column?
+A. setclientjnfo to 'RJB rman session';
+B. set command id to 'RJBrman session';
+C. setchanneljd to 'RJB rman session';
+D. setsession_name to 'RJB rman session
+Answer: C
+Explanation:
+The value you specify for CHANNEL ID is concatenated with the value for CLIENT_INFO in
+V$SESSION.
+A, B, and D are incorrect because these commands are syntactically incorrect
+Question: 61
+Which of the following statements are true regarding ASM instances and disks? (Choose all that
+apply.)
+A. The RBAL background process exists only on the ASM instance.
+B. You can use ASM disks with RAID disk systems.
+C. An ASM instance has its own data dictionary.
+D. ASM instances must be in the OPEN state to manage disk groups.
+E You can mix ASM disk groups with raw disks.
+Answer: B
+Explanation:
+If you use ASM with RAID disk systems, you will typically turn off the ASM disk group redundancy
+and let the RAID system handle it; however, using ASM to manage mirroring and load balancing
+is typically more efficient. In addition, you can mix ASM disk groups with raw disks and datafiles
+on a file system.
+A is incorrect because RBAL exists on both the ASM instance and the RDBMS instance.
+C is incorrect because an ASM disk does not have a database and thus no data dictionary.
+D is incorrect because ASM instances can only be in the NOMOUNT or MOUNT state.
+Question: 62
+You are querying V$BACKUP_ASYNC_IO to determine which files are the bottleneck during
+RMAN backups. What columns should you use to identify bottlenecks? (Choose the best
+answer.)
+A. Divide IO_COUNT by LONG_WAITS and look for a large number.
+B. LONG_WAIT_TIME_TOTAL should be the same as SHORT_WAIT_TIME_TOTAL
+C. Divide LONG_WAITS by LONG_WAIT_TIME_TOTAL and look for a small number.
+D. Divide LONG_WAITS by IO_COUNT and look for a large number.
+Answer: D
+Explanation:
+If the ratio of LONG_WAITS to IO_COUNT is large, then this file is likely a source of bottlenecks.
+A, B, and C are incorrect, because all three of these calculations are not valid indicators of a
+bottleneck.
+Question: 63
+Under what circumstances would you use transparent encryption for your RMAN backups?
+(Choose the best answer.)
+A. When youdont want to specify a password but share a wallet among several databases
+B. When you can specify a password for a backup but can also use a wallet if you're on the same
+database
+C. When you want to restore the backup to the same database and you are using a wallet
+D. When you want to send the backup to another site anddont want to use a password at the
+remote site
+Answer: C
+Explanation:
+Transparent encryption uses only an encryption wallet and cannot be used to recover to another
+database.
+A is incorrect because you cannot share wallets between databases.
+B is incorrect because transparent encryption does not use passwords.
+D is incorrect because you must use password encryption or no encryption at all to use a backup
+at another site.
+Question: 64
+Which of the following initialization parameters are specific to an ASM instance? (Choose all that
+apply.)
+A. LARGE_POOL_SIZE
+B. INSTANCE_TYPE
+C. ASM_POWER_LIMIT
+D. ASM_DISK_LIMITE ASM_DISKGROUPS
+Answer: C
+Explanation:
+ASM_POWER_LIMIT throttles disk rebalance operations to make sure they don't interfere with
+ongoing user I/O. ASM_DISKGROUPS specifies the disk groups that should automatically be
+mounted when the ASM instance starts.
+A is incorrect because LARGE_POOL_SIZE is used for both an ASM and an RDBMS instance.
+B is incorrect because you use INSTANCE_TYPE to differentiate an instance between ASM and
+RDBMS (RDBMS is the default).
+D is incorrect because no ASM_DISK_LIMIT initialization parameter exists.
+Question: 65
+Which of the following clauses are valid for the FLASHBACK TABLE command? (Choose all that
+apply.)
+A. VERSIONS BETWEEN
+B. AS OF
+C. TO TIMESTAMP
+D. TO BEFORE DROP
+Answer: C,D
+Explanation:
+In addition to TO TIMESTAMP, you can also specify TO SCN to provide a point in time for table
+recovery. If you use TO BEFORE DROP, you are actually using Flashback Drop but you still use
+the FLASHBACK TABLE statement.
+A is incorrect because VERSIONS BETWEEN is used for Flashback Versions Query.
+B is incorrect because AS OF is used only for SELECT statements.
+Question: 66
+To recover from the loss of the entire database, including all current control files, all online redo
+log files, and all parameter files, what backups are required, at a minimum, to restore the
+database successfully? (Choose all that apply.)
+A. Archived redo logs generated after the lastdatafile backups
+B. Oneautobackup of the control file
+C. Oneautobackup of the SPFILE
+D. A backup of alldatafiles i E The password file
+Answer: A,B,D
+Explanation:
+To recover your database fully, you need a backup of all datafiles , all archived log files created
+since the last datafile backup, and an autobackup of the control file.
+C and E are incorrect because you can easily re-create the password file, and RMAN creates a
+dummy SPFILE during recovery.
+Question: 67
+You need to perform user-managed complete database recovery. What information do you need
+to retrieve from VJRECOVERY_LOG? (Choose the best answer.)
+A. The history of thedatafiles recovered so far
+B. The archived redo log files required for recovery
+C. Thedatafiles and archived redo log files required for recovery
+D. The online redo log files that are corrupted and need to be re-created
+Answer: B
+Explanation:
+For user-managed recovery, you need to query V$RECOVERY_LOG to identify the archived
+redo log files needed for complete recovery, and V$RECOVERY_FILE to see which datafiles
+need media recovery.
+A is incorrect because V$RECOVERY_LOG is not a history of recovery operations.
+C is incorrect because the view only contains a list of archived redo log files required for recovery.
+D is incorrect because there is no dynamic performance view that identifies which online redo log
+files are corrupt.
+Question: 68
+In RMAN, you execute the command CONFIGURE BACKUP OPTIMIZATION ON so that you
+can avoid backing up objects that are already backed up sufficiently within the retention policy.
+However, you want to make an additional backup of the USERS tablespace to a removable disk
+for offsite storage. How can you ensure that RMAN does not skip the backup of the USERS
+tablespace? (Choose the best answer.)
+A. Turn backup optimization off, perform the backup, and then turn backup optimization back on.
+B. Use the UNCONDITIONAL option: BACKUP UNCONDITIONAL TABLESPACE USERS;
+C. Back up thetablespace to a different device type.
+D. Use the FORCE option: BACKUP FORCE TABLESPACE USERS;.
+Answer: D
+Explanation:
+D is correct. If you have backup optimization on, RMAN will unconditionally back up the object if
+you use the FORCE option.
+A is incorrect because this is not the best way to accomplish this task.
+B is incorrect because no such RMAN keyword UNCONDITIONAL exists.
+C is incorrect because the conditions for backup optimization may already be met on all device
+types.
+Question: 69
+You work as a Database Administrator for Veedol Inc. Your manager wants you to run a job that
+updates the transaction table every 30 minutes. To schedule the job, you have to set the value of
+the interval element. Which of the following settings for the repeat_interval argument will achieve
+the desired objective. Each correct answer represents a complete solution. Choose two.
+A. 'freq =hourly;interval = 1/2'
+B. 'freq =hourly;byminute = 30'
+C. '000: 30:00'
+D. 'freq =minutely;interval = 30'
+E. 'freq =minutely;byminute = 30'
+F. 'freq =minutely;interval ='30' minutes'
+Answer: A,D
+Question: 70
+You work as a Database Administrator for Veedol Inc. You find that the performance of the
+production database is at its best on 19th Nov 2006. Which of the following actions will you take,
+so that you get an appropriate message (notification) whenever the performance of the
+production database falls by 25%?
+A. You will write the current database metrics to the database table, so that future database
+statistic can be compared with them, and will create a trigger to fire accordingly.
+B. You will create baseline metrics using a snapshot for the performance on19th Nov 2006.
+C. You will write the current database metrics to the database table and will submit the job using
+DBMS_SCHEDULER package to compare future database statistics with them.
+D. You will write the current database metrics to the database table, so that future
+databasestatisti can be compared with them, and will create a procedure to execute
+accordingly.
+Answer: B
+Question: 71
+Which of the following PL/SQL packages will you use to configure resource plans, resource
+consumer groups, and resource plan directives in the PROD database?
+A. DBMS_WORKLOAD_CAPTURE
+B. DBMS_RLMGR
+C. DBMS_RESOURCE_MANAGER
+D. DBMS_RESOURCE_MANAGER_PRIVS
+Answer: C
+Question: 72
+Many RMAN settings help in automation or simplification using RMAN. Where are these settings
+stored? Each correct answer represents a complete solution. Choose all that apply.
+A. Tablespace
+B. Datafile
+C. Target database control file
+D. Recovery catalog
+Answer: C,D
+Question: 73
+Which of the following values of the STATISTICS_LEVEL initialization parameter should be set to
+include plan execution statistics in the AWR?
+A. TYPICAL
+B. BASIC
+C. NULL
+D. ALL
+Answer: D
+Question: 74
+You work as a Database Administrator for Gentech Inc. The company uses an Oracle database.
+You are required to grant the ADMINISTER_RESOURCE_MANAGER privilege to some users to
+allow them to manage the resource consumer groups. What will you do to accomplish this?
+A. Use the DBMS_RESOURCE_MANAGER_PRIVS package.
+B. Use the GRANT...TO... statement.
+C. Use the ALTER SYSTEM...GRANT PRIVILEGE (SESS_ID, SESS#) = 'PRIVILEGE_TYPE'
+statement.
+D. Use the RESOURCE_MANAGER_PRIVS package.
+Answer: A
+Question: 75
+The Automatic Database Diagnostic Monitor (ADDM) stores its snapshots in the Automatic
+Workload Repository (AWR). In which of the following tablespaces the Automatic Workload
+Repository resides?
+A. USERS
+B. TEMP
+C. SYSAUX
+D. SYSTEM
+Answer: C
+Question: 76
+Within a locally managed tablespace, you can have these two types of extent management.
+Each correct answer represents a complete solution. Choose two.
+A. Bitmap
+B. Automatic
+C. Dictionary
+D. Uniform
+Answer: B,D
+Question: 77
+Which of the following represents the most elementary unit of storage in an Oracle table?
+A. Object
+B. Byte
+C. Segment
+D. Block
+E. Extent
+Answer: D
+Question: 78
+You work as a Database Administrator for Gentech Inc. The company uses an Oracle database.
+The database contains several resource consumer groups. Andrew joins the company as an
+Assistant Database Administrator. You are required to grant him the
+ADMINISTER_RESOURCE_MANAGER privilege so that he is able to manage resource
+consumer groups in the database. You also want to ensure that Andrew is able to grant this
+privilege to other users in the database. Which of the following statements will you use to
+accomplish this?
+A. GRANT ADMINISTER_RESOURCE_MANAGER TO ANDREW;
+B. DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE( GRANTEE_NAME
+=> 'ANDREW', PRIVILEGE_NAME => 'ADMINISTER_RESOURCE_MANAGER',
+ADMIN_OPTION => FALSE);
+C. DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE( GRANTEE_NAME
+=> 'ANDREW', PRIVILEGE_NAME => 'ADMINISTER_RESOURCE_MANAGER',
+ADMIN_OPTION => TRUE);
+D. GRANT ADMINISTER_RESOURCE_MANAGER TO ANDREW WITH ADMIN OPTION;
+Answer: C
+Question: 79
+You work as a Database Administrator for Federal Inc. The company uses an Oracle database.
+You create backups and copies by using the operating system commands. Now, you want to use
+Recovery Manager (RMAN) for backup and recovery operations. Moreover, you want to use a
+recovery catalog as the RMAN repository. Which of the following steps will you take to
+accomplish this? Each correct answer represents a part of the solution. Choose all that apply.
+A. Execute the CATALOG command.
+B. Reset the recovery catalog.
+C. Register the database with the recovery catalog.
+D. Create a recovery catalog.
+Answer: A,C,D
+Explanation:
+Answer options D, C, and A are correct.
+RMAN uses a central information repository called recovery catalog in order to store metadata
+about backup and recovery operations. However, if a recovery catalog is not created, Recovery
+Manager uses the target database's (the database that RMAN is backing up or restoring) control
+file as the RMAN repository for storing the information necessary for backup and recovery
+operations. In this scenario, after creating the recovery catalog, you will be required to register the
+target database with the recovery catalog. The database must be registered with the recovery
+catalog before the recovery catalog can store the metadata about backup and recovery
+operations performed in the database. After registering the database , you will also be required to
+execute the CATALOG command. The CATALOG command adds the information about the pre-
+existing backups and copies to the recovery catalog.
+B is incorrect. A recovery catalog needs to be reset in order to work with a database that has
+been opened using the RESETLOGS option. However, in this scenario, you do not need to
+reset the recovery catalog.
+Question: 80
+Which of the following dynamic performance views will you query to view the valid values for
+NLS parameters NLS_LANGUAGE, NLS_SORT, NLS_TERRITORY an NLS_CHARACTERSET?
+A. NLS_INSTANCE_PARAMETERS
+B. V$NLS_PARAMETERS
+C. NLS_SESSION_PARAMETERS
+D. V$NLS_VALID_VALUES
+Answer: D
+Explanation:
+Answer option D is correct.
+The V$NLS_VALID_VALUES dynamic performance view lists valid values for the following:
+NLS parameters: NLS_LANGUAGE, NLS_SORT, NLS_TERRITORY, NLS_CHARACTERSET.
+Answer option
+A is incorrect. NLS_INSTANCE_PARAMETERS shows the current NLS instance parameters that
+have been explicitly set and the values of the NLS instance parameters.
+B is incorrect. Answer option
+C is incorrect. NLS_SESSION_PARAMETERS shows the NLS parameters and their values for
+the session that is querying the view. It does not show information about the character
+set.Answer option
+Question: 81
+You work as a Database Administrator for your company. The company uses an Oracle database
+named OraBase. You use Recovery Manager (RMAN) for backup and recovery operations. You
+want to create a recovery catalog to store the metadata about the backup and recovery
+operations. You create a database named CatalogBase in which you will store the recovery
+catalog. You also create a database user account named CatOwner in the CatalogBase
+database, which will hold the tables and views constituting the recovery catalog. What else will
+you need to do in order to create the recovery catalog? Each correct answer represents a part of
+the solution. Choose all that apply.
+A. Connect to theCatalogBase database by using the CatOwner user account.
+B. Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account.
+C. Grant the SYSDBA system privilege to theCatOwner user account.
+D. Execute the CREATE CATALOG command.
+Answer: A,B,D
+Explanation:
+Answer options B, A, and D are correct.
+The RECOVERY_CATALOG_OWNER pre-defined role includes the privileges that allow the
+catalog owner to maintain and query the recovery catalog. Therefore, you will be required to grant
+the role to the CatOwner user account. After granting the role, you will be required to connect to
+the CatalogBase database by using the CatOwner user account. After connecting to the
+database, you can create the recovery catalog by executing the CREATE CATALOG command.
+Answer option
+C is incorrect. The SYSDBA system privilege is required for performing database administrative
+tasks, such as creating a database, altering a database, and starting up and shutting down an
+Oracle instance. You do not need to grant the SYSDBA system privilege to the CatOwner user
+account, as this user account will not be used to administer the database. The CatOwner user
+account will be used to only hold the catalog tables and views.
+Question: 82
+Which package provides API's for the SQL Tuning Advisor?
+A. DBMS_MONITOR
+B. DBMS_STATS
+C. DBMS_SQLTUNE
+D. DBMS_ADVISOR
+Answer: C
+Explanation:
+Answer option C is correct.
+The recommended interface for running the SQL Tuning Advisor is the Oracle Enterprise
+Manager.
+However, if Oracle Enterprise Manager is unavailable, you can run the SQL Tuning Advisor using
+procedures in the DBMS_SQLTUNE package. The DBMS_SQLTUNE package provides the
+following three interrelated areas of functionality:
+? SQL Tuning Advisor Subprograms
+? SQL Profile Subprograms
+? SQL Tuning Set Subprograms
+A is incorrect. The DBMS_MONITOR package lets you use PL/SQL for controlling additional
+tracing and statistics gathering.
+B is incorrect. With the DBMS_STATS package you can view and modify optimizer statistics
+gathered for database objects. The Oracle RDBMS allows you to collect statistics of many
+different kinds as an aid to improve performance. This package is concerned with optimizer
+statistics only. Given that Oracle sets automatic statistics collection of this kind by default, this
+package is intended for only specialized cases. The statistics of interest to be viewed or
+modified can reside in the dictionary or in a table created in the user's schema for this
+purpose. You can also collect and manage user-defined statistics for tables and domain
+indexes using this package.
+D is incorrect. DBMS_ADVISOR is part of the Server Manageability Suite of Advisors, a set of
+expert systems that identifies and helps resolve performance problems relating to the various
+database server components. Answer option
+Question: 83
+Which of the following file types are by default stored in the flash recovery area, if the files
+have been defined? Each correct answer represents a complete solution. Choose all that apply.
+A. Archiveredo log files
+B. Database flashback logs
+C. Undo data
+D. Recovery Managerbackups
+Answer: A,B,D
+Explanation:
+Answer options D, A, and B are correct.
+The Flash Recovery Area is a specific location on disk that stores and manages files for back up
+and recovery purposes. It is an automatic feature available in Oracle 10g and versions after.
+Oracle-Managed Files (OMF) configures the Flash Recovery Area and utilizes the disk resources
+managed by Automatic Storage Management (ASM). Recovery Manager (RMAN) performs the
+task of automatic cleaning up. The Flash Recovery Area acts as a cache area for the back up
+components that are to be copied to the tape. The Flash Recovery Area contains the following
+database files:
+? The control files
+? The archive log files
+? The flashback logs
+? The control file and SPFILE auto-backups
+? The datafile image copies
+It is necessary to configure the Flash Recovery Area when a database is set up for the very first
+time.
+Question: 84
+You work as a Database Administrator for your company. The company uses an Oracle
+database. The database is set to run in ARCHIVELOG mode. You use Recovery Manager
+(RMAN) for backup and recovery operations. You have specified two archive destinations, Disk1
+and Disk2, for archival of redo logs. You want to back up the archived redo logs corresponding to
+the log sequence numbers 43, 44, 45, and 46. After starting the backup operation, you find that
+the archived redo logs corresponding to the log sequence number 44 and 45 are missing from
+Disk1. Which of the following statements regarding the backup operation is true?
+A. RMAN will back up only the archived redo log corresponding to the log sequence number 43.
+B. RMAN will back up none of the archived redo logs.
+C. RMAN will back up all the archived redo logs.
+D. RMAN will back up the archived redo logs corresponding to the log sequence numbers 43 and
+46.
+Answer: C
+Explanation:
+Answer option C is correct.
+In releases prior to Oracle9i, Recovery Manager (RMAN) only looked in the first archive
+destination for archived redo logs when backing them up. However, in Oracle9i, RMAN can
+perform archived redo log failover. In other words, RMAN can perform the following tasks:
+? If at least one redo log corresponding to a given log sequence and thread number is availab
+any of the archiving destinations, RMAN backs up the available redo log.
+? If there is a corrupt block in a redo log that RMAN is accessing, RMAN searches other archive
+destinations for a copy of the redo log without corrupt blocks. RMAN always backs up only one
+copy out of the identical copies of each distinct archived redo log.
+Question: 85
+Your RMAN configuration has the backup optimization set to ON. Which of the following
+commands will this setting affect? Each correct answer represents a complete solution. Choose
+all that apply.
+A. BACKUP ARCHIVELOG with ALL or LIKE options
+B. BACKUP BACKUPSET ALL
+C. BACKUP TABLESPACE
+D. BACKUP DATABASE
+Answer: A,B,D
+Explanation:
+Answer options D, A, and B are correct.
+The CONFIGURE command is run to enable and disable backup optimization. Backup
+optimization skips the backup of files in certain circumstances if the identical file or an identical
+version of the file has already been backed up. Full details on the backup optimization algorithm
+are provided in "backup optimization". Backup optimization applies only to the following
+commands: BACKUP DATABASE BACKUP ARCHIVELOG with ALL or LIKE options BACKUP
+BACKUPSET ALL By default, backup optimization is configured to OFF. To enable backup
+optimization, run the following command: ONFIGURE BACKUP OPTIMIZATION ON; To disable
+backup optimization, run the following command: ONFIGURE BACKUP OPTIMIZATION OFF;
+To clear the current backup optimization setting, that is, return backup optimization to its default
+etting, i.e . OFF, run the following command: ONFIGURE BACKUP OPTIMIZATION CLEAR;
+nswer option
+C is incorrect. The BACKUP TABLESPACE command will backup only the articular tablespace
+data files and not the whole database. Thus, the optimization settings will not come in effect
+for this backup.
+Question: 86
+Which of the following determines the location of the Automatic Diagnostic Repository (ADR)?
+A. ADR_BASE directory
+B. ADR_BASE environment variable
+C. Flashback Recovery Area
+D. DIAGNOSTIC_DEST instance parameter
+Answer: D
+Explanation:
+Answer option D is correct. utomatic Diagnostic Repository (ADR) is a special central storage
+point for all diagnostic reports. t is automatically maintained into memory by Oracle 11g. It
+enables database components to apture diagnostic data at its first failure for critical errors. It is a
+file base storage point. All nstances such as RDBMS and ASM instances maintain a separate
+directory structures within DR. he DIAGNOSTIC_DEST instance parameter determines the
+location of the Automatic iagnostic epository (ADR).
+C, A, and B are incorrect. Flash Recovery Area is used to store backup and ecovery data, and
+not problem diagnosis data. ADR_BASE is neither a directory nor an nvironment variable.
+Question: 87
+Which of the following helps the DBA to manage the tablespace as a single unit without taking
+into account the structure and size of the underlying datafiles?
+A. Temporarytablespace
+B. SYSTEMtablespace
+C. Transportabletablespace
+D. Bigfile tablespace
+E. SYSAUXtablespace
+Answer: D
+Explanation:
+Answer option D is correct.
+A bigfile tablespace is a new type of tablespace introduced in Oracle 10g. It is also available in
+Oracle 11g. here can be only one file in a bigfile tablespace . The size of a bigfile tablespace file
+can be a aximum of 128 TB (terabytes) for a 32K block tablespace and 32 TB for an 8K block
+tablespace . dministrators must ensure that sufficient free disk space is available for a bigfile
+tablespace file o that it can be expanded whenever required. For the same reason, Oracle
+recommends that one make use of bigfile tablespace with Automatic Storage Management ASM),
+Oracle Managed Files (OMF), logical volumes that are dynamically extensible, or a logical olume
+manager that supports RAID. The biggest advantage of using a bigfile tablespace is that it s
+capable of running file alteration operations with no file name specification. bigfile tablespace
+must be created as locally managed, with automatic segment space anagement. This is the
+default and hence need not be specified in the DDL statement CREATE IGFILE TABLESPACE.
+On specifying either EXTENT MANAGEMENT DICTIONARY or EGMENT SPACE ANAGEMENT
+MANUAL, Oracle will report an error. o create a bigfile tablespace named btbs of 80G, the llowing
+DDL will be used: REATE BIGFILE TABLESPACE btbs ATAFILE '/or01/odata/orcl10g/btbs01.dbf'
+IZE 80G ote: The SIZE can be specified in kilobytes (K), megabytes (M), gigabytes (G), or
+terabytes (T). o determine whether a tablespace is a bigfile or not, the administrator can query
+any one of the following views: DBA_TABLESPACES USER_TABLESPACES V$TABLESPACE
+These all comprise a column known as BIGFILE that stipulates whether a tablespace is a bigfile
+or not.
+Question: 88
+You are creating an incident package to send to Oracle support as follows:
+What kind of packaging are you using?
+A. Metalink packaging
+B. Custom packaging
+C. Quick packaging
+D. Detailed packaging
+Answer: C
+Explanation:
+Answer option C is correct.
+Quick packaging is easier to use, and makes sense when there is a need to send information on
+a single problem to Oracle support immediately with default options. With custom packaging,
+there is a bit more flexibility and the following things can be done: Edit the contents of the
+package Remove or mask sensitive user data Generate and include additional dumps and test
+cases
+A is incorrect. There is no Metalink packaging; either a custom packaging or quick
+packaging is used and the resulting package is always sent to Metalink for resolution.
+B is incorrect
+D is incorrect. There is no such packaging type called Detailed packaging
+.
+Question: 89
+DRAG DROP
+A. Data file
+B. Control file
+C. Segment
+D. Data block
+E. Redo log file
+F. Extent
+G. Tablespace
+Choose the logical components of an Oracle database and place them in ascending order.
+Answer: A,F,C,G
+Explanation:
+At the lowest level of granularity, Oracle stores data in data blocks. A data block is the smallest
+logical unit of data storage in Oracle. It corresponds to a specific number of bytes of physical
+database space. The size of a data block is specified by the DB_BLOCK_SIZE initialization
+parameter at the time of database creation. It cannot be changed after database creation. The
+size of a data block is usually a multiple of the operating system's block size. It can vary from 2KB
+to 32KB, depending upon the operating system. If the size of a data block is not specified, by
+default it is taken as 4KB on most operating systems. Oracle requests data in multiples of data
+blocks. A data block is also called a logical block, Oracle block, or page. The next level of logical
+database storage is an extent. An extent is a logical storage unit that contains data of a
+corresponding segment. An extent consists of contiguous data blocks, and a segment is made up
+of one or more extents. Whenever a segment is created, an initial extent is assigned to it, even
+though the segment may be empty at the moment. When the extent corresponding to a segment
+is full, a new extent is automatically allocated to the segment. When a segment is dropped, the
+extents corresponding to the segment are again available for use by other segments. The level of
+logical database storage above an extent is a segment. A segment is a set of extents allocated
+for a specific database object such as a table, index, cluster etc. When a database object is
+created, Oracle allocates a segment to it. This segment contains at least one extent that in turn
+contains at least one data block. A single segment holds all the data of the corresponding
+database object. A segment can belong to only one tablespace , but it can be associated to
+multiple data files. Extents allocated to a segment can belong to multiple data files, but data
+blocks allocated to an extent can belong to only one data file. The highest level of logical
+database storage is a tablespace . A tablespace is a logical database structure for storing
+database segments. By default, each Oracle database has a single tablespace , known as
+SYSTEM, which stores data dictionary tables and indexes. Other tablespaces may also be
+configured for a database for performing some specific tasks such as: ? Partial backup and
+recovery operation ? Allocation of quotas for users Additional tablespaces can also be created as
+per the requirements of the applications installed on the system. Such tablespaces can be used
+for storing application specific segments. Data files, redo log files, and control files are the
+physical, but not the logical components of an Oracle database contain at least one control file.
+However, the recommended number of control files is two or more. A database can contain a
+maximum of eight control files. However, a control file may belong to only one database.
+Question: 90
+You work as a Database Administrator for your company. The company uses an Oracle database
+to retain its data. You have started an RMAN job. The job uses more than two channels, each
+having a name. You are required to find out the names of all the channels being used by that job.
+The V$SESSION dynamic performance view contains the details of every current session. Which
+of the following columns of the V$SESSION dynamic performance view will you enquire to find
+out the names of the channels?
+A. SERIAL#
+B. CLIENT_INFO
+C. CHANNEL_INFO
+D. MODULE
+Answer: B
+Explanation:
+Answer option B is correct.
+The CLIENT_INFO column of the V$SESSION dynamic performance view stores information
+related to the client application of the user session. The column contains the string rman along
+with the name of the channel. If the information is more than 64 bytes, it gets truncated. The
+information is set and registered by the SET_CLIENT_INFO procedure of the
+DBMS_APPLICATION_INFO package. The following query will give the required output:
+SELECT CLIENT_INFO FROM V$SESSION WHERE CLIENT_INFO LIKE '% rman %';
+CLIENT_INFO ----------------------- rman channel=c1 rman channel=c2 2 rows selected
+A is incorrect. The SERIAL# column of the V$SESSION dynamic performance view
+stores the serial number of the session. The serial number of a session is used to distinctively
+identify the objects of the particular session. It is the work of this column to assure that the
+session-level commands are in accordance with the appropriate objects of the session when
+the
+new session is given the session ID of the older one that has already ended.
+D is incorrect. The MODULE column of the V$SESSION dynamic performance
+view stores the name of the module that is in execution currently. The name of the module is
+set when the SET_MODULE procedure of the DBMS_APPLICATION_INFO package is called.
+The DBMS_APPLICATION_INFO package helps simplify session activity tracking by enabling
+the programs to insert information to the V$SESSION and V$SESSION_LONGOPS views.
+The program, once initiated, gets itself registered via the SET_MODULE procedure of the
+DBMS_APPLICATION_INFO package .
+C is incorrect. There is no such column as CHANNEL_INFO in the V$SESSION dynamic
+performance view.
+Question: 91
+You work as a Database Administrator for your company. The company uses Oracle as its
+database. The manager of the company wants you to move the company's databases to another
+server, as the performance of the old server is now degraded. Which of the following RMAN
+commands will you use to accomplish the task?
+A. DUPLICATE
+B. CONVERT C.
+CONNECT D.
+REGISTER
+Answer: A
+Explanation:
+Answer option A is correct.
+The RMAN's DUPLICATE command uses backups of the target database to create a duplicate
+database that can be used for testing purposes or to create a standby database. The command is
+also used to move the database to a new server. In order to move a database from one location
+to another, user-managed incomplete recovery options such as utilizing the backup control file in
+conjunction with the RECOVER DATABASE USING BACKUP CONTROLFILE UNTIL CANCEL
+command can be used.
+B is incorrect. The CONVERT command is used to convert data file formats to
+transport tablespaces across various platforms.
+C is incorrect. The CONNECT command is used to establish a connection between
+RMAN and a target, auxiliary, or recovery catalog database.
+D is incorrect. The REGISTER command is used to register the target database in
+the recovery catalog.
+Question: 92
+Martha is an employee in Tech-Mart Inc. The company uses an Oracle database. The database
+contains a table named Employees for storing employee records. Martha is performing an insert
+operation on the Employees table. After some time, the insert operation fails. Which of the
+following types of failures has occurred?
+A. Media failure
+B. Instance failure
+C. Statement failure
+D. Process failure
+Answer: C
+Explanation:
+Answer option C is correct.
+A statement failure occurs when there is a logical failure in the handling of a statement in an
+Oracle program. For example, when all extents of a table (in other words, the number of extents
+specified in the MAXEXTENTS parameter of the CREATE TABLE statement) are allocated and
+completely filled with data, a valid INSERT statement cannot insert a row because no space is
+available. Therefore, the statement fails.If a statement failure occurs, the Oracle software or
+operating system returns an error. A statement failure does not require any recovery step. Oracle
+automatically resolves the statement failure by rolling back the effects of the statement and
+returning control to the application. The user can execute the statement again after the problem
+indicated by the error message is corrected. For example, if insufficient extents are allocated, the
+database administrator (DBA) needs to allocate more extents so that the user's statement can be
+executed.
+A is incorrect. A media failure occurs when a physical problem prevents Oracle from writing or
+reading a database file that is required for continuing the database operation. For example,
+when a disk head crashes, all the database files on the disk drive are lost. Disk failure can
+affect a variety of files, including the data files, redo log files, and control files. Because the
+database instance cannot continue to function properly, it cannot write the data from the
+database buffer cache of the system global area (SGA) to the data files. The appropriate
+recovery from a media failure depends on the files affected. Media failure is the primary
+concern of a backup and recovery strategy because it typically requires restoring some or all
+the database files and the application of redo data during the recovery.
+B is incorrect. An instance failure is a termination of an Oracle instance due to a hardware
+problem (e.g., power outage) or software problem (e.g., an operating system crash) that
+prevents the Oracle instance from continuing its work. An instance failure always occurs when
+a database is not cleanly shut down (i.e., the database is shut down using the SHUTDOWN
+ABORT command). When an instance failure occurs, the data in the database buffer cache is
+not written to data files. Therefore, after an instance failure, the associated database requires
+instance recovery to recover the lost data. After an instance failure, Oracle automatically
+performs an instance recovery when the instance is restarted. The system monitor (SMON)
+background process is responsible for performing the instance recovery. An instance recovery
+does not require any manual interference. Oracle automatically applies the data stored in
+online redo log files and undo segments in order to recover the lost data and roll back the
+uncommitted transactions, respectively.
+D is incorrect. A process failure is a failure in a user, server, or background process of an Oracle
+instance such as an abnormal disconnection or process termination. When a process failure
+occurs, the failed subordinate process cannot continue its work, although the other processes
+of the Oracle instance can continue. The process monitor (PMON) background process
+detects aborted user, server, or background processes. If the aborted process is a user or
+server process, PMON automatically resolves the failure by rolling back the current transaction
+of the aborted process and releasing the resources that this process was using. However, if
+the aborted process is a background process, the Oracle instance cannot continue to function
+properly. Therefore, the Oracle instance must be shut down and re-started in order to resolve
+the issue.
+Question: 93
+Which of the following advisors within the Oracle advisory framework will analyze a single SQL
+statement and make recommendations for performance improvement?
+A. SQL Repair Advisor
+B. SQL Optimizer
+C. SQL Access Advisor
+D. SQL Tuning Advisor
+Answer: D
+Explanation:
+Answer option D is correct.
+The SQL Tuning Advisor takes one or more SQL statements and performs an analysis to
+determine what can be done to improve the performance of the SQL statement(s).
+Recommendations include rewriting the SQL statement, adding indexes, or even changing
+initialization parameters or memory component sizes such as the SGA size or buffer cache. The
+SQL Tuning Advisor is accessed via tools such as Top SQL, the Automatic SQL Tuning Advisor,
+or the Top Sessions interface from within EM. In contrast, the SQL Access Advisor takes a
+broader view of SQL tuning. It considers a larger subset of SQL statements, such as all SQL
+statements run within a specified time period or from a SQL Tuning Set (STS). The SQL Access
+advisor may recommend additional indexes as well as materialized views to improve
+performance. The SQL Repair Advisor analyzes a SQL statement that causes a critical error and
+records the results in the Automatic Diagnostic Repository (ADR). It may recommend a patch to
+fix the problem, or may provide an alternate execution plan to avoid causing an error in the future.
+Other advisors within the advisory framework include memory advisors that monitor usage of the
+SGA and PGA and recommend optimal settings for these memory structures including the
+substructures within them, such as the library cache and the large pool.
+A is incorrect. The SQL Repair Advisor only makes recommendations for SQL statements that
+cause a critical error in the ADR.
+B is incorrect. There is no such advisor such as the SQL Optimizer, although the Oracle optimizer
+uses statistics to determine the best execution plan.
+C is incorrect. The SQL Access Advisor analyzes groups of SQL statements that run during the
+same time period, not one or two SQL statements in isolation as the SQL Tuning Advisor does
+.
+Question: 94
+Brenda works as a Database Administrator for your company. The company uses an Oracle
+database. Brenda wants to specify a number of locations to which the redo logs should be
+archived before an error occurs. Which of the following initialization parameters will she use to
+accomplish this?
+A. LOG_ARCHIVE_DEST_STATE_n
+B. LOG_ARCHIVE_DEST_n
+C. LOG_ARCHIVE_DUPLEX_DEST
+D. LOG_ARCHIVE_MIN_SUCCEED_DEST
+Answer: D
+Explanation:
+Answer option D is correct.
+The LOG_ARCHIVE_MIN_SUCCEED_DEST initialization parameter is used along with the
+LOG_ARCHIVE_DUPLEX_DEST and LOG_ARCHIVE_DEST_n parameters. This parameter
+specifies the number of archive destinations to which the redo logs must be written before an
+error occurs.
+A is incorrect. The LOG_ARCHIVE_DEST_STATE_n parameter specifies whether or not the
+archive destination accepts writing of redo logs. This parameter takes on three values,
+ENABLE, DEFER, and ALTERNATE. The value ENABLE indicates that redo logs can be
+written to the archive destination. The value DEFER indicates that the archive destination is
+temporarily disabled. The value ALTERNATE indicates that the archive destination is an
+alternative that can accept writing of redo logs to the archive destination only when its parent
+destination fails. This parameter is used along with the LOG_ARCHIVE_DEST_n parameter.
+B is incorrect. The LOG_ARCHIVE_DEST_n parameter specifies multiple archive destinations.
+C is incorrect. The LOG_ARCHIVE_DUPLEX_DEST parameter specifies that the redo logs be
+written to both the archive destinations.
+Question: 95
+Which of the following statements about conventional tablespaces (non-locally managed
+tablespaces) are true? Each correct answer represents a part of the solution. Choose two
+A. Conventionaltablespaces use data dictionary tables for storage space management.
+B. Conventionaltablespaces use bitmaps for storage space management.
+C. In case of conventionaltablespaces, Oracle reflects the allocation of a new extent by updating
+th associated segment header and the data dictionary table.
+D. In case of conventionaltablespaces, Oracle reflects the allocation of a new extent by updating
+th associated segment header and the bitmap.
+Answer: A,C
+Explanation:
+Answer options A and C are correct. In case of conventional tablespaces (the approach of
+Oracle7i and below), Oracle uses data dictionary tables to manage storage space. When a new
+extent is allocated to a segment under a conventional tablespace , its allocation is reflected by
+updating the corresponding segment header and the associated data dictionary tables.
+B and D are incorrect. In case of a locally managed tablespace , Oracle uses a
+bitmap for managing the storage space.
+Question: 96
+Which of the following statements about a recovery catalog are true? Each correct answer
+represents a complete solution. Choose two.
+A recovery catalog should not be created in the target database.
+B. The information in the recovery catalog is obtained from the target database's control file.
+C. In case of multiple target databases, a recovery catalog schema must be created for each
+target database.
+D. Recovery Manager (RMAN) must have a recovery catalog for its normal functioning.
+Answer: A,B
+Explanation:
+Answer options A and B are correct.
+A recovery catalog is a set of tables and views that Recovery Manager (RMAN) uses to store
+metadata (information about a database structure, archived redo logs, backup sets, and data file
+copies) about a target database (database that RMAN backups or restores). RMAN uses this
+metadata to conduct its backup, recovery, and maintenance operations. Recovery catalog is
+optional, i.e., if a recovery catalog is not created, RMAN uses the target database's control file to
+store the metadata about the target database. Although RMAN can conduct all major backup and
+recovery operations by using the control file, some RMAN commands work only if a recovery
+catalog exists. A recovery catalog is solely managed by RMAN. RMAN propagates information
+about the database structure, archived redo logs, backup sets, and data file copies into the
+recovery catalog from the target database's control file. A recovery catalog can be used to store
+metadata about multiple target databases. The tables and views constituting a recovery catalog
+are owned by a recovery catalog schema. Oracle recommends creating a recovery catalog
+schema in a separate dedicated database and not in the target database. A database containing
+a recovery catalog schema is called a recovery catalog database. C is incorrect. A single
+recovery catalog schema can store metadata about any number of target databases.
+Question: 97
+Which of the following Dynamic Performance views contain information relevant to SQL Tuning?
+Each correct answer represents a part of the solution. Choose all that apply..
+A. V$SQLSTATS
+B. V$SQLAREA
+C. V$SQL_BIND_DATA
+D. V$SQL
+Answer: A,B,C,D
+Explanation:
+Answer options D, B, A and C are correct. Dynamic views containing information relevant to the
+SQL tuning are V$SQL, V$SQLAREA, V$SQLSTATS, and V$SQL_BIND_DATA. V$SQL lists
+statistics on shared SQL area without the GROUP BY clause and contains one row for each child
+of the original SQL text entered. Statistics displayed in V$SQL are normally updated at the end of
+query execution. However, for long running queries, they are updated every 5 seconds. This
+makes it easy to see the impact of long running SQL statements while they are still in progress .
+V$SQLAREA lists statistics on shared SQL area and contains one row per SQL string. It provides
+statistics on SQL statements that are in memory, parsed, and ready for execution. V$SQLSTATS
+returns basic performance statistics for SQL cursors, with each row representingthe data for a
+unique combination of SQL text and optimizer plan (that is, unique combination of SQL_ID, and
+PLAN_HASH_VALUE). The column definitions for columns in V$SQLSTATS are identical to
+those in the V$SQL and V$SQLAREA views. However, the V$SQLSTATS view differs from
+V$SQL and V$SQLAREA in that it is faster, more scalable, and has a greater data retention
+(the statistics may still appear in this view, even after the cursor has been aged out of the shared
+pool). Note that V$SQLSTATS contains a subset of columns that appear in V$SQL and
+V$SQLAREA. For each distinct bind variable in each cursor owned by the session querying the
+V$SQL_BIND_DATA view, this view describes: Actual bind data, if the bind variable is user
+defined The underlying literal, if the CURSOR_SHARING parameter is set to FORCE and the
+bind variable is system.
+Question: 98
+You work as a Database Administrator for Gentech Inc. The company uses an Oracle database.
+You use Recovery Manager (RMAN) for backup and recovery operations. You do not perform a
+regular backup of the database. You want to implement a backup retention policy for the backups
+and copies that you create with RMAN. Through the retention policy, you want to ensure that one
+backup of each data file is retained for at least five days. Which of the following RMAN
+commands will you use to accomplish this?
+A. CONFIGURE RETENTION POLICY TO NONE;
+B. CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS;
+C. CONFIGURE RETENTION POLICY TO REDUNDANCY 5;
+D. CONFIGURE RETENTION POLICY CLEAR;
+Answer: B
+Explanation:
+Answer option B is correct.
+The Recovery Manager (RMAN) provides the CONFIGURE RETENTION POLICY command to
+create a persistent and automatic backup retention policy for controlling how long backups and
+copies should be retained. When a backup retention policy is in effect, RMAN considers the
+backups and copies of data files and control files as obsolete (i.e., the backups and copies are no
+longer needed for media recovery), according to the criteria specified in the CONFIGURE
+RETENTION POLICY command. The REPORT OBSOLETE and DELETE OBSOLETE
+commands can be executed periodically or regularly to view obsolete files and to delete them,
+respectively. The retention policy is continuous. As the data file, control file, and archived redo log
+backups are produced over time, RMAN keeps track of them and decides which to retain and
+which to mark as obsolete. RMAN does not automatically delete the backups or copies. The term
+obsolete does not mean the same as expired. A backup or copy is obsolete when the REPORT
+OBSOLETE or DELETE OBSOLETE command determines, based on the user-defined retention
+policy, that the backup or copy is not needed for media recovery. However, a backup or copy
+expires only when RMAN performs a crosscheck and finds that the file is missing from the hard
+disk or the media manager has returned "not found" for the file. In brief, obsolete means "not
+needed," whereas expired means "not found." Besides affecting the data file and control file
+backups, the retention policy affects archived redo logs and archived redo log backups. First,
+RMAN decides which data file and control file backups are obsolete. Then, RMAN considers the
+archived redo log backups (that are older than the oldest data file or control file backup that must
+be retained) as obsolete. There are two mutually exclusive options for implementing a backup
+retention policy.
+Question: 99
+Which of the following types of failures is the cause of automatic Instance Recovery?
+A. User error
+B. Instance failure
+C. Process failure
+D. Media failure
+Answer: B
+Explanation:
+Answer option B is correct. Instance failure occurs when any problem prevents an instance from
+continuing work. Instance failure can result from hardware problem such as a power outage, or
+software problem such as an operating system failure. When an instance failure occurs, the data
+in the buffers of the system global area is not written to the data files. After an instance failure,
+Oracle automatically performs instance recovery.
+A is incorrect. User error requires a database to be recovered to a point in time before the error
+occurred. For example, a user could accidentally drop a table. To enable recovery from user
+errors and accommodate other unique recovery requirements, Oracle provides exact point-in-
+time recovery. For example, if a user accidentally drops a table, the database can be
+recovered to the instant in time before the table was dropped.
+C is incorrect. Process failure results from a failure in a user process accessing Oracle, such as
+an abnormal disconnection or process termination. The background process PMON
+automatically detects the failed user process, rolls back the uncommitted transaction of the
+user process, and releases any resources that the process was using.
+D is incorrect. An error can occur when trying to write or read a file on disk that is required to
+operate the database. A common example is a disk head failure, which causes the loss of all
+files on a disk drive. A disk failure requires you to restore lost files and then perform media
+recovery. Unlike instance recovery, media recovery must be initiated by the user.
+Question: 100
+Which of the following advisors is run in every maintenance window by the auto-task system?
+A. The Memory Advisor
+B. The SQL Tuning Advisor
+C. The Undo Advisor
+D. The SQL Access Advisor
+Answer: D
+Explanation:
+Answer option D is correct. The SQL Access Advisor is an ADDM diagnostic advisor that
+provides additional support to find out the potential schema modifications. These potential
+schema modifications can be used to reduce the amount of I/O, CPU, and wait time for a given
+SQL statement. The advisor also makes potential suggestions about indexes and materialized
+views to improve the system performance. The SQL Access Advisor and the Segment Advisor
+run in every maintenance window by the autotask system. However, implementing the
+recommendations is up to a DBA.
+A is incorrect. The Memory Advisor is used to collect information about Oracle's memory
+structures inclusive of the System Global Area (SGA) and user memory structures.
+B is incorrect. The SQL Tuning Advisor is an ADDM diagnostic advisor that formulates more
+efficient SQL execution plans for a particular SQL statement. The advisor accepts a SQL
+statement as input and gives the advice on the execution of the SQL statement, the estimated
+performance benefit, and the actual command in order to improve its efficiency.
+C is incorrect. The Undo Advisor is an ADDM diagnostic advisor that is used to determine
+appropriate sizing for Undo tablespaces and also helps in determining optimal
+UNDO_RETENTION settings. This advisor helps prevent the snapshot too old error. It also
+sets a threshold value for undo retention period, helps find out the issues related to the undo
+tablespace and provides recommendations to correct these issues.
+Question: 101
+Which of the following are segment types in a database? Each correct answer represents a
+complete solution. Choose all that apply.
+A. Data
+B. Index
+C. Schema
+D. Undo
+Answer: A,B,D
+Explanation:
+Answer options D, A, and B are correct. The four types of segments in a database are as follows :
+1. Data segment
+2. Index segment
+3. Undo segment
+4. Temporary segment.
+Each non-cluster, non-IOT table has a data segment. Indexes are stored in index segments.
+Undo segments are stored in an UNDO tablespace , and contains information needed for
+readconsistency and to roll back transactions. Temporary segments are stored in a temporary
+tablespace and are used when there is not enough room in memory to perform a SQL
+statement's sorting operation.
+C is incorrect. A schema is the entire collection of objects owned by a database user. A schema
+object can be a table, view, index, cluster, synonym, etc. Schema objects are at a much higher
+logical level than segments, although indexes are stored in index segments and tables are
+stored in data segments. Reference: Oracle Database 11g: Administration Workshop I
+Chapter 1: Exploring the Oracle Database Architecture Oracle Database Concepts 11g
+Release 1 (11.1) Part Number B28318-05
+http://download.oracle.com/docs/cd/B28359_01/server.111/b28318/intro.htm
+Question: 102
+Which of the following statements about Automatic Storage Management are true? Each correct
+answer represents a complete solution. Choose all that apply.
+A. It is designed to release the burden of disk and storage management.
+B. It is a simple storage management interface available to the Database Administrator.
+C. It provides various tools that can save the time of the Database Administrator.
+D. It is inconsistent across the server and storage platforms.
+E. It manages many data files individually.
+Answer: A,B,C
+Explanation:
+Answer options B, C, and A are correct. Automated storage management (ASM) is a new storage
+mechanism available in Oracle 10g or in newer version. ASM is a simple storage management
+interface available to the DBA. ASM is consistent across the server and storage platforms. It
+provides beneficial tools to the DBA to create and manage a robust, flexible, and scalable file
+storage system, ready for access by any existing Oracle database instance. ASM provides
+various tools that can save the DBA's time and flexibility to manage a dynamic database
+environment with increased efficiency. ASM is designed to release the burden of disk and storage
+management, and depends on Oracle to maintain database storage. Instead of managing many
+data files individually, ASM creates disk groups for file management. Therefore, a disk group can
+be defined as a logical unit that Oracle views as a single unit of storage. This is very much akin to
+various flavors of Unix defining volume groups. Oracle manages storage definitions of a database
+in a second database used exclusively by ASM to keep track of disk group allocations. While
+creating a database, if the AS M option is selected at the storage option window, then guidance
+about the process of defining the secondary ASM database instance is provided via a series of
+windows. ASM also employs a unique naming convention based on Oracle Flexible architecture
+(OFA). Reference: http://www.oracle.com/technology/products/database/asm/index.html
+Question: 103
+You work as a Database Administrator for Bell Ceramics Inc. The Manager of the company asks
+you to run a job at some specified point in time, say at 5:00 PM every day. Which of the following
+stored database objects will you use to accomplish the task?
+A. Job
+B. Program
+C. Schedule
+D. Window
+Answer: C
+Explanation:
+Answer option C is correct. To run a job every day at 5:00 PM , you should use a schedule. By
+using the DBMS_SCHEDULER.CREATE_SCHEDULE procedure, you can create the schedule.
+Note: No special privilege is needed to create a schedule. Schedules can be created with access
+to the PUBLIC role. To schedule a job, follow the PL/SQL block given below: BEGIN
+DBMS_SCHEDULER.CREATE_SCHEDULE ( schedule _name => 'eve_at_5_schedule',
+start_date => SYSTIMESTAMP, end_date => SYSTIMESTAMP + INTERVAL '30' day,
+repeat_interval => 'FREQ=DAILY; BYHOUR=17', comments => 'Runs every evening');
+END; his will create a schedule named eve_at_5_schedule for a job. The start date of the job is
+the ystem date and time. The end date of the job is specified by the interval, i.e., system date and
+time plus 30 days. he repeat interval is specified by some parameters, such as FREQ used in the
+mentioned xample. The FREQ parameter defines the frequency type. The various values for the
+REQ arameter are as follows:
+? YEARLY
+? WEEKLY
+? MONTHLY
+? DAILY
+? HOURLY
+? MINUTELY
+? SECONDLY
+The BYHOUR element specifies the hour at which the job is required to run. The valid values for
+this element are 0-23. scheduler is defined as a stored database object that specifies a schedule
+for a job or for a indow. chedules can be shared among users by creating and saving them as
+objects in the database. It lso specifies how often a job will be repeated. ote: The repeat interval
+can be specified in either of the following ways: By using the PL/SQL expressions. ? By using the
+calendaring syntax, which is new to Oracle 10g. Answer option A is incorrect. A job is defined as
+the most-basic self-contained object in a scheduler environment. It specifies the action to perform
+and the time at which to perform it. In technical terms, a job is a part of a structure consisting of a
+number of scheduler objects of various types. It automates standard and repetitive tasks.
+A job can be categorized into the following entities:
+? A single SQL statement
+? A PL /SQL block
+? A PL /SQL stored procedure
+? A java stored procedure
+? Any executable file stored in the server file system, either a binary executable or a shell script
+In other words, a job is a combination of a schedule and a program with any additional arguments
+that a program requires. Answer option B is incorrect. A program is defined as a combination of
+several code lines that are run to accomplish a particular task. It contains parameters, which can
+be passed at runtime of the program. It can be stored in a database as an independent object
+and is shared by many jobs. Answer option D is incorrect. A window is defined as one of the
+stored database objects. A window automatically activates different resource plans at different
+times. If there has been a change in the resource plan, then all the running jobs can see the
+changes in the resource plans. A window includes the following attributes:
+? Schedule: It specifies when to open a window.
+? Duration: It specifies how long a window will remain open.
+? Resource plan: It specifies the name of the resource plan activated.
+Note: Windows are created in the SYS schema. Many windows can be created in the SYS
+schema, but only one of them is effective at a time.
+Question: 104
+You work as a Database Administrator for Blue-Well Inc. The company uses an Oracle
+database. The database contains a resource consumer group named QUERY_USERS. You want
+to specify the maximum number of active sessions allowed in the QUERY_USERS resource
+consumer group as twenty. Which of the following Database Resource Manager parameters will
+you use to accomplish this?
+A. ACTIVE_SESSION_QUEUE
+B. PARALLEL_DEGREE_LIMIT
+C. ACTIVE_SESS_POOL_P1
+D. ACTIVE_SESS_P1
+Answer: C
+Explanation:
+Answer option C is correct. The ACTIVE_SESS_POOL_P1 parameter is used to specify the
+maximum number of active sessions that are allowed in a resource consumer group.
+D and A are incorrect. There is no such parameter as ACTIVE_SESS_P1 or
+ACTIVE_SESSION_QUEUE in Oracle
+B is incorrect. The PARALLEL_DEGREE_LIMIT parameter specifies the degree of
+parallelism allowed for a query.
+Question: 105
+RMAN conserves the specified number of backups of control files and data files when the
+redundancy retention policy of backup is followed.
+A. True
+B. False
+Answer: A
+Explanation:
+From which of the following files of the target database does a recovery catalog obtain its
+information?
+A. Control file
+B. Data file
+C. Both data file and control file
+D. Online redo log file
+E. Archived redo log file
+Question: 106
+"If a channel is not allocated manually, RMAN automatically allocates channels according to the
+options specified in the CONFIGURE command."
+A. True
+B. False
+Answer: A
+Question: 107
+Which of the following RMAN commands performs a recovery process by applying incremental
+backups and archived redo logs to a restored backup?
+A. SET NEWNAME
+B. SWITCH
+C. CROSSCHECK
+D. RECOVER
+E. CATALOG
+F. RESTORE
+Answer: D
+Question: 108
+Which of the following clauses is used when RMAN performs an incomplete database recovery
+prior to the RECOVER command?
+A. UNTIL CHANGE
+B. SET UNTIL TIME
+C. SET UNTIL CANCEL
+D. UNTIL CANCEL
+Answer: B
+Question: 109
+What does the new instance called during the copy operation when a duplicate database is
+created?
+A. Secondary instance
+B. Duplicate instance
+C. Auxiliary instance
+D. Supplementary instance
+Answer: C
+Question: 110
+Which of the following pairs of the dynamic performance views can be used to determine which
+user generated a particular user trace file?
+A. V$SESSION, V$PROCESS
+B. V$USER, V$SESSION
+C. V$SYSTEM, V$SESSION
+D. V$PROCESS, V$SYSTEM
+E. V$USER, V$PROCESS
+F. V$SYSTEM, V$USER
+Answer: A
+Question: 111
+Which of the following statements about Flashback technologies is true?
+A. They are designed for instance failure.
+B. They are designed for user error or logical corruption.
+C. They are designed for network failure.
+D. They are designed for media failure.
+Answer: B
+Question: 112
+Which of the following database modes is valid while configuring a database to enable Flashback
+Database?
+A. MOUNT
+B. ARCHIVELOG
+C. NOMOUNT
+D. NOARCHIVELOG
+Answer: B
+Question: 113
+Which of the following identifies and creates an index to minimize the DB time for a particular
+SQL statement?
+A. The SGA Tuning Advisor
+B. The SQL Access Advisor
+C. The SQL Tuning Advisor
+D. The Memory Advisor
+Answer: B
+Question: 114
+Which of the following parameters is used to enable resumable for an instance?
+A. RESUMABLE_NAME
+B. RESUMABLE_TIMEOUT
+C. RESUMABLE_SESSION
+D. RESUMABLE
+Answer: B
+Question: 115
+Which of the following is not a valid setting for LOGGING_LEVEL Job Class parameter?
+A. DBMS_SCHEDULAR.LOGGING_FULL
+B. DBMS_SCHEDULAR.LOGGING_ON
+C. DBMS_SCHEDULAR.LOGGING_OFF
+D. DBMS_SCHEDULAR.LOGGING_RUN
+Answer: B
+Question: 116
+Which of the following parameters is used to display an entire range of supported languages, as
+well as all other globalization options?
+A. V$NLS_LANGUAGES
+B. NLS_LANG
+C. NLS_DATABASE_PARAMETERS
+D. V$NLS_VALID_VALUES
+E. NLS_INSTANCE_PARAMETERS
+Answer: D
+Question: 117
+Which of the following procedures is used to prioritize the jobs in a schedule?
+A. CREATE_JOB
+B. SET_ATTRIBUTE
+C. SET_SCHEDULE
+D. CREATE_JOB_CLASS
+Answer: B
+Question: 118
+Identify two situations in which you can use Data Recovery Advisor for recovery. (Choose two.)
+A. The user has dropped an important table that needs to be recovered.
+B. The database files are corrupted when the database is open.
+C. You are not able to start up the database instance because the required database files are
+missing.
+D. The archived log files are missing for which backup is not available.
+Answer: B,C
+Question: 119
+Examine the following values of the initialization parameters in the database having the
+SID ORCL: BACKGROUND_DUMP_DEST=/u01/app/oracle/product/11.1.0/db_1/bdump
+USER_DUMP_DEST=/u01/app/oracle/product/11.1.0/db_1/udump
+CORE_DUMP_DEST=/u01/app/oracle/product/11.1.0/db_1/cdump DIAGNOSTIC_DEST=
+The environment variables have the following value: ORACLE_BASE=/u01/app/oracle
+ORACLE_HOME=/u01/app/oracle/product/11.1.0/db_1 What is the location of the Automatic
+Diagnostic Repository (ADR) home?
+A. /u01/app/oracle/product/11.1.0/db_1
+B. B. /u01/app/oracle
+C. C. $ORACLE_HOME/bdump
+D. D. $ORACLE_HOME/log
+Answer: B
+Question: 120
+Observe the following PL/SQL block: BEGIN dbms_spm.configure
+'SPACE_BUDGET_PERCENT', 30); END; Which statement is correct regarding the above
+PL/SQL block?
+A. It automatically purges the SQL management objects when SMB occupies more than 30% of
+the SYSAUXtablespace.
+B. It reserves 30% of the space in the SYSAUXtablespace for SQL Management Base (SMB).
+C. It reserves 30% of the space in the SYSTEMtablespace for SMB.
+D. It generates a weekly warning in the alert log file when SMB occupies more than 30% of the
+SYSAUXtablespace.
+Answer: D
+Question: 121
+You are managing an Oracle Database 11g ASM instance having three disks in a disk group with
+ASM compatibility attribute set to 11.1.0 and redundancy set to high. One of the disks in the disk
+group becomes unavailable because of power failure. Which statements will be true in this
+scenario? (Choose all that apply.)
+A. The disk is immediately dropped from the disk group.
+B. The ASM tracks the extents that are modified during the outage.
+C. The ASM migrates the extents from the unavailable disk to the remaining disks.
+D. The disk automatically goes offline.
+Answer: B,D
+Question: 122
+Which statements are true regarding table compression? (Choose all that apply.)
+A. It saves disk space and reduces memory usage.
+B. It saves disk space but has no effect on memory usage.
+C. It incurs extra CPU overhead during DML as well as direct loading operations.
+D. It incurs extra CPU overhead during DML but not direct loading operations.
+E. It requires uncompress operation during I/O.
+Answer: A,C
+Question: 123
+You are working as a DBA on the decision support system. There is a business requirement to
+track and store all transactions for at least three years for a few tables in the database. Automatic
+undo management is enabled in the database. Which configuration should you use to accomplish
+this task?
+A. Enable Flashback Data Archive for the tables.
+B. Specify undo retention guarantee for the database.
+C. Enable supplemental logging for the database.
+D. Query V$UNDOSTAT to determine the amount of undo that will be generated and create an
+undotablespace for that size.
+E. Create Flashback Data Archive on thetablespace on which the tables are stored.
+Answer: A
+Question: 124
+Which three are the valid statements in relation to SQL plan baselines? (Choose three.)
+A. The plans generated for every SQL statement are stored in the SQL plan baseline by default.
+B. The plans can be manually loaded to the SQL plan baseline.
+C. The plan baselines are stored temporarily in the memory as long as the database instance is
+running.
+D. The plans in the SQL plan baseline are verified and accepted plans.
+E. For the SQL plan baselines to be accessible to the optimizer, the SYSAUXtablespace must be
+online.
+Answer: B,D,E
+Question: 125
+You are managing an Oracle Database 11g instance with ASM storage. You lost an ASM disk
+group DATA. You have RMAN backup of data as well as ASM metadata backup. You want to
+recreate the missing disk group by using the ASMCMD md_restore command. Which of these
+methods would you use to achieve this? (Choose all that apply.)
+A. Restore the disk group with the exact configuration as the backed-up disk group, using the
+same disk group name, same set of disks, failure group configurations, and data on the disk
+group.
+B. Restore the disk group with the exact configuration as the backed-up disk group, using the
+same disk group name, same set of disks, and failure group configurations.
+C. Restore the disk group with changed disk group specification, failure group specification, disk
+group name, and other disk attributes.
+D. Restore metadata in an existing disk group by passing the existing disk group name as an
+input parameter.
+Answer: B,C,D
+Question: 126
+Which statement describes the effect of table redefinition on the triggers attached to the table?
+A. All triggers on the table are invalidated and are automatically revalidated with the next DML
+execution on the table.
+B. All triggers on the table are invalidated and must be manually recompiled before the next DML
+execution on the table.
+C. All triggers on the table remain valid.
+D. Only triggers that are affected by the changes to the structure of the table are invalidated and
+automatically revalidated with the next DML execution on the table.
+Answer: A
+Question: 127
+You plan to collect the Automatic Workload Repository (AWR) data every Monday morning for a
+month. You want Oracle Database to automatically create a baseline every Monday and remove
+the old baseline. What is the correct action to achieve this?
+A. Create and populate a SQL Tuning Set from the AWR on every Monday.
+B. Change the RETENTION setting for the AWR snapshots to 7 days on Monday.
+C. Create a repeating baseline template.
+D. Insert a finding directive for future ADDM tasks.
+Answer: C
+Question: 128
+Which three statements are true regarding persistent lightweight jobs? (Choose three.)
+A. Persistent lightweight jobs modify several tables in the data dictionary to generate a lot of redo.
+B. The user cannot set privileges on persistent lightweight jobs.
+C. Persistent lightweight jobs are useful when users need to create a large number of jobs in a
+short time.
+D. Persistent lightweight jobs are useful when users need to create a small number of jobs that
+run infrequently.
+E. The use of a template is mandatory to create persistent lightweight jobs.
+Answer: B,C,E
+Question: 129
+Your database initialization parameter file has the following entry:
+SEC_MAX_FAILED_LOGIN_ATTEMPTS=3 Which statement is true regarding this setting?
+A. It drops the connection after the specified number of login attempts fail for any user.
+B. It is enforced only if the password profile is enabled for the user.
+C. It locks the user account after the specified number of attempts.
+D. It drops the connection after the specified number of login attempts fail only for users who
+have the SYSDBA privilege.
+Answer: A
+Question: 130
+Which statement is true regarding virtual private catalogs?
+A. A virtual private catalog owner can create a local stored script, and have read/write access to a
+global stored script.
+B. The virtual private catalog owner cannot create and modify the stored scripts.
+C. The set of views and synonyms that make up the virtual private catalog is stored in the
+schema of the RMAN recovery catalog owner.
+D. To perform most of the RMAN operations, the virtual catalog owner must have the SYSDBA or
+SYSOPER privilege on the target database.
+Answer: D
+Question: 131
+Which tasks can be accomplished using the Enterprise Manager Support Workbench in Oracle
+Database 11g? (Choose all that apply.)
+A. Generate reports on data failure such as data file failures.
+B. You can track the Service Request (SR) and implement repairs.
+C. You can package and upload diagnostic data to Oracle Support.
+D. You can manually run health checks to gather diagnostic data for a problem.
+Answer: B,C,D
+Question: 132
+What are the advantages of variable extent size support for large ASM files? (Choose two.)
+A. It improvesresync operations when the disk comes online after being taken offline for
+maintenance purposes.
+B. It improves performance in the extended cluster configuration by reading from a local copy of
+an extent.
+C. Fewer extent pointers are needed to describe the file and less memory is required to manage
+the extent maps in the shared pool.
+D. This feature enables faster file opens because of the reduction in the amount of memory that is
+required to store file extents.
+Answer: C,D
+Question: 133
+Which two are the uses of the ASM metadata backup and restore (AMBR) feature? (Choose two.)
+A. It can be used to back up all data on ASM disks.
+B. It can be used to recover the damaged ASM disk group along with the data.
+C. It can be used to gather information about a preexisting ASM disk group with disk paths, disk
+name, failure groups, attributes, templates, and alias directory structure.
+D. It can be used to re-create the ASM disk group with its attributes.
+Answer: C,D
+Question: 134
+Which two changes and their effect on the system can be tested by using the Database
+Replay feature? (Choose two.)
+A. multiplexing of the control file
+B. adding the redo log member to the database
+C. database and operating system upgrades
+D. changing the database storage to ASM-managed storage
+Answer: C,D
+Question: 135
+Which is the source used by Automatic SQL Tuning that runs as part of the AUTOTASK
+framework?
+A. SQL statements that are part of the AWR baseline only
+B. SQL statements based on the AWR top SQL identification
+C. SQL statements that are part of the available SQL Tuning Set (STS) only
+D. SQL statements that are available in the cursor cache and executed by a user other than SYS
+Answer: B
+Question: 136
+While performing the backup of the flash recovery area, you notice that one of the archived redo
+log files is missing. You have multiple destinations for archived redo log files. What implications
+does it have on the backup of the flash recovery area?
+A. The backup fails because one of the archived redo log files is missing.
+B. The backup succeeds but it would be without the missing archived log.
+C. During backup, you are prompted for the alternative destination for the missing archived redo
+log file.
+D. The backup succeeds because it fails over to one of the alternative archived redo log
+destinations.
+Answer: D
+Question: 137
+You are managing an Oracle Database 11g instance and an Oracle Database 10g instance on
+the same machine. Both instances use the ASM instance as storage. Which statement regarding
+the ASM disk group compatibility attributes are true in this scenario? (Choose all that apply.)
+A. The database-compatibility version settings for each instance must be greater than or equal to
+the RDBMS compatibility of all ASM disk groups used by that database instances.
+B. RDBMS compatibility and the database versiondetermines whether a database instance can
+mount the ASM disk group.
+C. The RDBMS compatibility settings for a disk group control the format of data structures for
+ASM metadata on the disk.
+D. ASM compatibility controls whichfeatures for the ASM will be enabled.
+Answer: A,B,D
+Question: 138
+Which three statements are true regarding the functioning of the Autotask Background
+Process (ABP)? (Choose three.)
+A. It creates jobs without considering the priorities associated with them.
+B. It translates tasks into jobs for execution by the scheduler.
+C. It determines the list of jobs that must be created for each maintenance window.
+D. It is spawned by the MMON background process at the start of the maintenance window.
+E. It maintains a repository in the SYSTEMtablespace to store the history of the execution of all
+tasks.
+Answer: B,C,D
+Question: 139
+Which statements are true regarding the concept of problems and incidents in the fault
+diagnosability infrastructure for Oracle Database 11g? (Choose all that apply.)
+A. Only the incident metadata and dumps are stored in the Automatic Diagnostic Repository
+(ADR).
+B. The problem key is the same as the incident number.
+C. The database sends an incident alert to the Oracle Enterprise Manager Database Home page.
+D. Every problem has a problem key, which is a text string that describes the problem.
+E. The database makes an entry into the alert log file when problems and incidents occur.
+Answer: C,D,E
+Question: 140
+What two statements are true regarding the recommendations received from the SQL Access
+Advisor? (Choose two.)
+A. It cannot generate recommendations that support multiple workload queries.
+B. It can recommend partitioning on tables provided that the workloads have some predicates
+and joins on the columns of the NUMBER or DATE type.
+C. It can recommend partitioning only on tables that have at least 10,000 rows.
+D. It can recommend only B-tree indexes and not bitmap or function-based indexes.
+Answer: B,C
+Question: 141
+You are managing Oracle Database 11g with an ASM storage with high redundancy. The
+following command was issued to drop the disks from the dga disk group after five hours:
+ALTER DISKGROUP dga OFFLINE DISKS IN FAILGROUP f2 DROP AFTER 5H; Which
+statement is true in this scenario?
+A. It starts the ASM fast mirrorresync.
+B. All the disks in thedga disk group would be OFFLINE and the DISK_REPAIR_TIME disk
+attribute would be set to 5 hours.
+C. It drops all disk paths from thedga disk group.
+D. All the disks in thedga disk group in failure group f2 would be OFFLINE and the
+DISK_REPAIR_TIME disk attribute would be set to 5 hours.
+Answer: D
+Question: 142
+Which statement describes the significance of the CHANGE FAILURE command in RMAN?
+(Choose all that apply.)
+A. It is used to change failure priority only for HIGH or LOW priorities.
+B. It is used to execute the advised repair script.
+C. It is used to change failure priority only for the CRITICAL priority.
+D. It is used to explicitly close the open failures.
+E. It is used to inform the database about the repair after the repair script executes.
+Answer: A,D
+Question: 143
+Which statements are true regarding the creation of an incident package file by using the EM
+Workbench Support? (Choose all that apply.)
+A. You can add or remove the trace files to the package.
+B. You can create the incremental incident package ZIP file for new or modified diagnostic
+information for the incident package already created.
+C. You can add SQL test cases to the incident package.
+D. You cannot create an incremental incident package when the physical files are purgedrom the
+ADR.
+Answer: A,B,C
+Question: 144
+Exhibit:
+View the Exhibit to examine the error during the database startup. You open an RMAN session
+for the database instance. To repair the failure, you executed the following as the first command
+in the RMAN session: RMAN> REPAIR FAILURE; Which statement describes the consequence
+of the command?
+A. The command performs the recovery and closes the failures.
+B. The command executes the RMAN script to repair the failure and removes the entry from the
+Automatic Diagnostic Repository (ADR).
+C. The command only displays the advice and the RMAN script required for repair.
+D. The command produces an error because the ADVISE FAILURE command has not been
+executed before the REPAIR FAILURE command.
+Answer: D
+Question: 145
+You want to track and store all transactional changes to a table over its lifetime. To accomplish
+this task, you enabled Flashback Data Archive with the retention of 5 years. After some time, the
+business requirement changed and you were asked to change the retention from 5 years to 3
+years. To accomplish this, you issued the following command: ALTER FLASHBACK ARCHIVE
+fla1 MODIFY RETENTION 3 YEAR; What is the implication of this command?
+A. The command produces an error because the retention time cannot be reduced.
+B. All historical data is retained but the subsequent flashback data archives are maintained for
+only three years.
+C. All historical data is purged and the new flashback data archives are maintained for three
+years.
+D. All historical data older than three years is purged from the flashback archive FLA1.
+Answer: D
+Question: 146
+You are managing an Oracle Database 11g database with ASM storage. The ASM disk group
+has the COMPATIBLE.ASM attribute set to 11.1. Which statements are true regarding extent
+management and allocation units in the ASM disk group? (Choose all that apply.)
+A. Theau_size disk group attribute determines the size of allocation units in the disk group.
+B. The allocation unit size may vary but the extent size is fixed.
+C. The allocation unit size and extent size are fixed for all the disks in a disk group and cannot be
+changed.
+D. Extent management is completely automated.
+Answer: A,D
+Question: 147
+Which are the prerequisites for performing flashback transactions on your database? (Choose all
+that apply.)
+A. Undo retention guarantee for the database must be configured.
+B. Supplemental log must be enabled for the primary key.
+C. Supplemental log must be enabled.
+D. Execute permission on the DBMS_FLASHBACK package must be granted to the user.
+Answer: B,C,D
+Question: 148
+Exhibit:
+View the Exhibit to examine the parameter values. You are planning to set the value for the
+MEMORY_TARGET parameter of your database instance. What value would you assign?
+A. 1440 MB
+B. 90 MB
+C. 362 MB
+D. 272 MB
+Answer: C
+Question: 149
+You are managing an Oracle Database 11g database. You want to take the backup of
+MULT_DATA, a big file tablespace of size 100 TB on tape drive, but you have tapedrives of only
+10 GB each. Which method would accomplish the task quickly and efficiently?
+A. parallel image copy backup
+B. backup with MAXPIECESIZE configured for the channel
+C. parallel backup with MAXPIECESIZE configured for the channel
+D. intrafile parallel backup
+Answer: D
+Question: 150
+You performed the RMAN database backup with the KEEP option. Which two statements are true
+regarding this backup? (Choose two.)
+A. The backup contains data files, the server parameter file, and the control file even if the control
+fileautobackup is disabled.
+B. The KEEP option overrides the configured retention policy.
+C. The backup contains only data files and archived redo log files.
+D. The KEEP option is an attribute of an individual backup piece.
+Answer: A,B
+Question: 151
+You are managing an Oracle Database 11g database. You want to take a backup on tape drives
+of the USERS tablespace that has a single data file of 900 MB. You have tape drives of 300 MB
+each. To accomplish the backup, you issued the following RMAN command: RMAN>BACKUP
+SECTION SIZE 300M TABLESPACE users; What configuration should be effected to accomplish
+faster and optimized backups by using the above command?
+A. The SBT channel must be configured, with the default parallelism setting for the SBT device
+set to 1.
+B. The COMPATIBLE initialization parameter for the database instance must be set to at least
+10.0.
+C. The SBT channel must be configured, with the parallelism setting for the SBT device set to 3.
+Answer: Unknown
+Explanation:
+Pending, Please send us your suggestions for this.
+Question: 152
+Which dependent object will get invalidated even if it is not affected by the table redefinition?
+A. packages
+B. triggers
+C. synonyms
+D. views
+Answer: B
+Question: 153
+The ADMIN_EMP table has columns EMPNO, ENAME, DEPTNO, and SAL. It has a materialized
+view EMP_MV with a materialized log and an ENAME_IDX index on the ENAME column. You
+need to perform an online table redefinition on the ADMIN_EMP table to move it from the TBS1
+tablespace to the TBS2 tablespace in the same schema. What action is required for the
+dependent objects when you perform online redefinition on the table?
+A. The materialized view should have a complete refresh performed after the online table
+redefinition is completed.
+B. The materialized view should have a fast refresh performed after the online table redefinition is
+completed.
+C. The materialized view, materialized log, and the index should be dropped and re-created after
+the online table redefinition is complete.
+D. The materialized view and materialized log should be dropped and all constraints disabled and
+re-created after the online table redefinition is complete.
+Answer: A
+Question: 154
+You issued the following command to mount the DATA disk group in restricted mode: ALTER
+DISKGROUP data MOUNT RESTRICT; What is the implication of this command?
+A. The client RDBMS instance can access the file as a read-only file.
+B. A new disk cannot be added to a disk group.
+C. A disk in a disk group can be taken offline.
+D. The client RDBMS instance cannot access the files in the disk group.
+Answer: D
+Question: 155
+Your company wants to upgrade the current production database to the RAC environment. To
+perform testing before migrating to the RAC environment, you performed the workload capture on
+the production database to record the peak workload. You set up the test RAC database and
+want to replay the recorded workload on the testmachine. Note the following steps that you may
+require to replay the database workload:
+1) Preprocess the captured workload.
+2) Restart the database in RESTRICTED mode.
+3) Set up the Replay Clients.
+4) Restore the test database to the point when the capture started.
+5) Remap connections.
+Arrange the steps required in the correct sequence to accomplish this task on the test machine.
+A. 1, 4, 5, 3 (2 is not required.)
+B. 1, 4, 3, 5 (2 is not required.)
+C. 1, 2, 4, 5 (3 is not required.)
+D. 2, 1, 5, 3, 4
+E. 1, 2, 4, 5, 3
+Answer: A
+Question: 156
+You are working on the APPDB database as a DBA. The database has a default Flashback Data
+Archive DFLA1 created on it. You issued the following command to drop the Flashback Archive
+FLA1: DROP FLASHBACK ARCHIVE fla1; What is the effect of this command?
+A. The Flashback Archive FLA1 is dropped only if it is empty.
+B. Thetablespace having Flashback Archive is dropped.
+C. The Flashback Archive FLA1 is dropped after moving the existing data in it to the default
+Flashback Archive.
+D. The Flashback Data Archive and historical data are dropped.
+Answer: D
+Question: 157
+Which two prerequisites are needed for performing workload capture and replay? (Choose two.)
+A. Close all sessions performing queries using database links.
+B. running the database in shared server mode
+C. The database on which the workload is replayed has to be a restore of the original database to
+a specific SCN.
+D. setting up the directory to capture the workload
+Answer: C,D
+Question: 158
+Which two statements are true regarding Health Monitor checks in Oracle Database 11g?
+(Choose two.)
+A. Health Monitor checks can be used to scan the contents of the redo log and archive logs for
+accessibility and corruption.
+B. Health Monitor checks can be used to verify the integrity of database files and report failures if
+these files are inaccessible, corrupt or inconsistent.
+C. Health Monitor checks can be used to verify the contents of dictionary entries for each
+dictionary object and fix it automatically.
+D. Health Monitor checks are always initiated manually when there is some critical error.
+Answer: A,B
+Question: 159
+Exhibit:
+View the Exhibit for some of the current parameter settings. user logs in to the HR schema and
+issues the following commands: QL> CREATE TABLE emp empno NUMBER(3), name
+VARCHAR2(20), al NUMBER(8,2)); QL> INSERT INTO emp(empno,ename) ALUES(1,'JAMES');
+t this moment, a second user also logs in to the HR schema and issues the following command:
+QL> ALTER TABLE emp MODIFY sal NUMBER(10,2); hat happens in the above scenario?
+A. The second user's session immediately produces the resource busy error.
+B. The second user's command executes successfully.
+C. The second user's session waits for a time period before producing the resource busy error.
+D. A deadlock is created.
+Answer: C
+Question: 160
+In which situations will the ASM metadata backup help you recover the ASM disk in a disk group?
+(Choose all that apply.)
+A. when one or more file directory paths are accidentally deleted from an ASM disk group
+B. when one of the disks in a disk group is accidentally unplugged
+C. when the data file on an ASM disk group gets corrupted
+D. when one or more disks in an ASM disk group are lost
+Answer: A,D
+Question: 161
+Which two are the prerequisites to enable Flashback Data Archive? (Choose two.)
+A. Database must be running inarchivelog mode.
+B. Automatic undo management must be enabled.
+C. Undo retention guarantee must be enabled.
+D. Thetablespace on which the Flashback Data Archive is created must be managed with
+Automatic Segment Space Management (ASSM).
+Answer: B,D
+Question: 162
+In your database, the RESULT_CACHE_MODE parameter has been set to MANUAL in the
+initialization parameter file. You issued the following command: SQL>SELECT /*+
+RESULT_CACHE */ sale_category, sum(sale_amt) FROM sales GROUP BY sale_category;
+Where would the result of this query be stored?
+A. database buffer cache
+B. shared pool
+C. PGA
+D. large pool
+Answer: B
+Question: 163
+You need to perform an online table redefinition of an existing SALES table to partition it into two
+tablespaces TBS1 and TBS2. The SALES table has a materialized view, materialized log,
+indexes, referential integrity constraint, and triggers with the PRECEDES clause existing on it.
+What action is required for dependent objects when you perform online table redefinition?
+A. The dependent materialized view should have a complete refresh performed after the online
+table redefinition process.
+B. Triggers with thePRECEDES clause should be disabled before the online table redefinition
+process.
+C. Referential integrity constraints must be manually enabled after the online table redefinition
+process.
+D. The materialized log should be dropped before the online table redefinition process.
+Answer: A
+Question: 164
+You want to take the backup of the USERS tablespace. It has a single data file of 900 MB.. You
+have tape drives of 300 MB each. The SBT channel is configured for the RMAN. To accomplish
+the backup, you issued the following RMAN command: RMAN> BACKUP SECTION SIZE 300M
+TABLESPACE users; Which two statements are true regarding the execution of the above
+command? (Choose two.)
+A. The RMAN parallelizes the backup although the parallelism is not set for a channel.
+B. The backup piece size will be limited to 300 MB.
+C. The operation is accomplished using the default channel available.
+D. Three channels for the tape drive must be configured by setting the parallelism to three.
+Answer: B,C
+Question: 165
+You installed Oracle Database 11g afresh. Which statements are true regarding the default audit
+settings in this database? (Choose all that apply.)
+A. The audit trail is stored in an operating system file.
+B. Auditing is disabled for all privileges.
+C. The audit trail is stored in the database.
+D. Auditing is enabled for all privileges.
+E. Auditing is enabled for certain privileges related to database security.
+Answer: C,E
+Question: 166
+To recover from the loss of the entire database, including all current control files, all online redo
+log files, and all parameter files, what backups are required, at a minimum, torestore the
+database successfully? (choose all that apply.)
+A. archived redo logs generated after the last datafile backups
+B. one autobackup of the control file
+C. one autobackup of the spfile
+D. a backup of all datafiles i e the password file
+Answer: A, B, D
+Explanation:
+To recover your database fully, you need a backup of all datafiles, all archived log files created
+since the last datafile backup, and an autobackup of the control file. c and e are incorrect
+because you can easily re-create the password file, and rman creates a dummy spfile during
+recovery.

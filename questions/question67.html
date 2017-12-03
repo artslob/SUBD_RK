@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 67</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>The history of thedatafiles recovered so far</p>',
+            
+                '<p><span class="hided B">B. </span>The archived redo log files required for recovery</p>',
+            
+                '<p><span class="hided C">C. </span>Thedatafiles and archived redo log files required for recovery</p>',
+            
+                '<p><span class="hided D">D. </span>The online redo log files that are corrupted and need to be re-created</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 67</h3>
+    <p>You need to perform user-managed complete database recovery. What information do you needto retrieve from VJRECOVERY_LOG? (Choose the best answer.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>The history of thedatafiles recovered so far</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>The archived redo log files required for recovery</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Thedatafiles and archived redo log files required for recovery</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>The online redo log files that are corrupted and need to be re-created</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B</p>
+
+    
+        <p class="hided">Explanation:For user-managed recovery, you need to query V$RECOVERY_LOG to identify the archivedredo log files needed for complete recovery, and V$RECOVERY_FILE to see which datafilesneed media recovery.A is incorrect because V$RECOVERY_LOG is not a history of recovery operations.C is incorrect because the view only contains a list of archived redo log files required for recovery.D is incorrect because there is no dynamic performance view that identifies which online redo logfiles are corrupt.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question66.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question68.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

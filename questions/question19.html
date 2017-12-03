@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 19</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>CONFIGURE RETENTION . . .</p>',
+            
+                '<p><span class="hided B">B. </span>BACKUP . . .KEEP FOREVER</p>',
+            
+                '<p><span class="hided C">C. </span>DELETE . . . EXPIRED</p>',
+            
+                '<p><span class="hided D">D. </span>REPORT SCHEMA ... AT</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 19</h3>
+    <p>Your database is not using an RMAN recovery catalog. Which of the following commands are notavailable to you in this scenario? (Choose all that apply.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>CONFIGURE RETENTION . . .</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>BACKUP . . .KEEP FOREVER</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>DELETE . . . EXPIRED</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>REPORT SCHEMA ... AT</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B,D</p>
+
+    
+        <p class="hided">Explanation:B and D are correct. If you are using the control file only for RMAN backups, backup informationmay age out of the control file and therefore will not be kept forever. In addition, schema changesare stored only in a recovery catalog but not in the control file.A is incorrect because you can configure RMAN parameters whether or not a recovery catalog isconfigured.C is incorrect because you can always delete backups that are older or outside the definedretention policy.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question18.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question20.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 55</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Flashback Data Archive</p>',
+            
+                '<p><span class="hided B">B. </span>Flashback Version Query</p>',
+            
+                '<p><span class="hided C">C. </span>Flashback Query</p>',
+            
+                '<p><span class="hided D">D. </span>Flashback Transaction Query</p>',
+            
+                '<p><span class="hided E">E. </span>Flashback Table</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 55</h3>
+    <p>Your CUSTOMER_ORDER and ORDERJTEMS table is updated daily with both phone ordersand Internet orders. During an ad-hoc maintenance operation, an operations specialistaccidentally deletes several items from an order placed last week. Which flashback feature willminimize the loss of recent updates to the ORDERJTEMS table and easily retrieve the missingrows? (Choose the best answer.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Flashback Data Archive</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Flashback Version Query</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Flashback Query</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Flashback Transaction Query</p>-->
+    <!---->
+        <!--<p><span class="hided E">E. </span>Flashback Table</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+        <p class="hided">Explanation:You can use INSERT INTO . . . SELECT . . . AS OF to retrieve the lost rows, specifying atimestamp value right before the accidental deletion.A is incorrect because Flashback Data Archive makes it easier to retain historical data but doesnot directly retrieve the missing rows.B is incorrect because even though Flashback Versions Query makes it easy to see versions of arow within a specific time period, you will have to perform additional steps to insert the missingdata.D is incorrect because you can access all the changes made for a given transaction, but youneed to know the transaction ID and still have to insert the missing rows. E is incorrectbecause even though Flashback Table will rewind the table to a point in time before the rowswere deleted, you will lose all recent transactions to the table.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question54.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question56.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

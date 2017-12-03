@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 82</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>DBMS_MONITOR</p>',
+            
+                '<p><span class="hided B">B. </span>DBMS_STATS</p>',
+            
+                '<p><span class="hided C">C. </span>DBMS_SQLTUNE</p>',
+            
+                '<p><span class="hided D">D. </span>DBMS_ADVISOR</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 82</h3>
+    <p>Which package provides API&#39;s for the SQL Tuning Advisor?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>DBMS_MONITOR</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>DBMS_STATS</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>DBMS_SQLTUNE</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>DBMS_ADVISOR</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: C</p>
+
+    
+        <p class="hided">Explanation:Answer option C is correct.The recommended interface for running the SQL Tuning Advisor is the Oracle EnterpriseManager.However, if Oracle Enterprise Manager is unavailable, you can run the SQL Tuning Advisor usingprocedures in the DBMS_SQLTUNE package. The DBMS_SQLTUNE package provides thefollowing three interrelated areas of functionality:? SQL Tuning Advisor Subprograms? SQL Profile Subprograms? SQL Tuning Set SubprogramsA is incorrect. The DBMS_MONITOR package lets you use PL/SQL for controlling additionaltracing and statistics gathering.B is incorrect. With the DBMS_STATS package you can view and modify optimizer statisticsgathered for database objects. The Oracle RDBMS allows you to collect statistics of manydifferent kinds as an aid to improve performance. This package is concerned with optimizerstatistics only. Given that Oracle sets automatic statistics collection of this kind by default, thispackage is intended for only specialized cases. The statistics of interest to be viewed ormodified can reside in the dictionary or in a table created in the user&#39;s schema for thispurpose. You can also collect and manage user-defined statistics for tables and domainindexes using this package.D is incorrect. DBMS_ADVISOR is part of the Server Manageability Suite of Advisors, a set ofexpert systems that identifies and helps resolve performance problems relating to the variousdatabase server components. Answer option</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question81.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question83.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 90</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>SERIAL#</p>',
+            
+                '<p><span class="hided B">B. </span>CLIENT_INFO</p>',
+            
+                '<p><span class="hided C">C. </span>CHANNEL_INFO</p>',
+            
+                '<p><span class="hided D">D. </span>MODULE</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 90</h3>
+    <p>You work as a Database Administrator for your company. The company uses an Oracle databaseto retain its data. You have started an RMAN job. The job uses more than two channels, eachhaving a name. You are required to find out the names of all the channels being used by that job.The V$SESSION dynamic performance view contains the details of every current session. Whichof the following columns of the V$SESSION dynamic performance view will you enquire to findout the names of the channels?</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>SERIAL#</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>CLIENT_INFO</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>CHANNEL_INFO</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>MODULE</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B</p>
+
+    
+        <p class="hided">Explanation:Answer option B is correct.The CLIENT_INFO column of the V$SESSION dynamic performance view stores informationrelated to the client application of the user session. The column contains the string rman alongwith the name of the channel. If the information is more than 64 bytes, it gets truncated. Theinformation is set and registered by the SET_CLIENT_INFO procedure of theDBMS_APPLICATION_INFO package. The following query will give the required output:SELECT CLIENT_INFO FROM V$SESSION WHERE CLIENT_INFO LIKE &#39;% rman %&#39;;CLIENT_INFO ----------------------- rman channel=c1 rman channel=c2 2 rows selectedA is incorrect. The SERIAL# column of the V$SESSION dynamic performance viewstores the serial number of the session. The serial number of a session is used to distinctivelyidentify the objects of the particular session. It is the work of this column to assure that thesession-level commands are in accordance with the appropriate objects of the session whenthenew session is given the session ID of the older one that has already ended.D is incorrect. The MODULE column of the V$SESSION dynamic performanceview stores the name of the module that is in execution currently. The name of the module isset when the SET_MODULE procedure of the DBMS_APPLICATION_INFO package is called.The DBMS_APPLICATION_INFO package helps simplify session activity tracking by enablingthe programs to insert information to the V$SESSION and V$SESSION_LONGOPS views.The program, once initiated, gets itself registered via the SET_MODULE procedure of theDBMS_APPLICATION_INFO package .C is incorrect. There is no such column as CHANNEL_INFO in the V$SESSION dynamicperformance view.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question89.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question91.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

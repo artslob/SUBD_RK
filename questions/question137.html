@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 137</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>The database-compatibility version settings for each instance must be greater than or equal tothe RDBMS compatibility of all ASM disk groups used by that database instances.</p>',
+            
+                '<p><span class="hided B">B. </span>RDBMS compatibility and the database versiondetermines whether a database instance canmount the ASM disk group.</p>',
+            
+                '<p><span class="hided C">C. </span>The RDBMS compatibility settings for a disk group control the format of data structures forASM metadata on the disk.</p>',
+            
+                '<p><span class="hided D">D. </span>ASM compatibility controls whichfeatures for the ASM will be enabled.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 137</h3>
+    <p>You are managing an Oracle Database 11g instance and an Oracle Database 10g instance onthe same machine. Both instances use the ASM instance as storage. Which statement regardingthe ASM disk group compatibility attributes are true in this scenario? (Choose all that apply.)</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>The database-compatibility version settings for each instance must be greater than or equal tothe RDBMS compatibility of all ASM disk groups used by that database instances.</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>RDBMS compatibility and the database versiondetermines whether a database instance canmount the ASM disk group.</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>The RDBMS compatibility settings for a disk group control the format of data structures forASM metadata on the disk.</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>ASM compatibility controls whichfeatures for the ASM will be enabled.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A,B,D</p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question136.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question138.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>

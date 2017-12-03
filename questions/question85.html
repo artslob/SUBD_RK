@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 85</title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>BACKUP ARCHIVELOG with ALL or LIKE options</p>',
+            
+                '<p><span class="hided B">B. </span>BACKUP BACKUPSET ALL</p>',
+            
+                '<p><span class="hided C">C. </span>BACKUP TABLESPACE</p>',
+            
+                '<p><span class="hided D">D. </span>BACKUP DATABASE</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(166);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    <h3 style="text-align: center">Question: 85</h3>
+    <p>Your RMAN configuration has the backup optimization set to ON. Which of the followingcommands will this setting affect? Each correct answer represents a complete solution. Chooseall that apply.</p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>BACKUP ARCHIVELOG with ALL or LIKE options</p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>BACKUP BACKUPSET ALL</p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>BACKUP TABLESPACE</p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>BACKUP DATABASE</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A,B,D</p>
+
+    
+        <p class="hided">Explanation:Answer options D, A, and B are correct.The CONFIGURE command is run to enable and disable backup optimization. Backupoptimization skips the backup of files in certain circumstances if the identical file or an identicalversion of the file has already been backed up. Full details on the backup optimization algorithmare provided in &quot;backup optimization&quot;. Backup optimization applies only to the followingcommands: BACKUP DATABASE BACKUP ARCHIVELOG with ALL or LIKE options BACKUPBACKUPSET ALL By default, backup optimization is configured to OFF. To enable backupoptimization, run the following command: ONFIGURE BACKUP OPTIMIZATION ON; To disablebackup optimization, run the following command: ONFIGURE BACKUP OPTIMIZATION OFF;To clear the current backup optimization setting, that is, return backup optimization to its defaultetting, i.e . OFF, run the following command: ONFIGURE BACKUP OPTIMIZATION CLEAR;nswer optionC is incorrect. The BACKUP TABLESPACE command will backup only the articular tablespacedata files and not the whole database. Thus, the optimization settings will not come in effectfor this backup.</p>
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="location.href='question84.html'" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="location.href='question86.html'" type="button" style="float: right">
+            Next page
+        </button>
+    
+</body>
+</html>
