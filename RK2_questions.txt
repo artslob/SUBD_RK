@@ -29,7 +29,7 @@ You issue the following command to enable block change tracking: SQL> ALTER DATA
 ENABLE BLOCK CHANGE TRACKING; However, you receive an error message, and the
 tracking file is not created. What is a possible reason for the error message?
 A. The parameter DB_RECOVERY_FILE_DEST is not set.
-B. You must use ALTER SYSTEM instead. )
+B. You must use ALTER SYSTEM instead.
 C. Your database must be in the MOUNT state to create the block change tracking file.
 D. The parameter DB_CREATE_FILE_DEST is not set.
 Answer: D
@@ -97,8 +97,8 @@ all that apply.)
 A. You have lost a data file and one or more of the archived redo log files are missing.
 B. Several widespread logical errors have occurred in the database in the last day.
 C. You want to create a test database as of a point in time in the past.
-D. You have lost a data file and you have all archived redo log files available. E.
-You have lost one of the copies of the control file.
+D. You have lost a data file and you have all archived redo log files available.
+E. You have lost one of the copies of the control file.
 Answer: A, B, C
 Explanation:
 A is correct because you cannot perform a full recovery with missing archived redo log files.
@@ -171,7 +171,7 @@ the database can be OPEN when these tablespaces are recovered.
 B and D are incorrect because the database will not open without the SYSTEM or UNDO
 tablespaces .
 Question: 12
-Which of the following methods can you use to run a job chain? (Choose all that apply.
+Which of the following methods can you use to run a job chain? (Choose all that apply).
 A. Create and schedule a job with CREATEJOB of type CHAIN.
 B. Create and schedule a chain using the CREATE_CHAIN procedure.
 C. Create and schedule a chain using the CREATE_JOB_CHAIN procedure.
@@ -406,8 +406,8 @@ following commands can you use to monitor and maintain failures? (Choose all tha
 A. IDENTIFY FAILURE
 B. REPAIR FAILURE
 C. CHANGE FAILURE
-D. ADVISE FAILURE E.
-RESET FAILURE
+D. ADVISE FAILURE
+E. RESET FAILURE
 Answer: B,C,D
 Explanation:
 In addition to REPAIR, CHANGE, and ADVISE FAILURE, you can use the LIST FAILURE
@@ -620,7 +620,7 @@ C is incorrect because you can use SET NEWNAME for any datafile .
 D is incorrect because SET NEWNAME specifies the entire pathname and filename for the
 restored image file.
 Question: 39
-Which of the following statements is true regarding lightweight jobs? (Choose all that apply.
+Which of the following statements is true regarding lightweight jobs? (Choose all that apply).
 A. You can use EM to create a lightweight job.
 B. A lightweight job generates minimum redo when it runs.
 C. A lightweight job is stored in the same table as other jobs.
@@ -772,7 +772,7 @@ C is incorrect because two copies of the alert log exist per instance, not per d
 incorrect because the alert log is not stored in an incident directory.
 Question: 48
 You lose all control file copies and your datafiles are intact, but your online log files are
-unavailable. Mow do you recover the database in this situation?
+unavailable. How do you recover the database in this situation?
 A. Re-create the control file and open the database with RESETLOGS.
 B. Restore a backup copy of the control file, perform incomplete recovery, and manually specify
 the names of the online redo log files. Also, open the database with RESETLOGS.
@@ -965,7 +965,7 @@ A. DELETE EXPIRED
 B. CROSSCHECK
 C. DELETE OBSOLETE
 D. UNCATALOG
-E DELETE UNAVAILABLE
+E. DELETE UNAVAILABLE
 Answer: B,D
 Explanation:
 The CROSSCHECK command compares the backups in the catalog to the actual backups on
@@ -1070,10 +1070,11 @@ Question: 66
 To recover from the loss of the entire database, including all current control files, all online redo
 log files, and all parameter files, what backups are required, at a minimum, to restore the
 database successfully? (Choose all that apply.)
-A. Archived redo logs generated after the lastdatafile backups
-B. Oneautobackup of the control file
-C. Oneautobackup of the SPFILE
-D. A backup of alldatafiles i E The password file
+A. Archived redo logs generated after the last datafile backups
+B. One autobackup of the control file
+C. One autobackup of the SPFILE
+D. A backup of all datafiles
+E. The password file
 Answer: A,B,D
 Explanation:
 To recover your database fully, you need a backup of all datafiles , all archived log files created
