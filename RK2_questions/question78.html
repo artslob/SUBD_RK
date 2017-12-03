@@ -77,6 +77,50 @@
 
             return array;
         }
+
+        function next_page() {
+            
+                location.href='question79.html';
+            
+        }
+
+        function prev_page() {
+            
+                location.href='question77.html';
+            
+        }
+
+        window.addEventListener("keydown", function (event) {
+            if (event.defaultPrevented)
+                return;
+
+            switch (event.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                    prev_page();
+                    break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                    next_page();
+                    break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                    answer();
+                    break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                    rnd();
+                    break;
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+        }, true);
     </script>
     <style>
         button {
@@ -114,15 +158,17 @@
     </div>
 
     
-        <button onclick="location.href='question77.html'" type="button" style="float: left">
+        <button onclick="prev_page()" type="button" style="float: left">
             Previous page
         </button>
     
 
     
-        <button onclick="location.href='question79.html'" type="button" style="float: right">
+        <button onclick="next_page()" type="button" style="float: right">
             Next page
         </button>
     
+    <br/>
+    <br/>
 </body>
 </html>
