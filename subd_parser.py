@@ -11,13 +11,13 @@ from django.template import Template, Context, Engine
 question_regexp = re.compile(r'('
                              r'(?P<title>Question: (?P<number>\d+)\n)'
                              r'(?P<text>(.|\n)+?)'
-                             r'(?P<options>([A-F]\. (.|\n)+?)+?)'
+                             r'(?P<options>([A-G]\. (.|\n)+?)+?)'
                              r'(?P<answer>Answer: .+\n)'
                              r'(?P<explanation>Explanation:\n(.|\n)+?)?'
                              r'(?=(Question: \d+)|$)'
                              r')')
 
-options_regexp = re.compile('(([A-F]\. )((.|\n)+?))(?=([A-F]\. |$))')
+options_regexp = re.compile('(([A-G]\. )((.|\n)+?))(?=([A-G]\. |$))')
 
 
 def get_args():

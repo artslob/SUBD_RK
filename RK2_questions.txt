@@ -1456,10 +1456,9 @@ cases
 A is incorrect. There is no Metalink packaging; either a custom packaging or quick
 packaging is used and the resulting package is always sent to Metalink for resolution.
 B is incorrect
-D is incorrect. There is no such packaging type called Detailed packaging
-.
+D is incorrect. There is no such packaging type called Detailed packaging.
 Question: 89
-DRAG DROP
+DRAG DROP. Choose the logical components of an Oracle database and PLACE them in ASCENDING ORDER.
 A. Data file
 B. Control file
 C. Segment
@@ -1467,8 +1466,7 @@ D. Data block
 E. Redo log file
 F. Extent
 G. Tablespace
-Choose the logical components of an Oracle database and place them in ascending order.
-Answer: A,F,C,G
+Answer: D,F,C,G
 Explanation:
 At the lowest level of granularity, Oracle stores data in data blocks. A data block is the smallest
 logical unit of data storage in Oracle. It corresponds to a specific number of bytes of physical
@@ -1543,9 +1541,9 @@ database. The manager of the company wants you to move the company's databases t
 server, as the performance of the old server is now degraded. Which of the following RMAN
 commands will you use to accomplish the task?
 A. DUPLICATE
-B. CONVERT C.
-CONNECT D.
-REGISTER
+B. CONVERT
+C. CONNECT
+D. REGISTER
 Answer: A
 Explanation:
 Answer option A is correct.
@@ -1693,7 +1691,7 @@ bitmap for managing the storage space.
 Question: 96
 Which of the following statements about a recovery catalog are true? Each correct answer
 represents a complete solution. Choose two.
-A recovery catalog should not be created in the target database.
+A. Recovery catalog should not be created in the target database.
 B. The information in the recovery catalog is obtained from the target database's control file.
 C. In case of multiple target databases, a recovery catalog schema must be created for each
 target database.
@@ -2084,20 +2082,18 @@ The environment variables have the following value: ORACLE_BASE=/u01/app/oracle
 ORACLE_HOME=/u01/app/oracle/product/11.1.0/db_1 What is the location of the Automatic
 Diagnostic Repository (ADR) home?
 A. /u01/app/oracle/product/11.1.0/db_1
-B. B. /u01/app/oracle
-C. C. $ORACLE_HOME/bdump
-D. D. $ORACLE_HOME/log
+B. /u01/app/oracle
+C. $ORACLE_HOME/bdump
+D. $ORACLE_HOME/log
 Answer: B
 Question: 120
 Observe the following PL/SQL block: BEGIN dbms_spm.configure
 'SPACE_BUDGET_PERCENT', 30); END; Which statement is correct regarding the above
 PL/SQL block?
-A. It automatically purges the SQL management objects when SMB occupies more than 30% of
-the SYSAUXtablespace.
-B. It reserves 30% of the space in the SYSAUXtablespace for SQL Management Base (SMB).
-C. It reserves 30% of the space in the SYSTEMtablespace for SMB.
-D. It generates a weekly warning in the alert log file when SMB occupies more than 30% of the
-SYSAUXtablespace.
+A. It automatically purges the SQL management objects when SMB occupies more than 30% of the SYSAUX tablespace.
+B. It reserves 30% of the space in the SYSAUX tablespace for SQL Management Base (SMB).
+C. It reserves 30% of the space in the SYSTEM tablespace for SMB.
+D. It generates a weekly warning in the alert log file when SMB occupies more than 30% of the SYSAUX tablespace.
 Answer: D
 Question: 121
 You are managing an Oracle Database 11g ASM instance having three disks in a disk group with
