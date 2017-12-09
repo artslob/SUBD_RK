@@ -996,7 +996,7 @@ A. The RBAL background process exists only on the ASM instance.
 B. You can use ASM disks with RAID disk systems.
 C. An ASM instance has its own data dictionary.
 D. ASM instances must be in the OPEN state to manage disk groups.
-E You can mix ASM disk groups with raw disks.
+E. You can mix ASM disk groups with raw disks.
 Answer: B
 Explanation:
 If you use ASM with RAID disk systems, you will typically turn off the ASM disk group redundancy
