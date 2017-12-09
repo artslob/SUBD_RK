@@ -2397,7 +2397,7 @@ D. The KEEP option is an attribute of an individual backup piece.
 Answer: A,B
 Question: 151
 You are managing an Oracle Database 11g database. You want to take a backup on tape drives
-of the USERS tablespace that has a single data file of 900 MB. You have tape drives of 300 MB
+of the USERS tablespace that has a single data file of 900 MB; You have tape drives of 300 MB
 each. To accomplish the backup, you issued the following RMAN command: RMAN>BACKUP
 SECTION SIZE 300M TABLESPACE users; What configuration should be effected to accomplish
 faster and optimized backups by using the above command?
