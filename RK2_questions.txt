@@ -2458,7 +2458,7 @@ D. 2, 1, 5, 3, 4
 E. 1, 2, 4, 5, 3
 Answer: A
 Question: 156
-You are working on the APPDB database as a DBA. The database has a default Flashback Data
+You are working on the APPDB database as a DBA; The database has a default Flashback Data
 Archive DFLA1 created on it. You issued the following command to drop the Flashback Archive
 FLA1: DROP FLASHBACK ARCHIVE fla1; What is the effect of this command?
 A. The Flashback Archive FLA1 is dropped only if it is empty.
