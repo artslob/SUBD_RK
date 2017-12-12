@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 34</title>
+    <title>Question: 34 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>The database instance will not start and you must re-create the TEMPtablespace in MOUNTmode.</p>',
+                '<p><span class="hided A">A. </span>The database instance will not start and you must re-create the TEMPtablespace in MOUNT mode. </p>',
             
-                '<p><span class="hided B">B. </span>The database instance will not start and you will have to drop the old TEMPtablespace inNOMOUNT mode.</p>',
+                '<p><span class="hided B">B. </span>The database instance will not start and you will have to drop the old TEMPtablespace in NOMOUNT mode. </p>',
             
-                '<p><span class="hided C">C. </span>Thetempfile is re-created at the original location, a message is written to the alert log, and thedatabase starts normally.</p>',
+                '<p><span class="hided C">C. </span>Thetempfile is re-created at the original location, a message is written to the alert log, and the database starts normally. </p>',
             
-                '<p><span class="hided D">D. </span>The database starts normally, a message is written to the alert log, and the DBA mustmanually re-create the TEMPtablespace.</p>',
+                '<p><span class="hided D">D. </span>The database starts normally, a message is written to the alert log, and the DBA must manually re-create the TEMPtablespace.</p>',
             
         ];
 
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 34</h3>
-    <p>You lose all of the datafiles in your TEMP tablespace after the database shuts down. When thedatabase starts again, what happens?</p>
+    
+        <h3 style="text-align: center">Question: 34 </h3>
+    
+    <p>You lose all of the datafiles in your TEMP tablespace after the database shuts down. When the database starts again, what happens? </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>The database instance will not start and you must re-create the TEMPtablespace in MOUNTmode.</p>-->
+        <!--<p><span class="hided A">A. </span>The database instance will not start and you must re-create the TEMPtablespace in MOUNT mode. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>The database instance will not start and you will have to drop the old TEMPtablespace inNOMOUNT mode.</p>-->
+        <!--<p><span class="hided B">B. </span>The database instance will not start and you will have to drop the old TEMPtablespace in NOMOUNT mode. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Thetempfile is re-created at the original location, a message is written to the alert log, and thedatabase starts normally.</p>-->
+        <!--<p><span class="hided C">C. </span>Thetempfile is re-created at the original location, a message is written to the alert log, and the database starts normally. </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>The database starts normally, a message is written to the alert log, and the DBA mustmanually re-create the TEMPtablespace.</p>-->
+        <!--<p><span class="hided D">D. </span>The database starts normally, a message is written to the alert log, and the DBA must manually re-create the TEMPtablespace.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C</p>
+    <p class="hided" id="answer">Answer: C </p>
 
     
-        <p class="hided">Explanation:If the database starts with a missing tempfile , the instance re-creates it and writes a message inthe alert log. If the original location is not available, the DBA will have to create a new onemanually after startup.A and B are incorrect because the database will start even if the tempfile location is not available.D is incorrect because the DBA does not need to re-create the tempfile (s) manually unless theoriginal file system location is unavailable.</p>
+        <p class="hided">Explanation: If the database starts with a missing tempfile , the instance re-creates it and writes a message in the alert log. If the original location is not available, the DBA will have to create a new one manually after startup. A and B are incorrect because the database will start even if the tempfile location is not available. D is incorrect because the DBA does not need to re-create the tempfile (s) manually unless the original file system location is unavailable.</p>
     
 
     <div style="text-align: center">

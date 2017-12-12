@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 97</title>
+    <title>Question: 97 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>V$SQLSTATS</p>',
+                '<p><span class="hided A">A. </span>V$SQLSTATS </p>',
             
-                '<p><span class="hided B">B. </span>V$SQLAREA</p>',
+                '<p><span class="hided B">B. </span>V$SQLAREA </p>',
             
-                '<p><span class="hided C">C. </span>V$SQL_BIND_DATA</p>',
+                '<p><span class="hided C">C. </span>V$SQL_BIND_DATA </p>',
             
                 '<p><span class="hided D">D. </span>V$SQL</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 97</h3>
-    <p>Which of the following Dynamic Performance views contain information relevant to SQL Tuning?Each correct answer represents a part of the solution. Choose all that apply..</p>
+    
+        <h3 style="text-align: center">Question: 97 </h3>
+    
+    <p>Which of the following Dynamic Performance views contain information relevant to SQL Tuning? Each correct answer represents a part of the solution. Choose all that apply.. </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>V$SQLSTATS</p>-->
+        <!--<p><span class="hided A">A. </span>V$SQLSTATS </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>V$SQLAREA</p>-->
+        <!--<p><span class="hided B">B. </span>V$SQLAREA </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>V$SQL_BIND_DATA</p>-->
+        <!--<p><span class="hided C">C. </span>V$SQL_BIND_DATA </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>V$SQL</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A,B,C,D</p>
+    <p class="hided" id="answer">Answer: A,B,C,D </p>
 
     
-        <p class="hided">Explanation:Answer options D, B, A and C are correct. Dynamic views containing information relevant to theSQL tuning are V$SQL, V$SQLAREA, V$SQLSTATS, and V$SQL_BIND_DATA. V$SQL listsstatistics on shared SQL area without the GROUP BY clause and contains one row for each childof the original SQL text entered. Statistics displayed in V$SQL are normally updated at the end ofquery execution. However, for long running queries, they are updated every 5 seconds. Thismakes it easy to see the impact of long running SQL statements while they are still in progress .V$SQLAREA lists statistics on shared SQL area and contains one row per SQL string. It providesstatistics on SQL statements that are in memory, parsed, and ready for execution. V$SQLSTATSreturns basic performance statistics for SQL cursors, with each row representingthe data for aunique combination of SQL text and optimizer plan (that is, unique combination of SQL_ID, andPLAN_HASH_VALUE). The column definitions for columns in V$SQLSTATS are identical tothose in the V$SQL and V$SQLAREA views. However, the V$SQLSTATS view differs fromV$SQL and V$SQLAREA in that it is faster, more scalable, and has a greater data retention(the statistics may still appear in this view, even after the cursor has been aged out of the sharedpool). Note that V$SQLSTATS contains a subset of columns that appear in V$SQL andV$SQLAREA. For each distinct bind variable in each cursor owned by the session querying theV$SQL_BIND_DATA view, this view describes: Actual bind data, if the bind variable is userdefined The underlying literal, if the CURSOR_SHARING parameter is set to FORCE and thebind variable is system.</p>
+        <p class="hided">Explanation: Answer options D, B, A and C are correct. Dynamic views containing information relevant to the SQL tuning are V$SQL, V$SQLAREA, V$SQLSTATS, and V$SQL_BIND_DATA. V$SQL lists statistics on shared SQL area without the GROUP BY clause and contains one row for each child of the original SQL text entered. Statistics displayed in V$SQL are normally updated at the end of query execution. However, for long running queries, they are updated every 5 seconds. This makes it easy to see the impact of long running SQL statements while they are still in progress . V$SQLAREA lists statistics on shared SQL area and contains one row per SQL string. It provides statistics on SQL statements that are in memory, parsed, and ready for execution. V$SQLSTATS returns basic performance statistics for SQL cursors, with each row representingthe data for a unique combination of SQL text and optimizer plan (that is, unique combination of SQL_ID, and PLAN_HASH_VALUE). The column definitions for columns in V$SQLSTATS are identical to those in the V$SQL and V$SQLAREA views. However, the V$SQLSTATS view differs from V$SQL and V$SQLAREA in that it is faster, more scalable, and has a greater data retention (the statistics may still appear in this view, even after the cursor has been aged out of the shared pool). Note that V$SQLSTATS contains a subset of columns that appear in V$SQL and V$SQLAREA. For each distinct bind variable in each cursor owned by the session querying the V$SQL_BIND_DATA view, this view describes: Actual bind data, if the bind variable is user defined The underlying literal, if the CURSOR_SHARING parameter is set to FORCE and the bind variable is system.</p>
     
 
     <div style="text-align: center">

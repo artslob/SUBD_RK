@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 66</title>
+    <title>Question: 66 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Archived redo logs generated after the last datafile backups</p>',
+                '<p><span class="hided A">A. </span>Archived redo logs generated after the last datafile backups </p>',
             
-                '<p><span class="hided B">B. </span>One autobackup of the control file</p>',
+                '<p><span class="hided B">B. </span>One autobackup of the control file </p>',
             
-                '<p><span class="hided C">C. </span>One autobackup of the SPFILE</p>',
+                '<p><span class="hided C">C. </span>One autobackup of the SPFILE </p>',
             
-                '<p><span class="hided D">D. </span>A backup of all datafiles</p>',
+                '<p><span class="hided D">D. </span>A backup of all datafiles </p>',
             
                 '<p><span class="hided E">E. </span>The password file</p>',
             
@@ -131,26 +131,28 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 66</h3>
-    <p>To recover from the loss of the entire database, including all current control files, all online redolog files, and all parameter files, what backups are required, at a minimum, to restore thedatabase successfully? (Choose all that apply.)</p>
+    
+        <h3 style="text-align: center">Question: 66 </h3>
+    
+    <p>To recover from the loss of the entire database, including all current control files, all online redo log files, and all parameter files, what backups are required, at a minimum, to restore the database successfully? (Choose all that apply.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Archived redo logs generated after the last datafile backups</p>-->
+        <!--<p><span class="hided A">A. </span>Archived redo logs generated after the last datafile backups </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>One autobackup of the control file</p>-->
+        <!--<p><span class="hided B">B. </span>One autobackup of the control file </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>One autobackup of the SPFILE</p>-->
+        <!--<p><span class="hided C">C. </span>One autobackup of the SPFILE </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>A backup of all datafiles</p>-->
+        <!--<p><span class="hided D">D. </span>A backup of all datafiles </p>-->
     <!---->
         <!--<p><span class="hided E">E. </span>The password file</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A,B,D</p>
+    <p class="hided" id="answer">Answer: A,B,D </p>
 
     
-        <p class="hided">Explanation:To recover your database fully, you need a backup of all datafiles , all archived log files createdsince the last datafile backup, and an autobackup of the control file.C and E are incorrect because you can easily re-create the password file, and RMAN creates adummy SPFILE during recovery.</p>
+        <p class="hided">Explanation: To recover your database fully, you need a backup of all datafiles , all archived log files created since the last datafile backup, and an autobackup of the control file. C and E are incorrect because you can easily re-create the password file, and RMAN creates a dummy SPFILE during recovery.</p>
     
 
     <div style="text-align: center">

@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 89</title>
+    <title>Question: 89 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Data file</p>',
+                '<p><span class="hided A">A. </span>Data file </p>',
             
-                '<p><span class="hided B">B. </span>Control file</p>',
+                '<p><span class="hided B">B. </span>Control file </p>',
             
-                '<p><span class="hided C">C. </span>Segment</p>',
+                '<p><span class="hided C">C. </span>Segment </p>',
             
-                '<p><span class="hided D">D. </span>Data block</p>',
+                '<p><span class="hided D">D. </span>Data block </p>',
             
-                '<p><span class="hided E">E. </span>Redo log file</p>',
+                '<p><span class="hided E">E. </span>Redo log file </p>',
             
-                '<p><span class="hided F">F. </span>Extent</p>',
+                '<p><span class="hided F">F. </span>Extent </p>',
             
                 '<p><span class="hided G">G. </span>Tablespace</p>',
             
@@ -135,30 +135,32 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 89</h3>
-    <p>DRAG DROP. Choose the logical components of an Oracle database and PLACE them in ASCENDING ORDER.</p>
+    
+        <h3 style="text-align: center">Question: 89 </h3>
+    
+    <p>DRAG DROP. Choose the logical components of an Oracle database and PLACE them in ASCENDING ORDER. </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Data file</p>-->
+        <!--<p><span class="hided A">A. </span>Data file </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Control file</p>-->
+        <!--<p><span class="hided B">B. </span>Control file </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Segment</p>-->
+        <!--<p><span class="hided C">C. </span>Segment </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>Data block</p>-->
+        <!--<p><span class="hided D">D. </span>Data block </p>-->
     <!---->
-        <!--<p><span class="hided E">E. </span>Redo log file</p>-->
+        <!--<p><span class="hided E">E. </span>Redo log file </p>-->
     <!---->
-        <!--<p><span class="hided F">F. </span>Extent</p>-->
+        <!--<p><span class="hided F">F. </span>Extent </p>-->
     <!---->
         <!--<p><span class="hided G">G. </span>Tablespace</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D,F,C,G</p>
+    <p class="hided" id="answer">Answer: D,F,C,G </p>
 
     
-        <p class="hided">Explanation:At the lowest level of granularity, Oracle stores data in data blocks. A data block is the smallestlogical unit of data storage in Oracle. It corresponds to a specific number of bytes of physicaldatabase space. The size of a data block is specified by the DB_BLOCK_SIZE initializationparameter at the time of database creation. It cannot be changed after database creation. Thesize of a data block is usually a multiple of the operating system&#39;s block size. It can vary from 2KBto 32KB, depending upon the operating system. If the size of a data block is not specified, bydefault it is taken as 4KB on most operating systems. Oracle requests data in multiples of datablocks. A data block is also called a logical block, Oracle block, or page. The next level of logicaldatabase storage is an extent. An extent is a logical storage unit that contains data of acorresponding segment. An extent consists of contiguous data blocks, and a segment is made upof one or more extents. Whenever a segment is created, an initial extent is assigned to it, eventhough the segment may be empty at the moment. When the extent corresponding to a segmentis full, a new extent is automatically allocated to the segment. When a segment is dropped, theextents corresponding to the segment are again available for use by other segments. The level oflogical database storage above an extent is a segment. A segment is a set of extents allocatedfor a specific database object such as a table, index, cluster etc. When a database object iscreated, Oracle allocates a segment to it. This segment contains at least one extent that in turncontains at least one data block. A single segment holds all the data of the correspondingdatabase object. A segment can belong to only one tablespace , but it can be associated tomultiple data files. Extents allocated to a segment can belong to multiple data files, but datablocks allocated to an extent can belong to only one data file. The highest level of logicaldatabase storage is a tablespace . A tablespace is a logical database structure for storingdatabase segments. By default, each Oracle database has a single tablespace , known asSYSTEM, which stores data dictionary tables and indexes. Other tablespaces may also beconfigured for a database for performing some specific tasks such as: ? Partial backup andrecovery operation ? Allocation of quotas for users Additional tablespaces can also be created asper the requirements of the applications installed on the system. Such tablespaces can be usedfor storing application specific segments. Data files, redo log files, and control files are thephysical, but not the logical components of an Oracle database contain at least one control file.However, the recommended number of control files is two or more. A database can contain amaximum of eight control files. However, a control file may belong to only one database.</p>
+        <p class="hided">Explanation: At the lowest level of granularity, Oracle stores data in data blocks. A data block is the smallest logical unit of data storage in Oracle. It corresponds to a specific number of bytes of physical database space. The size of a data block is specified by the DB_BLOCK_SIZE initialization parameter at the time of database creation. It cannot be changed after database creation. The size of a data block is usually a multiple of the operating system&#39;s block size. It can vary from 2KB to 32KB, depending upon the operating system. If the size of a data block is not specified, by default it is taken as 4KB on most operating systems. Oracle requests data in multiples of data blocks. A data block is also called a logical block, Oracle block, or page. The next level of logical database storage is an extent. An extent is a logical storage unit that contains data of a corresponding segment. An extent consists of contiguous data blocks, and a segment is made up of one or more extents. Whenever a segment is created, an initial extent is assigned to it, even though the segment may be empty at the moment. When the extent corresponding to a segment is full, a new extent is automatically allocated to the segment. When a segment is dropped, the extents corresponding to the segment are again available for use by other segments. The level of logical database storage above an extent is a segment. A segment is a set of extents allocated for a specific database object such as a table, index, cluster etc. When a database object is created, Oracle allocates a segment to it. This segment contains at least one extent that in turn contains at least one data block. A single segment holds all the data of the corresponding database object. A segment can belong to only one tablespace , but it can be associated to multiple data files. Extents allocated to a segment can belong to multiple data files, but data blocks allocated to an extent can belong to only one data file. The highest level of logical database storage is a tablespace . A tablespace is a logical database structure for storing database segments. By default, each Oracle database has a single tablespace , known as SYSTEM, which stores data dictionary tables and indexes. Other tablespaces may also be configured for a database for performing some specific tasks such as: ? Partial backup and recovery operation ? Allocation of quotas for users Additional tablespaces can also be created as per the requirements of the applications installed on the system. Such tablespaces can be used for storing application specific segments. Data files, redo log files, and control files are the physical, but not the logical components of an Oracle database contain at least one control file. However, the recommended number of control files is two or more. A database can contain a maximum of eight control files. However, a control file may belong to only one database.</p>
     
 
     <div style="text-align: center">

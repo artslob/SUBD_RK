@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 67</title>
+    <title>Question: 67 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>The history of thedatafiles recovered so far</p>',
+                '<p><span class="hided A">A. </span>The history of thedatafiles recovered so far </p>',
             
-                '<p><span class="hided B">B. </span>The archived redo log files required for recovery</p>',
+                '<p><span class="hided B">B. </span>The archived redo log files required for recovery </p>',
             
-                '<p><span class="hided C">C. </span>Thedatafiles and archived redo log files required for recovery</p>',
+                '<p><span class="hided C">C. </span>Thedatafiles and archived redo log files required for recovery </p>',
             
                 '<p><span class="hided D">D. </span>The online redo log files that are corrupted and need to be re-created</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 67</h3>
-    <p>You need to perform user-managed complete database recovery. What information do you needto retrieve from VJRECOVERY_LOG? (Choose the best answer.)</p>
+    
+        <h3 style="text-align: center">Question: 67 </h3>
+    
+    <p>You need to perform user-managed complete database recovery. What information do you need to retrieve from VJRECOVERY_LOG? (Choose the best answer.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>The history of thedatafiles recovered so far</p>-->
+        <!--<p><span class="hided A">A. </span>The history of thedatafiles recovered so far </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>The archived redo log files required for recovery</p>-->
+        <!--<p><span class="hided B">B. </span>The archived redo log files required for recovery </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Thedatafiles and archived redo log files required for recovery</p>-->
+        <!--<p><span class="hided C">C. </span>Thedatafiles and archived redo log files required for recovery </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>The online redo log files that are corrupted and need to be re-created</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: B</p>
+    <p class="hided" id="answer">Answer: B </p>
 
     
-        <p class="hided">Explanation:For user-managed recovery, you need to query V$RECOVERY_LOG to identify the archivedredo log files needed for complete recovery, and V$RECOVERY_FILE to see which datafilesneed media recovery.A is incorrect because V$RECOVERY_LOG is not a history of recovery operations.C is incorrect because the view only contains a list of archived redo log files required for recovery.D is incorrect because there is no dynamic performance view that identifies which online redo logfiles are corrupt.</p>
+        <p class="hided">Explanation: For user-managed recovery, you need to query V$RECOVERY_LOG to identify the archived redo log files needed for complete recovery, and V$RECOVERY_FILE to see which datafiles need media recovery. A is incorrect because V$RECOVERY_LOG is not a history of recovery operations. C is incorrect because the view only contains a list of archived redo log files required for recovery. D is incorrect because there is no dynamic performance view that identifies which online redo log files are corrupt.</p>
     
 
     <div style="text-align: center">

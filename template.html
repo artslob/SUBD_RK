@@ -123,7 +123,9 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">{{ title }}</h3>
+    {% if title %}
+        <h3 style="text-align: center">{{ title }}</h3>
+    {% endif %}
     <p>{{ text }}</p>
 
     <div id="options"></div>

@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 42</title>
+    <title>Question: 42 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>The script does not run because it must be executed within a RUN block.</p>',
+                '<p><span class="hided A">A. </span>The script does not run because it must be executed within a RUN block. </p>',
             
-                '<p><span class="hided B">B. </span>An image copy of the USERStablespace occurs and all previous backups and archived redologs outside of the retention period or retention policy are deleted.</p>',
+                '<p><span class="hided B">B. </span>An image copy of the USERStablespace occurs and all previous backups and archived redo logs outside of the retention period or retention policy are deleted. </p>',
             
-                '<p><span class="hided C">C. </span>The script creation step fails because you must explicitly allocate one or more channels with astored script.</p>',
+                '<p><span class="hided C">C. </span>The script creation step fails because you must explicitly allocate one or more channels with a stored script. </p>',
             
-                '<p><span class="hided D">D. </span>The script does not run because you must specify a target database when you use a localscript.</p>',
+                '<p><span class="hided D">D. </span>The script does not run because you must specify a target database when you use a local script.</p>',
             
         ];
 
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 42</h3>
-    <p>You create and execute a stored local script using the following commands: create script userbackup{backup as copy tablespace users; delete noprompt obsolete;}execute script user_backup; What happens when you run these commands?</p>
+    
+        <h3 style="text-align: center">Question: 42 </h3>
+    
+    <p>You create and execute a stored local script using the following commands: create script user backup { backup as copy tablespace users; delete noprompt obsolete; } execute script user_backup; What happens when you run these commands? </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>The script does not run because it must be executed within a RUN block.</p>-->
+        <!--<p><span class="hided A">A. </span>The script does not run because it must be executed within a RUN block. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>An image copy of the USERStablespace occurs and all previous backups and archived redologs outside of the retention period or retention policy are deleted.</p>-->
+        <!--<p><span class="hided B">B. </span>An image copy of the USERStablespace occurs and all previous backups and archived redo logs outside of the retention period or retention policy are deleted. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>The script creation step fails because you must explicitly allocate one or more channels with astored script.</p>-->
+        <!--<p><span class="hided C">C. </span>The script creation step fails because you must explicitly allocate one or more channels with a stored script. </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>The script does not run because you must specify a target database when you use a localscript.</p>-->
+        <!--<p><span class="hided D">D. </span>The script does not run because you must specify a target database when you use a local script.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A</p>
+    <p class="hided" id="answer">Answer: A </p>
 
     
-        <p class="hided">Explanation:Stored scripts, whether they are local or global, must be run within a RUN block as follows: run{execute script user_ backup ; }.B is wrong because a script must be enclosed in a RUN block.C is wrong because you can include a channel allocation or use the default channel in the RUNcommand containing the EXECUTE SCRIPT command.D is wrong because both local and global scripts apply only to the currently connected targetdatabase.</p>
+        <p class="hided">Explanation: Stored scripts, whether they are local or global, must be run within a RUN block as follows: run {execute script user_ backup ; }. B is wrong because a script must be enclosed in a RUN block. C is wrong because you can include a channel allocation or use the default channel in the RUN command containing the EXECUTE SCRIPT command. D is wrong because both local and global scripts apply only to the currently connected target database.</p>
     
 
     <div style="text-align: center">

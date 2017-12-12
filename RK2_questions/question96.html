@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 96</title>
+    <title>Question: 96 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Recovery catalog should not be created in the target database.</p>',
+                '<p><span class="hided A">A. </span>Recovery catalog should not be created in the target database. </p>',
             
-                '<p><span class="hided B">B. </span>The information in the recovery catalog is obtained from the target database&#39;s control file.</p>',
+                '<p><span class="hided B">B. </span>The information in the recovery catalog is obtained from the target database&#39;s control file. </p>',
             
-                '<p><span class="hided C">C. </span>In case of multiple target databases, a recovery catalog schema must be created for eachtarget database.</p>',
+                '<p><span class="hided C">C. </span>In case of multiple target databases, a recovery catalog schema must be created for each target database. </p>',
             
                 '<p><span class="hided D">D. </span>Recovery Manager (RMAN) must have a recovery catalog for its normal functioning.</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 96</h3>
-    <p>Which of the following statements about a recovery catalog are true? Each correct answerrepresents a complete solution. Choose two.</p>
+    
+        <h3 style="text-align: center">Question: 96 </h3>
+    
+    <p>Which of the following statements about a recovery catalog are true? Each correct answer represents a complete solution. Choose two. </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Recovery catalog should not be created in the target database.</p>-->
+        <!--<p><span class="hided A">A. </span>Recovery catalog should not be created in the target database. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>The information in the recovery catalog is obtained from the target database&#39;s control file.</p>-->
+        <!--<p><span class="hided B">B. </span>The information in the recovery catalog is obtained from the target database&#39;s control file. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>In case of multiple target databases, a recovery catalog schema must be created for eachtarget database.</p>-->
+        <!--<p><span class="hided C">C. </span>In case of multiple target databases, a recovery catalog schema must be created for each target database. </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Recovery Manager (RMAN) must have a recovery catalog for its normal functioning.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A,B</p>
+    <p class="hided" id="answer">Answer: A,B </p>
 
     
-        <p class="hided">Explanation:Answer options A and B are correct.A recovery catalog is a set of tables and views that Recovery Manager (RMAN) uses to storemetadata (information about a database structure, archived redo logs, backup sets, and data filecopies) about a target database (database that RMAN backups or restores). RMAN uses thismetadata to conduct its backup, recovery, and maintenance operations. Recovery catalog isoptional, i.e., if a recovery catalog is not created, RMAN uses the target database&#39;s control file tostore the metadata about the target database. Although RMAN can conduct all major backup andrecovery operations by using the control file, some RMAN commands work only if a recoverycatalog exists. A recovery catalog is solely managed by RMAN. RMAN propagates informationabout the database structure, archived redo logs, backup sets, and data file copies into therecovery catalog from the target database&#39;s control file. A recovery catalog can be used to storemetadata about multiple target databases. The tables and views constituting a recovery catalogare owned by a recovery catalog schema. Oracle recommends creating a recovery catalogschema in a separate dedicated database and not in the target database. A database containinga recovery catalog schema is called a recovery catalog database. C is incorrect. A singlerecovery catalog schema can store metadata about any number of target databases.</p>
+        <p class="hided">Explanation: Answer options A and B are correct. A recovery catalog is a set of tables and views that Recovery Manager (RMAN) uses to store metadata (information about a database structure, archived redo logs, backup sets, and data file copies) about a target database (database that RMAN backups or restores). RMAN uses this metadata to conduct its backup, recovery, and maintenance operations. Recovery catalog is optional, i.e., if a recovery catalog is not created, RMAN uses the target database&#39;s control file to store the metadata about the target database. Although RMAN can conduct all major backup and recovery operations by using the control file, some RMAN commands work only if a recovery catalog exists. A recovery catalog is solely managed by RMAN. RMAN propagates information about the database structure, archived redo logs, backup sets, and data file copies into the recovery catalog from the target database&#39;s control file. A recovery catalog can be used to store metadata about multiple target databases. The tables and views constituting a recovery catalog are owned by a recovery catalog schema. Oracle recommends creating a recovery catalog schema in a separate dedicated database and not in the target database. A database containing a recovery catalog schema is called a recovery catalog database. C is incorrect. A single recovery catalog schema can store metadata about any number of target databases.</p>
     
 
     <div style="text-align: center">

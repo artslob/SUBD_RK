@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 3</title>
+    <title>Question: 3 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>The parameter DB_RECOVERY_FILE_DEST is not set.</p>',
+                '<p><span class="hided A">A. </span>The parameter DB_RECOVERY_FILE_DEST is not set. </p>',
             
-                '<p><span class="hided B">B. </span>You must use ALTER SYSTEM instead.</p>',
+                '<p><span class="hided B">B. </span>You must use ALTER SYSTEM instead. </p>',
             
-                '<p><span class="hided C">C. </span>Your database must be in the MOUNT state to create the block change tracking file.</p>',
+                '<p><span class="hided C">C. </span>Your database must be in the MOUNT state to create the block change tracking file. </p>',
             
                 '<p><span class="hided D">D. </span>The parameter DB_CREATE_FILE_DEST is not set.</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 3</h3>
-    <p>You issue the following command to enable block change tracking: SQL&gt; ALTER DATABASEENABLE BLOCK CHANGE TRACKING; However, you receive an error message, and thetracking file is not created. What is a possible reason for the error message?</p>
+    
+        <h3 style="text-align: center">Question: 3 </h3>
+    
+    <p>You issue the following command to enable block change tracking: SQL&gt; ALTER DATABASE ENABLE BLOCK CHANGE TRACKING; However, you receive an error message, and the tracking file is not created. What is a possible reason for the error message? </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>The parameter DB_RECOVERY_FILE_DEST is not set.</p>-->
+        <!--<p><span class="hided A">A. </span>The parameter DB_RECOVERY_FILE_DEST is not set. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>You must use ALTER SYSTEM instead.</p>-->
+        <!--<p><span class="hided B">B. </span>You must use ALTER SYSTEM instead. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Your database must be in the MOUNT state to create the block change tracking file.</p>-->
+        <!--<p><span class="hided C">C. </span>Your database must be in the MOUNT state to create the block change tracking file. </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>The parameter DB_CREATE_FILE_DEST is not set.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D</p>
+    <p class="hided" id="answer">Answer: D </p>
 
     
-        <p class="hided">Explanation:Unless you explicitly specify a location for the block change tracking file using the USING FILEclause, the file is created using Oracle Managed Files (OMF), which requires a destination in theparameter DB_CREATE_FILE_DEST.A is incorrect because DB_RECOVERY_FILE_DEST specifies the location of the flash recoveryarea.B is incorrect because the tracking file is created at the database level, not the system level.C is incorrect because you can create the tracking file when the database is OPEN; however, torename the tracking file, the database must be in the MOUNT state.</p>
+        <p class="hided">Explanation: Unless you explicitly specify a location for the block change tracking file using the USING FILE clause, the file is created using Oracle Managed Files (OMF), which requires a destination in the parameter DB_CREATE_FILE_DEST. A is incorrect because DB_RECOVERY_FILE_DEST specifies the location of the flash recovery area. B is incorrect because the tracking file is created at the database level, not the system level. C is incorrect because you can create the tracking file when the database is OPEN; however, to rename the tracking file, the database must be in the MOUNT state.</p>
     
 
     <div style="text-align: center">

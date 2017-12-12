@@ -3,7 +3,7 @@ You are not sure if Flashback Database is enabled. What database column and view
 query to see if the flashback logs are being created in the flash recovery area?
 A. Query the initialization parameter FLASHBACK_DATABASE in VJINSTANCE.
 B. Query the FLASHBACK_ENABLED column in VJDATABASE.
-C. Query the FLASHBACK column in VJDATABASE..
+C. Query the FLASHBACK column in VJDATABASE.
 D. Query the FLASHBACK_ON column in VJDATABASE.
 Answer: D
 Explanation:

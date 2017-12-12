@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 87</title>
+    <title>Question: 87 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Temporarytablespace</p>',
+                '<p><span class="hided A">A. </span>Temporarytablespace </p>',
             
-                '<p><span class="hided B">B. </span>SYSTEMtablespace</p>',
+                '<p><span class="hided B">B. </span>SYSTEMtablespace </p>',
             
-                '<p><span class="hided C">C. </span>Transportabletablespace</p>',
+                '<p><span class="hided C">C. </span>Transportabletablespace </p>',
             
-                '<p><span class="hided D">D. </span>Bigfile tablespace</p>',
+                '<p><span class="hided D">D. </span>Bigfile tablespace </p>',
             
                 '<p><span class="hided E">E. </span>SYSAUXtablespace</p>',
             
@@ -131,26 +131,28 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 87</h3>
-    <p>Which of the following helps the DBA to manage the tablespace as a single unit without takinginto account the structure and size of the underlying datafiles?</p>
+    
+        <h3 style="text-align: center">Question: 87 </h3>
+    
+    <p>Which of the following helps the DBA to manage the tablespace as a single unit without taking into account the structure and size of the underlying datafiles? </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Temporarytablespace</p>-->
+        <!--<p><span class="hided A">A. </span>Temporarytablespace </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>SYSTEMtablespace</p>-->
+        <!--<p><span class="hided B">B. </span>SYSTEMtablespace </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Transportabletablespace</p>-->
+        <!--<p><span class="hided C">C. </span>Transportabletablespace </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>Bigfile tablespace</p>-->
+        <!--<p><span class="hided D">D. </span>Bigfile tablespace </p>-->
     <!---->
         <!--<p><span class="hided E">E. </span>SYSAUXtablespace</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D</p>
+    <p class="hided" id="answer">Answer: D </p>
 
     
-        <p class="hided">Explanation:Answer option D is correct.A bigfile tablespace is a new type of tablespace introduced in Oracle 10g. It is also available inOracle 11g. here can be only one file in a bigfile tablespace . The size of a bigfile tablespace filecan be a aximum of 128 TB (terabytes) for a 32K block tablespace and 32 TB for an 8K blocktablespace . dministrators must ensure that sufficient free disk space is available for a bigfiletablespace file o that it can be expanded whenever required. For the same reason, Oraclerecommends that one make use of bigfile tablespace with Automatic Storage Management ASM),Oracle Managed Files (OMF), logical volumes that are dynamically extensible, or a logical olumemanager that supports RAID. The biggest advantage of using a bigfile tablespace is that it scapable of running file alteration operations with no file name specification. bigfile tablespacemust be created as locally managed, with automatic segment space anagement. This is thedefault and hence need not be specified in the DDL statement CREATE IGFILE TABLESPACE.On specifying either EXTENT MANAGEMENT DICTIONARY or EGMENT SPACE ANAGEMENTMANUAL, Oracle will report an error. o create a bigfile tablespace named btbs of 80G, the llowingDDL will be used: REATE BIGFILE TABLESPACE btbs ATAFILE &#39;/or01/odata/orcl10g/btbs01.dbf&#39;IZE 80G ote: The SIZE can be specified in kilobytes (K), megabytes (M), gigabytes (G), orterabytes (T). o determine whether a tablespace is a bigfile or not, the administrator can queryany one of the following views: DBA_TABLESPACES USER_TABLESPACES V$TABLESPACEThese all comprise a column known as BIGFILE that stipulates whether a tablespace is a bigfileor not.</p>
+        <p class="hided">Explanation: Answer option D is correct. A bigfile tablespace is a new type of tablespace introduced in Oracle 10g. It is also available in Oracle 11g. here can be only one file in a bigfile tablespace . The size of a bigfile tablespace file can be a aximum of 128 TB (terabytes) for a 32K block tablespace and 32 TB for an 8K block tablespace . dministrators must ensure that sufficient free disk space is available for a bigfile tablespace file o that it can be expanded whenever required. For the same reason, Oracle recommends that one make use of bigfile tablespace with Automatic Storage Management ASM), Oracle Managed Files (OMF), logical volumes that are dynamically extensible, or a logical olume manager that supports RAID. The biggest advantage of using a bigfile tablespace is that it s capable of running file alteration operations with no file name specification. bigfile tablespace must be created as locally managed, with automatic segment space anagement. This is the default and hence need not be specified in the DDL statement CREATE IGFILE TABLESPACE. On specifying either EXTENT MANAGEMENT DICTIONARY or EGMENT SPACE ANAGEMENT MANUAL, Oracle will report an error. o create a bigfile tablespace named btbs of 80G, the llowing DDL will be used: REATE BIGFILE TABLESPACE btbs ATAFILE &#39;/or01/odata/orcl10g/btbs01.dbf&#39; IZE 80G ote: The SIZE can be specified in kilobytes (K), megabytes (M), gigabytes (G), or terabytes (T). o determine whether a tablespace is a bigfile or not, the administrator can query any one of the following views: DBA_TABLESPACES USER_TABLESPACES V$TABLESPACE These all comprise a column known as BIGFILE that stipulates whether a tablespace is a bigfile or not.</p>
     
 
     <div style="text-align: center">

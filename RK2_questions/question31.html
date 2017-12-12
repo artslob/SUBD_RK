@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 31</title>
+    <title>Question: 31 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>SGA_TARGET varies up to SGA_MAX_SIZE, which depends on the number of users runningDML</p>',
+                '<p><span class="hided A">A. </span>SGA_TARGET varies up to SGA_MAX_SIZE, which depends on the number of users running DML </p>',
             
-                '<p><span class="hided B">B. </span>SGA_TARGET can fall below 8GB if the PGA is low on memory.</p>',
+                '<p><span class="hided B">B. </span>SGA_TARGET can fall below 8GB if the PGA is low on memory. </p>',
             
-                '<p><span class="hided C">C. </span>SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never is above 1GB.</p>',
+                '<p><span class="hided C">C. </span>SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never is above 1GB. </p>',
             
                 '<p><span class="hided D">D. </span>SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never falls below 1GB.</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 31</h3>
-    <p>You switch from Automatic Memory Management (AMM) to Automatic Shared MemoryManagement (ASMM) by executing this statement: alter system set memory_target = 0;Next, you restart the instance and set these values: alter system set sga_max_size = 10gb;alter system set sga_target = 8gb; alter system set shared_pool_size = 1 gb; How do the valuesof SGA_TARGET, SGA_MAX_SIZE, and SHARED_POOL_SIZE vary throughout the day?(Choose the best answer.)</p>
+    
+        <h3 style="text-align: center">Question: 31 </h3>
+    
+    <p>You switch from Automatic Memory Management (AMM) to Automatic Shared Memory Management (ASMM) by executing this statement: alter system set memory_target = 0; Next, you restart the instance and set these values: alter system set sga_max_size = 10gb; alter system set sga_target = 8gb; alter system set shared_pool_size = 1 gb; How do the values of SGA_TARGET, SGA_MAX_SIZE, and SHARED_POOL_SIZE vary throughout the day? (Choose the best answer.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>SGA_TARGET varies up to SGA_MAX_SIZE, which depends on the number of users runningDML</p>-->
+        <!--<p><span class="hided A">A. </span>SGA_TARGET varies up to SGA_MAX_SIZE, which depends on the number of users running DML </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>SGA_TARGET can fall below 8GB if the PGA is low on memory.</p>-->
+        <!--<p><span class="hided B">B. </span>SGA_TARGET can fall below 8GB if the PGA is low on memory. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never is above 1GB.</p>-->
+        <!--<p><span class="hided C">C. </span>SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never is above 1GB. </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>SGA_TARGET stays at 8GB, and SHARED_POOL_SIZE never falls below 1GB.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D</p>
+    <p class="hided" id="answer">Answer: D </p>
 
     
-        <p class="hided">Explanation:When you enable ASMM by setting SGA_TARGET, the value does not change automatically andthe SHARED_POOL_SIZE can grow and shrink as long as it does not fall below 1GB.A is incorrect because SGA_TARGET will not change dynamically; however, it can be changedby the DBA as long as it is less than the value of SGA_MAX_SIZE.B is incorrect because the value of SGA_TARGET does not change and has no effect on thePGA memory size since AMM is not enabled.C is incorrect because the value of SHARED_POOL_SIZE can vary above 1GB but isnever lower than 1GB.</p>
+        <p class="hided">Explanation: When you enable ASMM by setting SGA_TARGET, the value does not change automatically and the SHARED_POOL_SIZE can grow and shrink as long as it does not fall below 1GB. A is incorrect because SGA_TARGET will not change dynamically; however, it can be changed by the DBA as long as it is less than the value of SGA_MAX_SIZE. B is incorrect because the value of SGA_TARGET does not change and has no effect on the PGA memory size since AMM is not enabled. C is incorrect because the value of SHARED_POOL_SIZE can vary above 1GB but is never lower than 1GB.</p>
     
 
     <div style="text-align: center">

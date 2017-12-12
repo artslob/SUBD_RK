@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 55</title>
+    <title>Question: 55 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Flashback Data Archive</p>',
+                '<p><span class="hided A">A. </span>Flashback Data Archive </p>',
             
-                '<p><span class="hided B">B. </span>Flashback Version Query</p>',
+                '<p><span class="hided B">B. </span>Flashback Version Query </p>',
             
-                '<p><span class="hided C">C. </span>Flashback Query</p>',
+                '<p><span class="hided C">C. </span>Flashback Query </p>',
             
-                '<p><span class="hided D">D. </span>Flashback Transaction Query</p>',
+                '<p><span class="hided D">D. </span>Flashback Transaction Query </p>',
             
                 '<p><span class="hided E">E. </span>Flashback Table</p>',
             
@@ -131,26 +131,28 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 55</h3>
-    <p>Your CUSTOMER_ORDER and ORDERJTEMS table is updated daily with both phone ordersand Internet orders. During an ad-hoc maintenance operation, an operations specialistaccidentally deletes several items from an order placed last week. Which flashback feature willminimize the loss of recent updates to the ORDERJTEMS table and easily retrieve the missingrows? (Choose the best answer.)</p>
+    
+        <h3 style="text-align: center">Question: 55 </h3>
+    
+    <p>Your CUSTOMER_ORDER and ORDERJTEMS table is updated daily with both phone orders and Internet orders. During an ad-hoc maintenance operation, an operations specialist accidentally deletes several items from an order placed last week. Which flashback feature will minimize the loss of recent updates to the ORDERJTEMS table and easily retrieve the missing rows? (Choose the best answer.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Flashback Data Archive</p>-->
+        <!--<p><span class="hided A">A. </span>Flashback Data Archive </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Flashback Version Query</p>-->
+        <!--<p><span class="hided B">B. </span>Flashback Version Query </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Flashback Query</p>-->
+        <!--<p><span class="hided C">C. </span>Flashback Query </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>Flashback Transaction Query</p>-->
+        <!--<p><span class="hided D">D. </span>Flashback Transaction Query </p>-->
     <!---->
         <!--<p><span class="hided E">E. </span>Flashback Table</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C</p>
+    <p class="hided" id="answer">Answer: C </p>
 
     
-        <p class="hided">Explanation:You can use INSERT INTO . . . SELECT . . . AS OF to retrieve the lost rows, specifying atimestamp value right before the accidental deletion.A is incorrect because Flashback Data Archive makes it easier to retain historical data but doesnot directly retrieve the missing rows.B is incorrect because even though Flashback Versions Query makes it easy to see versions of arow within a specific time period, you will have to perform additional steps to insert the missingdata.D is incorrect because you can access all the changes made for a given transaction, but youneed to know the transaction ID and still have to insert the missing rows. E is incorrectbecause even though Flashback Table will rewind the table to a point in time before the rowswere deleted, you will lose all recent transactions to the table.</p>
+        <p class="hided">Explanation: You can use INSERT INTO . . . SELECT . . . AS OF to retrieve the lost rows, specifying a timestamp value right before the accidental deletion. A is incorrect because Flashback Data Archive makes it easier to retain historical data but does not directly retrieve the missing rows. B is incorrect because even though Flashback Versions Query makes it easy to see versions of a row within a specific time period, you will have to perform additional steps to insert the missing data. D is incorrect because you can access all the changes made for a given transaction, but you need to know the transaction ID and still have to insert the missing rows. E is incorrect because even though Flashback Table will rewind the table to a point in time before the rows were deleted, you will lose all recent transactions to the table.</p>
     
 
     <div style="text-align: center">

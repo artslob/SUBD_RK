@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 4</title>
+    <title>Question: 4 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>DBA_DATAFILE</p>',
+                '<p><span class="hided A">A. </span>DBA_DATAFILE </p>',
             
-                '<p><span class="hided B">B. </span>VJTABLESPACE</p>',
+                '<p><span class="hided B">B. </span>VJTABLESPACE </p>',
             
-                '<p><span class="hided C">C. </span>VJDATAFILE</p>',
+                '<p><span class="hided C">C. </span>VJDATAFILE </p>',
             
-                '<p><span class="hided D">D. </span>V$DATAFILE_COPY</p>',
+                '<p><span class="hided D">D. </span>V$DATAFILE_COPY </p>',
             
                 '<p><span class="hided E">E. </span>VJBACKUP DATAFILE</p>',
             
@@ -131,26 +131,28 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 4</h3>
-    <p>You are restoring and recovering a database to a new host. What data dictionary view will youuse to identify the names of the datafiles on the new database?</p>
+    
+        <h3 style="text-align: center">Question: 4 </h3>
+    
+    <p>You are restoring and recovering a database to a new host. What data dictionary view will you use to identify the names of the datafiles on the new database? </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>DBA_DATAFILE</p>-->
+        <!--<p><span class="hided A">A. </span>DBA_DATAFILE </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>VJTABLESPACE</p>-->
+        <!--<p><span class="hided B">B. </span>VJTABLESPACE </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>VJDATAFILE</p>-->
+        <!--<p><span class="hided C">C. </span>VJDATAFILE </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>V$DATAFILE_COPY</p>-->
+        <!--<p><span class="hided D">D. </span>V$DATAFILE_COPY </p>-->
     <!---->
         <!--<p><span class="hided E">E. </span>VJBACKUP DATAFILE</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C</p>
+    <p class="hided" id="answer">Answer: C </p>
 
     
-        <p class="hided">Explanation:V$DATAFILE lists all the datafiles for the new database, and you will use these names in the SETNEWNAME command within the RMAN RUN block. A is incorrect because no data dictionaryview called DBA_DATAFILE exists, and even if it did exist, the view would not be available whenthe database is in the MOUNT state. B, D, and E arencorrect because these views do not containinformation about datafile names on the new host.</p>
+        <p class="hided">Explanation: V$DATAFILE lists all the datafiles for the new database, and you will use these names in the SET NEWNAME command within the RMAN RUN block. A is incorrect because no data dictionary view called DBA_DATAFILE exists, and even if it did exist, the view would not be available when the database is in the MOUNT state. B, D, and E arencorrect because these views do not contain information about datafile names on the new host.</p>
     
 
     <div style="text-align: center">

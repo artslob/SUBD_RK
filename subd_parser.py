@@ -23,11 +23,14 @@ options_regexp = re.compile('(([A-G]\. )((.|\n)+?))(?=([A-G]\. |$))')
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', dest='input', default='RK1_questions.txt', help='Input file with questions')
-    parser.add_argument('-d', '--dir', dest='dir', default='RK1_questions', help="Output dir which holds result html's")
+    parser.add_argument('-d', '--dir', dest='dir', default='RK1_questions', help='Output dir which holds result html\'s')
+    parser.add_argument('-t', '--no-title', dest='title', action='store_false',
+                        help='Specify this flag if you do not want to see question number on page')
     return parser.parse_args()
 
 
 def main():
+    print('Use -h to see help')
     args = get_args()
 
     try:
@@ -38,7 +41,6 @@ def main():
             sys.exit(1)
 
     try:
-
         with open('template.html') as template_file:
             template = Template(template_file.read(), engine=Engine())
 
@@ -47,18 +49,18 @@ def main():
             length = len(questions)
             for question in questions:
                 question = question_regexp.search(question)
-                options = [(el[1], without_line_breaks(el[2])) for el in options_regexp.findall(question.group('options'))]
+                options = [(el[1], line_breaks_to_spaces(el[2])) for el in options_regexp.findall(question.group('options'))]
                 # shuffle(options)
                 number = int(question.group('number'))
                 with open(os.path.join(args.dir, f'question{question.group("number")}.html'), 'w') as html:
                     context = Context({
-                        'title': without_line_breaks(question.group('title')),
+                        'title': line_breaks_to_spaces(question.group('title')) if args.title else None,
                         'prev': str(number - 1) if number > 1 else None,
                         'next': str(number + 1) if number < length else None,
-                        'text': without_line_breaks(question.group('text')),
+                        'text': line_breaks_to_spaces(question.group('text')),
                         'options': options,
-                        'answer': without_line_breaks(question.group('answer')),
-                        'explanation': without_line_breaks(question.group('explanation')),
+                        'answer': line_breaks_to_spaces(question.group('answer')),
+                        'explanation': line_breaks_to_spaces(question.group('explanation')),
                         'length': str(length),
                     })
                     html.write(template.render(context))
@@ -67,8 +69,8 @@ def main():
         print('Error occurred:', e)
 
 
-def without_line_breaks(s: str):
-    return s.replace('\n', '').replace('\r', '') if s else None
+def line_breaks_to_spaces(s: str) -> str:
+    return s.replace('\n', ' ').replace('\r', ' ') if s else ''
 
 
 if __name__ == '__main__':

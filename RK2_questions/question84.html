@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 84</title>
+    <title>Question: 84 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>RMAN will back up only the archived redo log corresponding to the log sequence number 43.</p>',
+                '<p><span class="hided A">A. </span>RMAN will back up only the archived redo log corresponding to the log sequence number 43. </p>',
             
-                '<p><span class="hided B">B. </span>RMAN will back up none of the archived redo logs.</p>',
+                '<p><span class="hided B">B. </span>RMAN will back up none of the archived redo logs. </p>',
             
-                '<p><span class="hided C">C. </span>RMAN will back up all the archived redo logs.</p>',
+                '<p><span class="hided C">C. </span>RMAN will back up all the archived redo logs. </p>',
             
-                '<p><span class="hided D">D. </span>RMAN will back up the archived redo logs corresponding to the log sequence numbers 43 and46.</p>',
+                '<p><span class="hided D">D. </span>RMAN will back up the archived redo logs corresponding to the log sequence numbers 43 and 46.</p>',
             
         ];
 
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 84</h3>
-    <p>You work as a Database Administrator for your company. The company uses an Oracledatabase. The database is set to run in ARCHIVELOG mode. You use Recovery Manager(RMAN) for backup and recovery operations. You have specified two archive destinations, Disk1and Disk2, for archival of redo logs. You want to back up the archived redo logs corresponding tothe log sequence numbers 43, 44, 45, and 46. After starting the backup operation, you find thatthe archived redo logs corresponding to the log sequence number 44 and 45 are missing fromDisk1. Which of the following statements regarding the backup operation is true?</p>
+    
+        <h3 style="text-align: center">Question: 84 </h3>
+    
+    <p>You work as a Database Administrator for your company. The company uses an Oracle database. The database is set to run in ARCHIVELOG mode. You use Recovery Manager (RMAN) for backup and recovery operations. You have specified two archive destinations, Disk1 and Disk2, for archival of redo logs. You want to back up the archived redo logs corresponding to the log sequence numbers 43, 44, 45, and 46. After starting the backup operation, you find that the archived redo logs corresponding to the log sequence number 44 and 45 are missing from Disk1. Which of the following statements regarding the backup operation is true? </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>RMAN will back up only the archived redo log corresponding to the log sequence number 43.</p>-->
+        <!--<p><span class="hided A">A. </span>RMAN will back up only the archived redo log corresponding to the log sequence number 43. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>RMAN will back up none of the archived redo logs.</p>-->
+        <!--<p><span class="hided B">B. </span>RMAN will back up none of the archived redo logs. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>RMAN will back up all the archived redo logs.</p>-->
+        <!--<p><span class="hided C">C. </span>RMAN will back up all the archived redo logs. </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>RMAN will back up the archived redo logs corresponding to the log sequence numbers 43 and46.</p>-->
+        <!--<p><span class="hided D">D. </span>RMAN will back up the archived redo logs corresponding to the log sequence numbers 43 and 46.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C</p>
+    <p class="hided" id="answer">Answer: C </p>
 
     
-        <p class="hided">Explanation:Answer option C is correct.In releases prior to Oracle9i, Recovery Manager (RMAN) only looked in the first archivedestination for archived redo logs when backing them up. However, in Oracle9i, RMAN canperform archived redo log failover. In other words, RMAN can perform the following tasks:? If at least one redo log corresponding to a given log sequence and thread number is availabany of the archiving destinations, RMAN backs up the available redo log.? If there is a corrupt block in a redo log that RMAN is accessing, RMAN searches other archivedestinations for a copy of the redo log without corrupt blocks. RMAN always backs up only onecopy out of the identical copies of each distinct archived redo log.</p>
+        <p class="hided">Explanation: Answer option C is correct. In releases prior to Oracle9i, Recovery Manager (RMAN) only looked in the first archive destination for archived redo logs when backing them up. However, in Oracle9i, RMAN can perform archived redo log failover. In other words, RMAN can perform the following tasks: ? If at least one redo log corresponding to a given log sequence and thread number is availab any of the archiving destinations, RMAN backs up the available redo log. ? If there is a corrupt block in a redo log that RMAN is accessing, RMAN searches other archive destinations for a copy of the redo log without corrupt blocks. RMAN always backs up only one copy out of the identical copies of each distinct archived redo log.</p>
     
 
     <div style="text-align: center">

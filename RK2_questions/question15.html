@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 15</title>
+    <title>Question: 15 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>From the VERSIONS_XID column of HR. EMPLOYEES</p>',
+                '<p><span class="hided A">A. </span>From the VERSIONS_XID column of HR. EMPLOYEES </p>',
             
-                '<p><span class="hided B">B. </span>FromLogMiner</p>',
+                '<p><span class="hided B">B. </span>FromLogMiner </p>',
             
-                '<p><span class="hided C">C. </span>From the XID column of HR.EMPLOYEES</p>',
+                '<p><span class="hided C">C. </span>From the XID column of HR.EMPLOYEES </p>',
             
                 '<p><span class="hided D">D. </span>From the VERSIONS XID column of FLASHBACK VERSION QUERY</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 15</h3>
-    <p>You want to use Flashback Transaction Query to identify the SQL needed to reverse atransaction in the HR. EMPLOYEES table. Where can you find out the value of the transaction IDcolumn XID to use when you query FLASHBACK_TRANSACTION_QUERY? (Choose the bestanswer.)</p>
+    
+        <h3 style="text-align: center">Question: 15 </h3>
+    
+    <p>You want to use Flashback Transaction Query to identify the SQL needed to reverse a transaction in the HR. EMPLOYEES table. Where can you find out the value of the transaction ID column XID to use when you query FLASHBACK_TRANSACTION_QUERY? (Choose the best answer.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>From the VERSIONS_XID column of HR. EMPLOYEES</p>-->
+        <!--<p><span class="hided A">A. </span>From the VERSIONS_XID column of HR. EMPLOYEES </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>FromLogMiner</p>-->
+        <!--<p><span class="hided B">B. </span>FromLogMiner </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>From the XID column of HR.EMPLOYEES</p>-->
+        <!--<p><span class="hided C">C. </span>From the XID column of HR.EMPLOYEES </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>From the VERSIONS XID column of FLASHBACK VERSION QUERY</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A</p>
+    <p class="hided" id="answer">Answer: A </p>
 
     
-        <p class="hided">Explanation:Every table has the pseudo-column VERSIONS_XID that you can query for a transaction ID of apast transaction with the AS OF clause.B is incorrect because LogMiner only queries the contents of online and archived redo log filesand is much more cumbersome that using an AS OF query.C is incorrect because XID is not a pseudo-column.D is incorrect because there is no such column VERSIONS_XID of the tableFLASHBACK_VERSION_QUERY; you need to have the XID or SCN before queryingFLASHBACK_VERSION_QUERY and retrieve the SQL to reverse the transaction.</p>
+        <p class="hided">Explanation: Every table has the pseudo-column VERSIONS_XID that you can query for a transaction ID of a past transaction with the AS OF clause. B is incorrect because LogMiner only queries the contents of online and archived redo log files and is much more cumbersome that using an AS OF query. C is incorrect because XID is not a pseudo-column. D is incorrect because there is no such column VERSIONS_XID of the table FLASHBACK_VERSION_QUERY; you need to have the XID or SCN before querying FLASHBACK_VERSION_QUERY and retrieve the SQL to reverse the transaction.</p>
     
 
     <div style="text-align: center">

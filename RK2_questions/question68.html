@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 68</title>
+    <title>Question: 68 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Turn backup optimization off, perform the backup, and then turn backup optimization back on.</p>',
+                '<p><span class="hided A">A. </span>Turn backup optimization off, perform the backup, and then turn backup optimization back on. </p>',
             
-                '<p><span class="hided B">B. </span>Use the UNCONDITIONAL option: BACKUP UNCONDITIONAL TABLESPACE USERS;</p>',
+                '<p><span class="hided B">B. </span>Use the UNCONDITIONAL option: BACKUP UNCONDITIONAL TABLESPACE USERS; </p>',
             
-                '<p><span class="hided C">C. </span>Back up thetablespace to a different device type.</p>',
+                '<p><span class="hided C">C. </span>Back up thetablespace to a different device type. </p>',
             
                 '<p><span class="hided D">D. </span>Use the FORCE option: BACKUP FORCE TABLESPACE USERS;.</p>',
             
@@ -129,24 +129,26 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 68</h3>
-    <p>In RMAN, you execute the command CONFIGURE BACKUP OPTIMIZATION ON so that youcan avoid backing up objects that are already backed up sufficiently within the retention policy.However, you want to make an additional backup of the USERS tablespace to a removable diskfor offsite storage. How can you ensure that RMAN does not skip the backup of the USERStablespace? (Choose the best answer.)</p>
+    
+        <h3 style="text-align: center">Question: 68 </h3>
+    
+    <p>In RMAN, you execute the command CONFIGURE BACKUP OPTIMIZATION ON so that you can avoid backing up objects that are already backed up sufficiently within the retention policy. However, you want to make an additional backup of the USERS tablespace to a removable disk for offsite storage. How can you ensure that RMAN does not skip the backup of the USERS tablespace? (Choose the best answer.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Turn backup optimization off, perform the backup, and then turn backup optimization back on.</p>-->
+        <!--<p><span class="hided A">A. </span>Turn backup optimization off, perform the backup, and then turn backup optimization back on. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Use the UNCONDITIONAL option: BACKUP UNCONDITIONAL TABLESPACE USERS;</p>-->
+        <!--<p><span class="hided B">B. </span>Use the UNCONDITIONAL option: BACKUP UNCONDITIONAL TABLESPACE USERS; </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Back up thetablespace to a different device type.</p>-->
+        <!--<p><span class="hided C">C. </span>Back up thetablespace to a different device type. </p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Use the FORCE option: BACKUP FORCE TABLESPACE USERS;.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D</p>
+    <p class="hided" id="answer">Answer: D </p>
 
     
-        <p class="hided">Explanation:D is correct. If you have backup optimization on, RMAN will unconditionally back up the object ifyou use the FORCE option.A is incorrect because this is not the best way to accomplish this task.B is incorrect because no such RMAN keyword UNCONDITIONAL exists.C is incorrect because the conditions for backup optimization may already be met on all devicetypes.</p>
+        <p class="hided">Explanation: D is correct. If you have backup optimization on, RMAN will unconditionally back up the object if you use the FORCE option. A is incorrect because this is not the best way to accomplish this task. B is incorrect because no such RMAN keyword UNCONDITIONAL exists. C is incorrect because the conditions for backup optimization may already be met on all device types.</p>
     
 
     <div style="text-align: center">

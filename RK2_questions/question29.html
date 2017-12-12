@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 29</title>
+    <title>Question: 29 </title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>During media recovery, fewer incremental updates need to be applied to the last image copy.</p>',
+                '<p><span class="hided A">A. </span>During media recovery, fewer incremental updates need to be applied to the last image copy. </p>',
             
-                '<p><span class="hided B">B. </span>The overhead for the block change tracking file is minimal.</p>',
+                '<p><span class="hided B">B. </span>The overhead for the block change tracking file is minimal. </p>',
             
-                '<p><span class="hided C">C. </span>You do not need to perform additional image copy backups.</p>',
+                '<p><span class="hided C">C. </span>You do not need to perform additional image copy backups. </p>',
             
-                '<p><span class="hided D">D. </span>You no longer need to duplex your backups.</p>',
+                '<p><span class="hided D">D. </span>You no longer need to duplex your backups. </p>',
             
-                '<p><span class="hided E">E. </span>The time required to perform the backup and incremental updates to the image copy isreduced.</p>',
+                '<p><span class="hided E">E. </span>The time required to perform the backup and incremental updates to the image copy is reduced.</p>',
             
         ];
 
@@ -131,26 +131,28 @@
     </style>
 </head>
 <body style="font-size: 20px">
-    <h3 style="text-align: center">Question: 29</h3>
-    <p>Identify the advantage of recovery an image copy of a datafile during RMAN backup. (Choose allthat apply.)</p>
+    
+        <h3 style="text-align: center">Question: 29 </h3>
+    
+    <p>Identify the advantage of recovery an image copy of a datafile during RMAN backup. (Choose all that apply.) </p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>During media recovery, fewer incremental updates need to be applied to the last image copy.</p>-->
+        <!--<p><span class="hided A">A. </span>During media recovery, fewer incremental updates need to be applied to the last image copy. </p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>The overhead for the block change tracking file is minimal.</p>-->
+        <!--<p><span class="hided B">B. </span>The overhead for the block change tracking file is minimal. </p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>You do not need to perform additional image copy backups.</p>-->
+        <!--<p><span class="hided C">C. </span>You do not need to perform additional image copy backups. </p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>You no longer need to duplex your backups.</p>-->
+        <!--<p><span class="hided D">D. </span>You no longer need to duplex your backups. </p>-->
     <!---->
-        <!--<p><span class="hided E">E. </span>The time required to perform the backup and incremental updates to the image copy isreduced.</p>-->
+        <!--<p><span class="hided E">E. </span>The time required to perform the backup and incremental updates to the image copy is reduced.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A,C</p>
+    <p class="hided" id="answer">Answer: A,C </p>
 
     
-        <p class="hided">Explanation:During media recovery, RMAN can start with the incrementally updated image copy andpotentially apply fewer archived redo log files, significantly reducing recovery time. With anincrementally updated image copy, any subsequent image copy will be identical to theincrementally updated image copy.B is incorrect because a block change tracking file reduces the time it takes RMAN to identifychanged blocks.D is incorrect because duplexed backups is still a valid backup method to increase the number ofbackup copies. E is incorrect because the incremental update will add a slight amount ofoverhead during the backup but can dramatically reduce the recovery time.</p>
+        <p class="hided">Explanation: During media recovery, RMAN can start with the incrementally updated image copy and potentially apply fewer archived redo log files, significantly reducing recovery time. With an incrementally updated image copy, any subsequent image copy will be identical to the incrementally updated image copy. B is incorrect because a block change tracking file reduces the time it takes RMAN to identify changed blocks. D is incorrect because duplexed backups is still a valid backup method to increase the number of backup copies. E is incorrect because the incremental update will add a slight amount of overhead during the backup but can dramatically reduce the recovery time.</p>
     
 
     <div style="text-align: center">
