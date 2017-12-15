@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 103 </title>
+    <title>Question: 103</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Job </p>',
+                '<p><span class="hided A">A. </span>Job</p>',
             
-                '<p><span class="hided B">B. </span>Program </p>',
+                '<p><span class="hided B">B. </span>Program</p>',
             
-                '<p><span class="hided C">C. </span>Schedule </p>',
+                '<p><span class="hided C">C. </span>Schedule</p>',
             
                 '<p><span class="hided D">D. </span>Window</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 103 </h3>
+        <h3 style="text-align: center">Question: 103</h3>
     
-    <p>You work as a Database Administrator for Bell Ceramics Inc. The Manager of the company asks you to run a job at some specified point in time, say at 5:00 PM every day. Which of the following stored database objects will you use to accomplish the task? </p>
+    <p>You work as a Database Administrator for Bell Ceramics Inc. The Manager of the company asks you to run a job at some specified point in time, say at 5:00 PM every day. Which of the following stored database objects will you use to accomplish the task?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Job </p>-->
+        <!--<p><span class="hided A">A. </span>Job</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Program </p>-->
+        <!--<p><span class="hided B">B. </span>Program</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Schedule </p>-->
+        <!--<p><span class="hided C">C. </span>Schedule</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Window</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C </p>
+    <p class="hided" id="answer">Answer: C</p>
 
     
         <p class="hided">Explanation: Answer option C is correct. To run a job every day at 5:00 PM , you should use a schedule. By using the DBMS_SCHEDULER.CREATE_SCHEDULE procedure, you can create the schedule. Note: No special privilege is needed to create a schedule. Schedules can be created with access to the PUBLIC role. To schedule a job, follow the PL/SQL block given below: BEGIN DBMS_SCHEDULER.CREATE_SCHEDULE ( schedule _name =&gt; &#39;eve_at_5_schedule&#39;, start_date =&gt; SYSTIMESTAMP, end_date =&gt; SYSTIMESTAMP + INTERVAL &#39;30&#39; day, repeat_interval =&gt; &#39;FREQ=DAILY; BYHOUR=17&#39;, comments =&gt; &#39;Runs every evening&#39;); END; his will create a schedule named eve_at_5_schedule for a job. The start date of the job is the ystem date and time. The end date of the job is specified by the interval, i.e., system date and time plus 30 days. he repeat interval is specified by some parameters, such as FREQ used in the mentioned xample. The FREQ parameter defines the frequency type. The various values for the REQ arameter are as follows: ? YEARLY ? WEEKLY ? MONTHLY ? DAILY ? HOURLY ? MINUTELY ? SECONDLY The BYHOUR element specifies the hour at which the job is required to run. The valid values for this element are 0-23. scheduler is defined as a stored database object that specifies a schedule for a job or for a indow. chedules can be shared among users by creating and saving them as objects in the database. It lso specifies how often a job will be repeated. ote: The repeat interval can be specified in either of the following ways: By using the PL/SQL expressions. ? By using the calendaring syntax, which is new to Oracle 10g. Answer option A is incorrect. A job is defined as the most-basic self-contained object in a scheduler environment. It specifies the action to perform and the time at which to perform it. In technical terms, a job is a part of a structure consisting of a number of scheduler objects of various types. It automates standard and repetitive tasks. A job can be categorized into the following entities: ? A single SQL statement ? A PL /SQL block ? A PL /SQL stored procedure ? A java stored procedure ? Any executable file stored in the server file system, either a binary executable or a shell script In other words, a job is a combination of a schedule and a program with any additional arguments that a program requires. Answer option B is incorrect. A program is defined as a combination of several code lines that are run to accomplish a particular task. It contains parameters, which can be passed at runtime of the program. It can be stored in a database as an independent object and is shared by many jobs. Answer option D is incorrect. A window is defined as one of the stored database objects. A window automatically activates different resource plans at different times. If there has been a change in the resource plan, then all the running jobs can see the changes in the resource plans. A window includes the following attributes: ? Schedule: It specifies when to open a window. ? Duration: It specifies how long a window will remain open. ? Resource plan: It specifies the name of the resource plan activated. Note: Windows are created in the SYS schema. Many windows can be created in the SYS schema, but only one of them is effective at a time.</p>

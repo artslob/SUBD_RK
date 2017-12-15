@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 90 </title>
+    <title>Question: 90</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>SERIAL# </p>',
+                '<p><span class="hided A">A. </span>SERIAL#</p>',
             
-                '<p><span class="hided B">B. </span>CLIENT_INFO </p>',
+                '<p><span class="hided B">B. </span>CLIENT_INFO</p>',
             
-                '<p><span class="hided C">C. </span>CHANNEL_INFO </p>',
+                '<p><span class="hided C">C. </span>CHANNEL_INFO</p>',
             
                 '<p><span class="hided D">D. </span>MODULE</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 90 </h3>
+        <h3 style="text-align: center">Question: 90</h3>
     
-    <p>You work as a Database Administrator for your company. The company uses an Oracle database to retain its data. You have started an RMAN job. The job uses more than two channels, each having a name. You are required to find out the names of all the channels being used by that job. The V$SESSION dynamic performance view contains the details of every current session. Which of the following columns of the V$SESSION dynamic performance view will you enquire to find out the names of the channels? </p>
+    <p>You work as a Database Administrator for your company. The company uses an Oracle database to retain its data. You have started an RMAN job. The job uses more than two channels, each having a name. You are required to find out the names of all the channels being used by that job. The V$SESSION dynamic performance view contains the details of every current session. Which of the following columns of the V$SESSION dynamic performance view will you enquire to find out the names of the channels?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>SERIAL# </p>-->
+        <!--<p><span class="hided A">A. </span>SERIAL#</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>CLIENT_INFO </p>-->
+        <!--<p><span class="hided B">B. </span>CLIENT_INFO</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>CHANNEL_INFO </p>-->
+        <!--<p><span class="hided C">C. </span>CHANNEL_INFO</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>MODULE</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: B </p>
+    <p class="hided" id="answer">Answer: B</p>
 
     
         <p class="hided">Explanation: Answer option B is correct. The CLIENT_INFO column of the V$SESSION dynamic performance view stores information related to the client application of the user session. The column contains the string rman along with the name of the channel. If the information is more than 64 bytes, it gets truncated. The information is set and registered by the SET_CLIENT_INFO procedure of the DBMS_APPLICATION_INFO package. The following query will give the required output: SELECT CLIENT_INFO FROM V$SESSION WHERE CLIENT_INFO LIKE &#39;% rman %&#39;; CLIENT_INFO ----------------------- rman channel=c1 rman channel=c2 2 rows selected A is incorrect. The SERIAL# column of the V$SESSION dynamic performance view stores the serial number of the session. The serial number of a session is used to distinctively identify the objects of the particular session. It is the work of this column to assure that the session-level commands are in accordance with the appropriate objects of the session when the new session is given the session ID of the older one that has already ended. D is incorrect. The MODULE column of the V$SESSION dynamic performance view stores the name of the module that is in execution currently. The name of the module is set when the SET_MODULE procedure of the DBMS_APPLICATION_INFO package is called. The DBMS_APPLICATION_INFO package helps simplify session activity tracking by enabling the programs to insert information to the V$SESSION and V$SESSION_LONGOPS views. The program, once initiated, gets itself registered via the SET_MODULE procedure of the DBMS_APPLICATION_INFO package . C is incorrect. There is no such column as CHANNEL_INFO in the V$SESSION dynamic performance view.</p>

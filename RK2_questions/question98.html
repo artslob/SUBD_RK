@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 98 </title>
+    <title>Question: 98</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>CONFIGURE RETENTION POLICY TO NONE; </p>',
+                '<p><span class="hided A">A. </span>CONFIGURE RETENTION POLICY TO NONE;</p>',
             
-                '<p><span class="hided B">B. </span>CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS; </p>',
+                '<p><span class="hided B">B. </span>CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS;</p>',
             
-                '<p><span class="hided C">C. </span>CONFIGURE RETENTION POLICY TO REDUNDANCY 5; </p>',
+                '<p><span class="hided C">C. </span>CONFIGURE RETENTION POLICY TO REDUNDANCY 5;</p>',
             
                 '<p><span class="hided D">D. </span>CONFIGURE RETENTION POLICY CLEAR;</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 98 </h3>
+        <h3 style="text-align: center">Question: 98</h3>
     
-    <p>You work as a Database Administrator for Gentech Inc. The company uses an Oracle database. You use Recovery Manager (RMAN) for backup and recovery operations. You do not perform a regular backup of the database. You want to implement a backup retention policy for the backups and copies that you create with RMAN. Through the retention policy, you want to ensure that one backup of each data file is retained for at least five days. Which of the following RMAN commands will you use to accomplish this? </p>
+    <p>You work as a Database Administrator for Gentech Inc. The company uses an Oracle database. You use Recovery Manager (RMAN) for backup and recovery operations. You do not perform a regular backup of the database. You want to implement a backup retention policy for the backups and copies that you create with RMAN. Through the retention policy, you want to ensure that one backup of each data file is retained for at least five days. Which of the following RMAN commands will you use to accomplish this?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>CONFIGURE RETENTION POLICY TO NONE; </p>-->
+        <!--<p><span class="hided A">A. </span>CONFIGURE RETENTION POLICY TO NONE;</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS; </p>-->
+        <!--<p><span class="hided B">B. </span>CONFIGURE RETENTION POLICY TO RECOVERY WINDOW OF 5 DAYS;</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>CONFIGURE RETENTION POLICY TO REDUNDANCY 5; </p>-->
+        <!--<p><span class="hided C">C. </span>CONFIGURE RETENTION POLICY TO REDUNDANCY 5;</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>CONFIGURE RETENTION POLICY CLEAR;</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: B </p>
+    <p class="hided" id="answer">Answer: B</p>
 
     
         <p class="hided">Explanation: Answer option B is correct. The Recovery Manager (RMAN) provides the CONFIGURE RETENTION POLICY command to create a persistent and automatic backup retention policy for controlling how long backups and copies should be retained. When a backup retention policy is in effect, RMAN considers the backups and copies of data files and control files as obsolete (i.e., the backups and copies are no longer needed for media recovery), according to the criteria specified in the CONFIGURE RETENTION POLICY command. The REPORT OBSOLETE and DELETE OBSOLETE commands can be executed periodically or regularly to view obsolete files and to delete them, respectively. The retention policy is continuous. As the data file, control file, and archived redo log backups are produced over time, RMAN keeps track of them and decides which to retain and which to mark as obsolete. RMAN does not automatically delete the backups or copies. The term obsolete does not mean the same as expired. A backup or copy is obsolete when the REPORT OBSOLETE or DELETE OBSOLETE command determines, based on the user-defined retention policy, that the backup or copy is not needed for media recovery. However, a backup or copy expires only when RMAN performs a crosscheck and finds that the file is missing from the hard disk or the media manager has returned &quot;not found&quot; for the file. In brief, obsolete means &quot;not needed,&quot; whereas expired means &quot;not found.&quot; Besides affecting the data file and control file backups, the retention policy affects archived redo logs and archived redo log backups. First, RMAN decides which data file and control file backups are obsolete. Then, RMAN considers the archived redo log backups (that are older than the oldest data file or control file backup that must be retained) as obsolete. There are two mutually exclusive options for implementing a backup retention policy.</p>

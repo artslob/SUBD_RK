@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 9 </title>
+    <title>Question: 9</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>OPEN </p>',
+                '<p><span class="hided A">A. </span>OPEN</p>',
             
-                '<p><span class="hided B">B. </span>MOUNT </p>',
+                '<p><span class="hided B">B. </span>MOUNT</p>',
             
-                '<p><span class="hided C">C. </span>RESTRICTED </p>',
+                '<p><span class="hided C">C. </span>RESTRICTED</p>',
             
                 '<p><span class="hided D">D. </span>NOMOUNT</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 9 </h3>
+        <h3 style="text-align: center">Question: 9</h3>
     
-    <p>You need to recover the database after a disk is lost but you are missing two archived redo log files. You need to run the RMAN RECOVER DATABASE UNTIL command. In what database state can you perform this recovery? </p>
+    <p>You need to recover the database after a disk is lost but you are missing two archived redo log files. You need to run the RMAN RECOVER DATABASE UNTIL command. In what database state can you perform this recovery?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>OPEN </p>-->
+        <!--<p><span class="hided A">A. </span>OPEN</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>MOUNT </p>-->
+        <!--<p><span class="hided B">B. </span>MOUNT</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>RESTRICTED </p>-->
+        <!--<p><span class="hided C">C. </span>RESTRICTED</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>NOMOUNT</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: B </p>
+    <p class="hided" id="answer">Answer: B</p>
 
     
         <p class="hided">Explanation: You must have the control file open but cannot open the datafiles during recovery. A is incorrect because the database cannot be open during a full database recovery. C is incorrect because RESTRICTED mode is the same as OPEN, except restricted to users with SYSDBA privileges. D is incorrect because NOMOUNT does not open the control file, and you need to control file contents to perform recovery.</p>

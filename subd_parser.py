@@ -29,8 +29,8 @@ def get_args():
 
 
 def main():
-    print('Use -h to see help')
     args = get_args()
+    print('Use -h to see help')
 
     try:
         os.makedirs(args.dir)
@@ -68,7 +68,7 @@ def main():
 
 
 def line_breaks_to_spaces(s: str) -> str:
-    return s.replace('\n', ' ').replace('\r', ' ') if s else ''
+    return s.replace('\n', ' ').replace('\r', ' ').strip() if s else ''
 
 
 if __name__ == '__main__':

@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 7 </title>
+    <title>Question: 7</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>You have lost a data file and one or more of the archived redo log files are missing. </p>',
+                '<p><span class="hided A">A. </span>You have lost a data file and one or more of the archived redo log files are missing.</p>',
             
-                '<p><span class="hided B">B. </span>Several widespread logical errors have occurred in the database in the last day. </p>',
+                '<p><span class="hided B">B. </span>Several widespread logical errors have occurred in the database in the last day.</p>',
             
-                '<p><span class="hided C">C. </span>You want to create a test database as of a point in time in the past. </p>',
+                '<p><span class="hided C">C. </span>You want to create a test database as of a point in time in the past.</p>',
             
-                '<p><span class="hided D">D. </span>You have lost a data file and you have all archived redo log files available. </p>',
+                '<p><span class="hided D">D. </span>You have lost a data file and you have all archived redo log files available.</p>',
             
                 '<p><span class="hided E">E. </span>You have lost one of the copies of the control file.</p>',
             
@@ -132,24 +132,24 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 7 </h3>
+        <h3 style="text-align: center">Question: 7</h3>
     
-    <p>For which of the following scenarios would you use user-managed incomplete recovery? (Choose all that apply.) </p>
+    <p>For which of the following scenarios would you use user-managed incomplete recovery? (Choose all that apply.)</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>You have lost a data file and one or more of the archived redo log files are missing. </p>-->
+        <!--<p><span class="hided A">A. </span>You have lost a data file and one or more of the archived redo log files are missing.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Several widespread logical errors have occurred in the database in the last day. </p>-->
+        <!--<p><span class="hided B">B. </span>Several widespread logical errors have occurred in the database in the last day.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>You want to create a test database as of a point in time in the past. </p>-->
+        <!--<p><span class="hided C">C. </span>You want to create a test database as of a point in time in the past.</p>-->
     <!---->
-        <!--<p><span class="hided D">D. </span>You have lost a data file and you have all archived redo log files available. </p>-->
+        <!--<p><span class="hided D">D. </span>You have lost a data file and you have all archived redo log files available.</p>-->
     <!---->
         <!--<p><span class="hided E">E. </span>You have lost one of the copies of the control file.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A, B, C </p>
+    <p class="hided" id="answer">Answer: A, B, C</p>
 
     
         <p class="hided">Explanation: A is correct because you cannot perform a full recovery with missing archived redo log files. B is correct because incomplete recovery can be performed to bring the database back to a point in time before the severe logical corruptions occurred. C is correct because you can easily copy the database and recover it to a point in time in the past for regression testing. D is incorrect because you can perform complete recovery if you have lost a datafile and have all archived redo log files since the last backup of the datafile . E is incorrect because you do not need to perform recovery if only one copy of the control file is missing.</p>

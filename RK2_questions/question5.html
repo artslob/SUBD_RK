@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 5 </title>
+    <title>Question: 5</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>If you have the flash recovery area set toautoextend, the backup will continue with no problem. </p>',
+                '<p><span class="hided A">A. </span>If you have the flash recovery area set toautoextend, the backup will continue with no problem.</p>',
             
-                '<p><span class="hided B">B. </span>The database will hang until you add more space to the flash recovery area. </p>',
+                '<p><span class="hided B">B. </span>The database will hang until you add more space to the flash recovery area.</p>',
             
-                '<p><span class="hided C">C. </span>RMAN will delete obsolete backups from the flash recovery area to accommodate new backups. </p>',
+                '<p><span class="hided C">C. </span>RMAN will delete obsolete backups from the flash recovery area to accommodate new backups.</p>',
             
                 '<p><span class="hided D">D. </span>The RMAN backup will hang until you add more space to the flash recovery area.</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 5 </h3>
+        <h3 style="text-align: center">Question: 5</h3>
     
-    <p>Your flash recovery area becomes full when you are running an RMAN backup (and has not yet reached the value specified by DB_RECOVERY_FILE_DEST). It is the destination for archived redo log files and backups. What will happen to the database? (Choose the best answer.) </p>
+    <p>Your flash recovery area becomes full when you are running an RMAN backup (and has not yet reached the value specified by DB_RECOVERY_FILE_DEST). It is the destination for archived redo log files and backups. What will happen to the database? (Choose the best answer.)</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>If you have the flash recovery area set toautoextend, the backup will continue with no problem. </p>-->
+        <!--<p><span class="hided A">A. </span>If you have the flash recovery area set toautoextend, the backup will continue with no problem.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>The database will hang until you add more space to the flash recovery area. </p>-->
+        <!--<p><span class="hided B">B. </span>The database will hang until you add more space to the flash recovery area.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>RMAN will delete obsolete backups from the flash recovery area to accommodate new backups. </p>-->
+        <!--<p><span class="hided C">C. </span>RMAN will delete obsolete backups from the flash recovery area to accommodate new backups.</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>The RMAN backup will hang until you add more space to the flash recovery area.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C </p>
+    <p class="hided" id="answer">Answer: C</p>
 
     
         <p class="hided">Explanation: RMAN will delete files from the flash recovery area if they are obsolete according to the defined retention policy. A is incorrect because you cannot configure the flash recovery area for autoextend . B is incorrect because the RMAN backup will fail, but the database will continue to run as long as space is available in the flash recovery area for archived redo log files or it is an optional destination. D is incorrect because the RMAN backup will attempt to clean up obsolete files, and failing that, it will terminate the backup with an error message.</p>

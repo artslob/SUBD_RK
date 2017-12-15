@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 81 </title>
+    <title>Question: 81</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Connect to theCatalogBase database by using the CatOwner user account. </p>',
+                '<p><span class="hided A">A. </span>Connect to theCatalogBase database by using the CatOwner user account.</p>',
             
-                '<p><span class="hided B">B. </span>Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account. </p>',
+                '<p><span class="hided B">B. </span>Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account.</p>',
             
-                '<p><span class="hided C">C. </span>Grant the SYSDBA system privilege to theCatOwner user account. </p>',
+                '<p><span class="hided C">C. </span>Grant the SYSDBA system privilege to theCatOwner user account.</p>',
             
                 '<p><span class="hided D">D. </span>Execute the CREATE CATALOG command.</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 81 </h3>
+        <h3 style="text-align: center">Question: 81</h3>
     
-    <p>You work as a Database Administrator for your company. The company uses an Oracle database named OraBase. You use Recovery Manager (RMAN) for backup and recovery operations. You want to create a recovery catalog to store the metadata about the backup and recovery operations. You create a database named CatalogBase in which you will store the recovery catalog. You also create a database user account named CatOwner in the CatalogBase database, which will hold the tables and views constituting the recovery catalog. What else will you need to do in order to create the recovery catalog? Each correct answer represents a part of the solution. Choose all that apply. </p>
+    <p>You work as a Database Administrator for your company. The company uses an Oracle database named OraBase. You use Recovery Manager (RMAN) for backup and recovery operations. You want to create a recovery catalog to store the metadata about the backup and recovery operations. You create a database named CatalogBase in which you will store the recovery catalog. You also create a database user account named CatOwner in the CatalogBase database, which will hold the tables and views constituting the recovery catalog. What else will you need to do in order to create the recovery catalog? Each correct answer represents a part of the solution. Choose all that apply.</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Connect to theCatalogBase database by using the CatOwner user account. </p>-->
+        <!--<p><span class="hided A">A. </span>Connect to theCatalogBase database by using the CatOwner user account.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account. </p>-->
+        <!--<p><span class="hided B">B. </span>Grant the RECOVERY_CATALOG_OWNER pre-defined role to theCatOwner user account.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Grant the SYSDBA system privilege to theCatOwner user account. </p>-->
+        <!--<p><span class="hided C">C. </span>Grant the SYSDBA system privilege to theCatOwner user account.</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Execute the CREATE CATALOG command.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A,B,D </p>
+    <p class="hided" id="answer">Answer: A,B,D</p>
 
     
         <p class="hided">Explanation: Answer options B, A, and D are correct. The RECOVERY_CATALOG_OWNER pre-defined role includes the privileges that allow the catalog owner to maintain and query the recovery catalog. Therefore, you will be required to grant the role to the CatOwner user account. After granting the role, you will be required to connect to the CatalogBase database by using the CatOwner user account. After connecting to the database, you can create the recovery catalog by executing the CREATE CATALOG command. Answer option C is incorrect. The SYSDBA system privilege is required for performing database administrative tasks, such as creating a database, altering a database, and starting up and shutting down an Oracle instance. You do not need to grant the SYSDBA system privilege to the CatOwner user account, as this user account will not be used to administer the database. The CatOwner user account will be used to only hold the catalog tables and views.</p>

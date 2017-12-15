@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 99 </title>
+    <title>Question: 99</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>User error </p>',
+                '<p><span class="hided A">A. </span>User error</p>',
             
-                '<p><span class="hided B">B. </span>Instance failure </p>',
+                '<p><span class="hided B">B. </span>Instance failure</p>',
             
-                '<p><span class="hided C">C. </span>Process failure </p>',
+                '<p><span class="hided C">C. </span>Process failure</p>',
             
                 '<p><span class="hided D">D. </span>Media failure</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 99 </h3>
+        <h3 style="text-align: center">Question: 99</h3>
     
-    <p>Which of the following types of failures is the cause of automatic Instance Recovery? </p>
+    <p>Which of the following types of failures is the cause of automatic Instance Recovery?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>User error </p>-->
+        <!--<p><span class="hided A">A. </span>User error</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Instance failure </p>-->
+        <!--<p><span class="hided B">B. </span>Instance failure</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Process failure </p>-->
+        <!--<p><span class="hided C">C. </span>Process failure</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Media failure</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: B </p>
+    <p class="hided" id="answer">Answer: B</p>
 
     
         <p class="hided">Explanation: Answer option B is correct. Instance failure occurs when any problem prevents an instance from continuing work. Instance failure can result from hardware problem such as a power outage, or software problem such as an operating system failure. When an instance failure occurs, the data in the buffers of the system global area is not written to the data files. After an instance failure, Oracle automatically performs instance recovery. A is incorrect. User error requires a database to be recovered to a point in time before the error occurred. For example, a user could accidentally drop a table. To enable recovery from user errors and accommodate other unique recovery requirements, Oracle provides exact point-in- time recovery. For example, if a user accidentally drops a table, the database can be recovered to the instant in time before the table was dropped. C is incorrect. Process failure results from a failure in a user process accessing Oracle, such as an abnormal disconnection or process termination. The background process PMON automatically detects the failed user process, rolls back the uncommitted transaction of the user process, and releases any resources that the process was using. D is incorrect. An error can occur when trying to write or read a file on disk that is required to operate the database. A common example is a disk head failure, which causes the loss of all files on a disk drive. A disk failure requires you to restore lost files and then perform media recovery. Unlike instance recovery, media recovery must be initiated by the user.</p>

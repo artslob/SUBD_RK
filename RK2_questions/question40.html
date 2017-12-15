@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 40 </title>
+    <title>Question: 40</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>KMSHELT can create users that own virtual private catalogs. </p>',
+                '<p><span class="hided A">A. </span>KMSHELT can create users that own virtual private catalogs.</p>',
             
-                '<p><span class="hided B">B. </span>KMSHELT can immediately use an existing virtual catalog on the recovery catalog database. </p>',
+                '<p><span class="hided B">B. </span>KMSHELT can immediately use an existing virtual catalog on the recovery catalog database.</p>',
             
-                '<p><span class="hided C">C. </span>KMSHELT can register a new database in her Virtual Private Catalog (VPC). </p>',
+                '<p><span class="hided C">C. </span>KMSHELT can register a new database in her Virtual Private Catalog (VPC).</p>',
             
                 '<p><span class="hided D">D. </span>KMSHELT can potentially own a VPC but will not be able to unless the DBA grants other privileges first.</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 40 </h3>
+        <h3 style="text-align: center">Question: 40</h3>
     
-    <p>As the DBA, you run this command on the recovery catalog database: SQL&gt; GRANT RECOVERY_CATALOG_OWNER TO KMSHELT; what privileges do the user KMSHELT have? </p>
+    <p>As the DBA, you run this command on the recovery catalog database: SQL&gt; GRANT RECOVERY_CATALOG_OWNER TO KMSHELT; what privileges do the user KMSHELT have?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>KMSHELT can create users that own virtual private catalogs. </p>-->
+        <!--<p><span class="hided A">A. </span>KMSHELT can create users that own virtual private catalogs.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>KMSHELT can immediately use an existing virtual catalog on the recovery catalog database. </p>-->
+        <!--<p><span class="hided B">B. </span>KMSHELT can immediately use an existing virtual catalog on the recovery catalog database.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>KMSHELT can register a new database in her Virtual Private Catalog (VPC). </p>-->
+        <!--<p><span class="hided C">C. </span>KMSHELT can register a new database in her Virtual Private Catalog (VPC).</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>KMSHELT can potentially own a VPC but will not be able to unless the DBA grants other privileges first.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D </p>
+    <p class="hided" id="answer">Answer: D</p>
 
     
         <p class="hided">Explanation: The DBA of the recovery catalog database must either grant the RMAN REGISTER DATABASE privilege or grant the RMAN CATALOG FOR DATABASE privilege on an existing database before KMSHELT can use the VPC. A is incorrect because KMSHELT has only the privilege either to register a database or use an existing registered catalog. B is incorrect because the DBA has to grant additional privileges to KMSHELT. C is incorrect because she needs the RMAN REGISTER DATABASE privilege first.</p>

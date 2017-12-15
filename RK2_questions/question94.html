@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 94 </title>
+    <title>Question: 94</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>LOG_ARCHIVE_DEST_STATE_n </p>',
+                '<p><span class="hided A">A. </span>LOG_ARCHIVE_DEST_STATE_n</p>',
             
-                '<p><span class="hided B">B. </span>LOG_ARCHIVE_DEST_n </p>',
+                '<p><span class="hided B">B. </span>LOG_ARCHIVE_DEST_n</p>',
             
-                '<p><span class="hided C">C. </span>LOG_ARCHIVE_DUPLEX_DEST </p>',
+                '<p><span class="hided C">C. </span>LOG_ARCHIVE_DUPLEX_DEST</p>',
             
                 '<p><span class="hided D">D. </span>LOG_ARCHIVE_MIN_SUCCEED_DEST</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 94 </h3>
+        <h3 style="text-align: center">Question: 94</h3>
     
-    <p>Brenda works as a Database Administrator for your company. The company uses an Oracle database. Brenda wants to specify a number of locations to which the redo logs should be archived before an error occurs. Which of the following initialization parameters will she use to accomplish this? </p>
+    <p>Brenda works as a Database Administrator for your company. The company uses an Oracle database. Brenda wants to specify a number of locations to which the redo logs should be archived before an error occurs. Which of the following initialization parameters will she use to accomplish this?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>LOG_ARCHIVE_DEST_STATE_n </p>-->
+        <!--<p><span class="hided A">A. </span>LOG_ARCHIVE_DEST_STATE_n</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>LOG_ARCHIVE_DEST_n </p>-->
+        <!--<p><span class="hided B">B. </span>LOG_ARCHIVE_DEST_n</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>LOG_ARCHIVE_DUPLEX_DEST </p>-->
+        <!--<p><span class="hided C">C. </span>LOG_ARCHIVE_DUPLEX_DEST</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>LOG_ARCHIVE_MIN_SUCCEED_DEST</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D </p>
+    <p class="hided" id="answer">Answer: D</p>
 
     
         <p class="hided">Explanation: Answer option D is correct. The LOG_ARCHIVE_MIN_SUCCEED_DEST initialization parameter is used along with the LOG_ARCHIVE_DUPLEX_DEST and LOG_ARCHIVE_DEST_n parameters. This parameter specifies the number of archive destinations to which the redo logs must be written before an error occurs. A is incorrect. The LOG_ARCHIVE_DEST_STATE_n parameter specifies whether or not the archive destination accepts writing of redo logs. This parameter takes on three values, ENABLE, DEFER, and ALTERNATE. The value ENABLE indicates that redo logs can be written to the archive destination. The value DEFER indicates that the archive destination is temporarily disabled. The value ALTERNATE indicates that the archive destination is an alternative that can accept writing of redo logs to the archive destination only when its parent destination fails. This parameter is used along with the LOG_ARCHIVE_DEST_n parameter. B is incorrect. The LOG_ARCHIVE_DEST_n parameter specifies multiple archive destinations. C is incorrect. The LOG_ARCHIVE_DUPLEX_DEST parameter specifies that the redo logs be written to both the archive destinations.</p>

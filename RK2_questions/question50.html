@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 50 </title>
+    <title>Question: 50</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Alldatafiles and archived log files. The control file is included if you add the CONTROLFILE keyword, and the SPFILE is included if your configuration includes automatic backup of the SPFILE. </p>',
+                '<p><span class="hided A">A. </span>Alldatafiles and archived log files. The control file is included if you add the CONTROLFILE keyword, and the SPFILE is included if your configuration includes automatic backup of the SPFILE.</p>',
             
-                '<p><span class="hided B">B. </span>Alldatafiles and archived log files. The SPFILE is included if you add the SPFILE keyword, and the control file is included if your configuration includes automatic backup of the control file. </p>',
+                '<p><span class="hided B">B. </span>Alldatafiles and archived log files. The SPFILE is included if you add the SPFILE keyword, and the control file is included if your configuration includes automatic backup of the control file.</p>',
             
-                '<p><span class="hided C">C. </span>Alldatafiles and archived log files; after the operation successfully completes, the archived log files are automatically deleted. </p>',
+                '<p><span class="hided C">C. </span>Alldatafiles and archived log files; after the operation successfully completes, the archived log files are automatically deleted.</p>',
             
                 '<p><span class="hided D">D. </span>Alldatafiles and archived log files only, regardless of the current RMAN settings.</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 50 </h3>
+        <h3 style="text-align: center">Question: 50</h3>
     
-    <p>When you perform a whole database backup with the command BACKUP DATABASE PLUS ARCHIVELOG, which database objects are included in the backup? (Choose the best answer.) </p>
+    <p>When you perform a whole database backup with the command BACKUP DATABASE PLUS ARCHIVELOG, which database objects are included in the backup? (Choose the best answer.)</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Alldatafiles and archived log files. The control file is included if you add the CONTROLFILE keyword, and the SPFILE is included if your configuration includes automatic backup of the SPFILE. </p>-->
+        <!--<p><span class="hided A">A. </span>Alldatafiles and archived log files. The control file is included if you add the CONTROLFILE keyword, and the SPFILE is included if your configuration includes automatic backup of the SPFILE.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Alldatafiles and archived log files. The SPFILE is included if you add the SPFILE keyword, and the control file is included if your configuration includes automatic backup of the control file. </p>-->
+        <!--<p><span class="hided B">B. </span>Alldatafiles and archived log files. The SPFILE is included if you add the SPFILE keyword, and the control file is included if your configuration includes automatic backup of the control file.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Alldatafiles and archived log files; after the operation successfully completes, the archived log files are automatically deleted. </p>-->
+        <!--<p><span class="hided C">C. </span>Alldatafiles and archived log files; after the operation successfully completes, the archived log files are automatically deleted.</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Alldatafiles and archived log files only, regardless of the current RMAN settings.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: B </p>
+    <p class="hided" id="answer">Answer: B</p>
 
     
         <p class="hided">Explanation: The command backs up all datafiles plus the archived log files. It backs up the SPFILE if you include the SPFILE keyword, and it backs up the control file if autobackup of the control file is configured. A is incorrect because no such CONTROLFILE keyword exists, and you cannot specify autobackup of the SPFILE alone. C is incorrect because archived log files are deleted only if you include the DELETE INPUT option. D is incorrect because configured RMAN settings specify other files included in the backup.</p>

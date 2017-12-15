@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 92 </title>
+    <title>Question: 92</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Media failure </p>',
+                '<p><span class="hided A">A. </span>Media failure</p>',
             
-                '<p><span class="hided B">B. </span>Instance failure </p>',
+                '<p><span class="hided B">B. </span>Instance failure</p>',
             
-                '<p><span class="hided C">C. </span>Statement failure </p>',
+                '<p><span class="hided C">C. </span>Statement failure</p>',
             
                 '<p><span class="hided D">D. </span>Process failure</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 92 </h3>
+        <h3 style="text-align: center">Question: 92</h3>
     
-    <p>Martha is an employee in Tech-Mart Inc. The company uses an Oracle database. The database contains a table named Employees for storing employee records. Martha is performing an insert operation on the Employees table. After some time, the insert operation fails. Which of the following types of failures has occurred? </p>
+    <p>Martha is an employee in Tech-Mart Inc. The company uses an Oracle database. The database contains a table named Employees for storing employee records. Martha is performing an insert operation on the Employees table. After some time, the insert operation fails. Which of the following types of failures has occurred?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Media failure </p>-->
+        <!--<p><span class="hided A">A. </span>Media failure</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Instance failure </p>-->
+        <!--<p><span class="hided B">B. </span>Instance failure</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Statement failure </p>-->
+        <!--<p><span class="hided C">C. </span>Statement failure</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Process failure</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: C </p>
+    <p class="hided" id="answer">Answer: C</p>
 
     
         <p class="hided">Explanation: Answer option C is correct. A statement failure occurs when there is a logical failure in the handling of a statement in an Oracle program. For example, when all extents of a table (in other words, the number of extents specified in the MAXEXTENTS parameter of the CREATE TABLE statement) are allocated and completely filled with data, a valid INSERT statement cannot insert a row because no space is available. Therefore, the statement fails.If a statement failure occurs, the Oracle software or operating system returns an error. A statement failure does not require any recovery step. Oracle automatically resolves the statement failure by rolling back the effects of the statement and returning control to the application. The user can execute the statement again after the problem indicated by the error message is corrected. For example, if insufficient extents are allocated, the database administrator (DBA) needs to allocate more extents so that the user&#39;s statement can be executed. A is incorrect. A media failure occurs when a physical problem prevents Oracle from writing or reading a database file that is required for continuing the database operation. For example, when a disk head crashes, all the database files on the disk drive are lost. Disk failure can affect a variety of files, including the data files, redo log files, and control files. Because the database instance cannot continue to function properly, it cannot write the data from the database buffer cache of the system global area (SGA) to the data files. The appropriate recovery from a media failure depends on the files affected. Media failure is the primary concern of a backup and recovery strategy because it typically requires restoring some or all the database files and the application of redo data during the recovery. B is incorrect. An instance failure is a termination of an Oracle instance due to a hardware problem (e.g., power outage) or software problem (e.g., an operating system crash) that prevents the Oracle instance from continuing its work. An instance failure always occurs when a database is not cleanly shut down (i.e., the database is shut down using the SHUTDOWN ABORT command). When an instance failure occurs, the data in the database buffer cache is not written to data files. Therefore, after an instance failure, the associated database requires instance recovery to recover the lost data. After an instance failure, Oracle automatically performs an instance recovery when the instance is restarted. The system monitor (SMON) background process is responsible for performing the instance recovery. An instance recovery does not require any manual interference. Oracle automatically applies the data stored in online redo log files and undo segments in order to recover the lost data and roll back the uncommitted transactions, respectively. D is incorrect. A process failure is a failure in a user, server, or background process of an Oracle instance such as an abnormal disconnection or process termination. When a process failure occurs, the failed subordinate process cannot continue its work, although the other processes of the Oracle instance can continue. The process monitor (PMON) background process detects aborted user, server, or background processes. If the aborted process is a user or server process, PMON automatically resolves the failure by rolling back the current transaction of the aborted process and releasing the resources that this process was using. However, if the aborted process is a background process, the Oracle instance cannot continue to function properly. Therefore, the Oracle instance must be shut down and re-started in order to resolve the issue.</p>

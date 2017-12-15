@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 24 </title>
+    <title>Question: 24</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>The instance will hang until you clear the redo log group. </p>',
+                '<p><span class="hided A">A. </span>The instance will hang until you clear the redo log group.</p>',
             
-                '<p><span class="hided B">B. </span>The instance will shut down or crash and you can perform complete recovery using the archived redo log files. </p>',
+                '<p><span class="hided B">B. </span>The instance will shut down or crash and you can perform complete recovery using the archived redo log files.</p>',
             
-                '<p><span class="hided C">C. </span>The instance will skip to the next redo log group. </p>',
+                '<p><span class="hided C">C. </span>The instance will skip to the next redo log group.</p>',
             
                 '<p><span class="hided D">D. </span>The instance will shut down or crash and you will have to perform cancel-based recovery.</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 24 </h3>
+        <h3 style="text-align: center">Question: 24</h3>
     
-    <p>You lose an entire redo log group that is in the CURRENT state. What happens to the database instance and how can you recover from the lost redo log group? </p>
+    <p>You lose an entire redo log group that is in the CURRENT state. What happens to the database instance and how can you recover from the lost redo log group?</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>The instance will hang until you clear the redo log group. </p>-->
+        <!--<p><span class="hided A">A. </span>The instance will hang until you clear the redo log group.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>The instance will shut down or crash and you can perform complete recovery using the archived redo log files. </p>-->
+        <!--<p><span class="hided B">B. </span>The instance will shut down or crash and you can perform complete recovery using the archived redo log files.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>The instance will skip to the next redo log group. </p>-->
+        <!--<p><span class="hided C">C. </span>The instance will skip to the next redo log group.</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>The instance will shut down or crash and you will have to perform cancel-based recovery.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: D </p>
+    <p class="hided" id="answer">Answer: D</p>
 
     
         <p class="hided">Explanation: The instance will shut down or crash when the current redo log file group is lost and you will have to perform cancel-based recovery because the lost redo log group contained committed transactions. A is incorrect because the instance will shut down or crash, and you cannot clear a redo log group that is missing. B is incorrect because you cannot perform complete recovery with a missing redo log file group in the CURRENT state. C is incorrect because Oracle cannot skip a redo log file group.</p>

@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 166 </title>
+    <title>Question: 166</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>archived redo logs generated after the last datafile backups </p>',
+                '<p><span class="hided A">A. </span>archived redo logs generated after the last datafile backups</p>',
             
-                '<p><span class="hided B">B. </span>one autobackup of the control file </p>',
+                '<p><span class="hided B">B. </span>one autobackup of the control file</p>',
             
-                '<p><span class="hided C">C. </span>one autobackup of the spfile </p>',
+                '<p><span class="hided C">C. </span>one autobackup of the spfile</p>',
             
                 '<p><span class="hided D">D. </span>a backup of all datafiles i e the password file</p>',
             
@@ -128,22 +128,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 166 </h3>
+        <h3 style="text-align: center">Question: 166</h3>
     
-    <p>To recover from the loss of the entire database, including all current control files, all online redo log files, and all parameter files, what backups are required, at a minimum, torestore the database successfully? (choose all that apply.) </p>
+    <p>To recover from the loss of the entire database, including all current control files, all online redo log files, and all parameter files, what backups are required, at a minimum, torestore the database successfully? (choose all that apply.)</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>archived redo logs generated after the last datafile backups </p>-->
+        <!--<p><span class="hided A">A. </span>archived redo logs generated after the last datafile backups</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>one autobackup of the control file </p>-->
+        <!--<p><span class="hided B">B. </span>one autobackup of the control file</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>one autobackup of the spfile </p>-->
+        <!--<p><span class="hided C">C. </span>one autobackup of the spfile</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>a backup of all datafiles i e the password file</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A, B, D </p>
+    <p class="hided" id="answer">Answer: A, B, D</p>
 
     
         <p class="hided">Explanation: To recover your database fully, you need a backup of all datafiles, all archived log files created since the last datafile backup, and an autobackup of the control file. c and e are incorrect because you can easily re-create the password file, and rman creates a dummy spfile during recovery.</p>

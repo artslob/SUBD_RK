@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question: 79 </title>
+    <title>Question: 79</title>
     <script>
         var is_hided = true;
 
         var options = [
             
-                '<p><span class="hided A">A. </span>Execute the CATALOG command. </p>',
+                '<p><span class="hided A">A. </span>Execute the CATALOG command.</p>',
             
-                '<p><span class="hided B">B. </span>Reset the recovery catalog. </p>',
+                '<p><span class="hided B">B. </span>Reset the recovery catalog.</p>',
             
-                '<p><span class="hided C">C. </span>Register the database with the recovery catalog. </p>',
+                '<p><span class="hided C">C. </span>Register the database with the recovery catalog.</p>',
             
                 '<p><span class="hided D">D. </span>Create a recovery catalog.</p>',
             
@@ -130,22 +130,22 @@
 </head>
 <body style="font-size: 20px">
     
-        <h3 style="text-align: center">Question: 79 </h3>
+        <h3 style="text-align: center">Question: 79</h3>
     
-    <p>You work as a Database Administrator for Federal Inc. The company uses an Oracle database. You create backups and copies by using the operating system commands. Now, you want to use Recovery Manager (RMAN) for backup and recovery operations. Moreover, you want to use a recovery catalog as the RMAN repository. Which of the following steps will you take to accomplish this? Each correct answer represents a part of the solution. Choose all that apply. </p>
+    <p>You work as a Database Administrator for Federal Inc. The company uses an Oracle database. You create backups and copies by using the operating system commands. Now, you want to use Recovery Manager (RMAN) for backup and recovery operations. Moreover, you want to use a recovery catalog as the RMAN repository. Which of the following steps will you take to accomplish this? Each correct answer represents a part of the solution. Choose all that apply.</p>
 
     <div id="options"></div>
     <!---->
-        <!--<p><span class="hided A">A. </span>Execute the CATALOG command. </p>-->
+        <!--<p><span class="hided A">A. </span>Execute the CATALOG command.</p>-->
     <!---->
-        <!--<p><span class="hided B">B. </span>Reset the recovery catalog. </p>-->
+        <!--<p><span class="hided B">B. </span>Reset the recovery catalog.</p>-->
     <!---->
-        <!--<p><span class="hided C">C. </span>Register the database with the recovery catalog. </p>-->
+        <!--<p><span class="hided C">C. </span>Register the database with the recovery catalog.</p>-->
     <!---->
         <!--<p><span class="hided D">D. </span>Create a recovery catalog.</p>-->
     <!---->
 
-    <p class="hided" id="answer">Answer: A,C,D </p>
+    <p class="hided" id="answer">Answer: A,C,D</p>
 
     
         <p class="hided">Explanation: Answer options D, C, and A are correct. RMAN uses a central information repository called recovery catalog in order to store metadata about backup and recovery operations. However, if a recovery catalog is not created, Recovery Manager uses the target database&#39;s (the database that RMAN is backing up or restoring) control file as the RMAN repository for storing the information necessary for backup and recovery operations. In this scenario, after creating the recovery catalog, you will be required to register the target database with the recovery catalog. The database must be registered with the recovery catalog before the recovery catalog can store the metadata about backup and recovery operations performed in the database. After registering the database , you will also be required to execute the CATALOG command. The CATALOG command adds the information about the pre- existing backups and copies to the recovery catalog. B is incorrect. A recovery catalog needs to be reset in order to work with a database that has been opened using the RESETLOGS option. However, in this scenario, you do not need to reset the recovery catalog.</p>
