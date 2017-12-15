@@ -3,7 +3,6 @@ import os
 import re
 
 import errno
-from random import shuffle
 
 import sys
 from django.template import Template, Context, Engine
@@ -23,7 +22,7 @@ options_regexp = re.compile('(([A-G]\. )((.|\n)+?))(?=([A-G]\. |$))')
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', dest='input', default='RK1_questions.txt', help='Input file with questions')
-    parser.add_argument('-d', '--dir', dest='dir', default='RK1_questions', help='Output dir which holds result html\'s')
+    parser.add_argument('-d', '--dir', dest='dir', default='RK1_questions', help="Output dir which holds result html's")
     parser.add_argument('-t', '--no-title', dest='title', action='store_false',
                         help='Specify this flag if you do not want to see question number on page')
     return parser.parse_args()
@@ -50,7 +49,6 @@ def main():
             for question in questions:
                 question = question_regexp.search(question)
                 options = [(el[1], line_breaks_to_spaces(el[2])) for el in options_regexp.findall(question.group('options'))]
-                # shuffle(options)
                 number = int(question.group('number'))
                 with open(os.path.join(args.dir, f'question{question.group("number")}.html'), 'w') as html:
                     context = Context({
