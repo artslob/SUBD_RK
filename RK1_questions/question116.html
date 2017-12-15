@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 116 </title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>The tablespace would require recovery to go back online. </p>',
+            
+                '<p><span class="hided B">B. </span>A checkpoint is taken on all data files that are associated with the SALES tablespace. </p>',
+            
+                '<p><span class="hided C">C. </span>The sessions that subsequently try to access the objects in the SALES tablespace receive an error. </p>',
+            
+                '<p><span class="hided D">D. </span>The new status of the SALES tablespace is recorded in the control file when the database instance is closed.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(153);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+        function next_page() {
+            
+                location.href='question117.html';
+            
+        }
+
+        function prev_page() {
+            
+                location.href='question115.html';
+            
+        }
+
+        window.addEventListener("keydown", function (event) {
+            if (event.defaultPrevented)
+                return;
+
+            switch (event.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                    prev_page();
+                    break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                    next_page();
+                    break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                    answer();
+                    break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                    rnd();
+                    break;
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+        }, true);
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    
+        <h3 style="text-align: center">Question: 116 </h3>
+    
+    <p>You execute the following command to change the status of the SALES tablespace: SQL&gt; ALTER TABLESPACE sales OFFLINE; Which statements describe the effect of the command? (Choose all that apply.) </p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>The tablespace would require recovery to go back online. </p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>A checkpoint is taken on all data files that are associated with the SALES tablespace. </p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>The sessions that subsequently try to access the objects in the SALES tablespace receive an error. </p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>The new status of the SALES tablespace is recorded in the control file when the database instance is closed.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B, C </p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="prev_page()" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="next_page()" type="button" style="float: right">
+            Next page
+        </button>
+    
+    <br/>
+    <br/>
+</body>
+</html>

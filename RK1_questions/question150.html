@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 150 </title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>Insert finding directives for ADDM tasks in the future. </p>',
+            
+                '<p><span class="hided B">B. </span>Create a baseline on a pair of snapshots spanning the peak-load period. </p>',
+            
+                '<p><span class="hided C">C. </span>Decrease the snapshot interval in the AWR to collect more snapshots during the peak-load period. </p>',
+            
+                '<p><span class="hided D">D. </span>Set the snapshot retention period in the Automatic Workload Repository (AWR) to zero to avoid automatic purging of snapshots.</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(153);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+        function next_page() {
+            
+                location.href='question151.html';
+            
+        }
+
+        function prev_page() {
+            
+                location.href='question149.html';
+            
+        }
+
+        window.addEventListener("keydown", function (event) {
+            if (event.defaultPrevented)
+                return;
+
+            switch (event.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                    prev_page();
+                    break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                    next_page();
+                    break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                    answer();
+                    break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                    rnd();
+                    break;
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+        }, true);
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    
+        <h3 style="text-align: center">Question: 150 </h3>
+    
+    <p>Your database is functional with a peak load for the last one hour. You want to preserve the performance statistics collected during this period to be used for comparison when you analyze the performance of the database in the future. What action would you take to achieve this task? </p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>Insert finding directives for ADDM tasks in the future. </p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>Create a baseline on a pair of snapshots spanning the peak-load period. </p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>Decrease the snapshot interval in the AWR to collect more snapshots during the peak-load period. </p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>Set the snapshot retention period in the Automatic Workload Repository (AWR) to zero to avoid automatic purging of snapshots.</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: B </p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="prev_page()" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="next_page()" type="button" style="float: right">
+            Next page
+        </button>
+    
+    <br/>
+    <br/>
+</body>
+</html>

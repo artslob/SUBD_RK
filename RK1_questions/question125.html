@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question: 125 </title>
+    <script>
+        var is_hided = true;
+
+        var options = [
+            
+                '<p><span class="hided A">A. </span>LOCK TABLE emp IN SHARE MODE; </p>',
+            
+                '<p><span class="hided B">B. </span>LOCK TABLE emp IN EXCLUSIVE MODE; </p>',
+            
+                '<p><span class="hided C">C. </span>UPDATE emp SET sal=sal*1.2 WHERE job=ANAGER?UPDATE emp SET sal=sal*1.2 WHERE job=?ANAGER? </p>',
+            
+                '<p><span class="hided D">D. </span>INSERT INTO emp(empno,ename) VALUES (1289,&#39;Harry&#39;); </p>',
+            
+                '<p><span class="hided E">E. </span>SELECT ename FROM emp WHERE job=&#39;CLERK&#39; FOR UPDATE OF empno;</p>',
+            
+        ];
+
+        window.onload = function () {
+            options = shuffle(options);
+            console.log(options);
+            var options_div = document.getElementById('options');
+            for (var q = 0; q < options.length; q++) {
+                options_div.insertAdjacentHTML('beforeend', options[q]);
+            }
+
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = 'hidden';
+            }
+
+            var answer = document.getElementById('answer').innerHTML;
+            answer = answer.slice(8).split(',').map(function (item) {
+                return item.trim();
+            });
+            for (var j = 0; j < answer.length; j++) {
+                var items = document.getElementsByClassName(answer[j]);
+                for (var k = 0; k < items.length; k++) {
+                    items[k].style.color = "red";
+                }
+            }
+        };
+
+        function answer() {
+            var hided = document.getElementsByClassName('hided');
+            for (var i = 0; i < hided.length; i++) {
+                hided[i].style.visibility = (is_hided) ? 'visible' : 'hidden';
+            }
+
+            is_hided = !is_hided;
+        }
+
+        function rnd() {
+            var max = parseInt(153);
+            var min = 1;
+            var res = Math.floor(Math.random() * (max - min + 1)) + min;
+            location.href = 'question' + res + '.html';
+        }
+
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            // While there remain elements to shuffle...
+            while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+        function next_page() {
+            
+                location.href='question126.html';
+            
+        }
+
+        function prev_page() {
+            
+                location.href='question124.html';
+            
+        }
+
+        window.addEventListener("keydown", function (event) {
+            if (event.defaultPrevented)
+                return;
+
+            switch (event.key) {
+                case "a":
+                case "A":
+                case "ArrowLeft":
+                    prev_page();
+                    break;
+                case "d":
+                case "D":
+                case "ArrowRight":
+                    next_page();
+                    break;
+                case "w":
+                case "W":
+                case "ArrowUp":
+                    answer();
+                    break;
+                case "s":
+                case "S":
+                case "ArrowDown":
+                    rnd();
+                    break;
+                default:
+                    return;
+            }
+
+            event.preventDefault();
+        }, true);
+    </script>
+    <style>
+        button {
+            width: 20%; height: 35px;
+        }
+    </style>
+</head>
+<body style="font-size: 20px">
+    
+        <h3 style="text-align: center">Question: 125 </h3>
+    
+    <p>User SCOTT executes the following command on the EMP table but has not issued COMMIT, ROLLBACK, or any data definition language (DDL) command: SQL&gt; SELECT ename FROM emp 2 WHERE job=&#39;CLERK&#39; FOR UPDATE OF empno; SCOTT has opened another session to work with the database instance. Which three operations would wait when issued in SCOTT&#39;s second session? (Choose three.) </p>
+
+    <div id="options"></div>
+    <!---->
+        <!--<p><span class="hided A">A. </span>LOCK TABLE emp IN SHARE MODE; </p>-->
+    <!---->
+        <!--<p><span class="hided B">B. </span>LOCK TABLE emp IN EXCLUSIVE MODE; </p>-->
+    <!---->
+        <!--<p><span class="hided C">C. </span>UPDATE emp SET sal=sal*1.2 WHERE job=ANAGER?UPDATE emp SET sal=sal*1.2 WHERE job=?ANAGER? </p>-->
+    <!---->
+        <!--<p><span class="hided D">D. </span>INSERT INTO emp(empno,ename) VALUES (1289,&#39;Harry&#39;); </p>-->
+    <!---->
+        <!--<p><span class="hided E">E. </span>SELECT ename FROM emp WHERE job=&#39;CLERK&#39; FOR UPDATE OF empno;</p>-->
+    <!---->
+
+    <p class="hided" id="answer">Answer: A, B, E </p>
+
+    
+
+    <div style="text-align: center">
+        <button onclick="answer()">Answer!</button>
+
+        <br/><br/>
+
+        <button onclick="rnd();" id="rnd" type="button" style="float: none">
+            Random question
+        </button>
+    </div>
+
+    
+        <button onclick="prev_page()" type="button" style="float: left">
+            Previous page
+        </button>
+    
+
+    
+        <button onclick="next_page()" type="button" style="float: right">
+            Next page
+        </button>
+    
+    <br/>
+    <br/>
+</body>
+</html>
