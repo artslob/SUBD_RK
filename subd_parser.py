@@ -1,10 +1,9 @@
 import argparse
+import errno
 import os
 import re
-
-import errno
-
 import sys
+
 from django.template import Template, Context, Engine
 
 question_regexp = re.compile(r'('
