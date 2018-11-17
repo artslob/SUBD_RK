@@ -21,8 +21,8 @@ options_regexp = re.compile('(([A-G]\. )((.|\n)+?))(?=([A-G]\. |$))')
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', dest='input', default='RK1_questions.txt', help='Input file with questions')
-    parser.add_argument('-d', '--dir', dest='dir', default='RK1_questions', help="Output dir which holds result html's")
+    parser.add_argument('-i', '--input', dest='input', default='rk1_questions.txt', help='Input file with questions')
+    parser.add_argument('-d', '--dir', dest='dir', default='rk1', help="Output dir which holds result html's")
     parser.add_argument('-t', '--no-title', dest='title', action='store_false',
                         help='Specify this flag if you do not want to see question number on page')
     return parser.parse_args()
