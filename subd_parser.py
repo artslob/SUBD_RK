@@ -59,7 +59,7 @@ def main():
             'explanation': line_breaks_to_spaces(question.group('explanation')),
             'length': str(length),
         })
-        with open(os.path.join(args.dir, f'question{question.group("number")}.html'), 'w') as html:
+        with open(os.path.join(args.dir, f'question{number}.html'), 'w') as html:
             html.write(template.render(context))
 
     print('done')
