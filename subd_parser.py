@@ -51,6 +51,7 @@ def main():
         number = int(question.group('number'))
         context = Context({
             'title': line_breaks_to_spaces(question.group('title')) if args.title else None,
+            'number': str(number),
             'prev': str(number - 1) if number > 1 else None,
             'next': str(number + 1) if number < length else None,
             'text': line_breaks_to_spaces(question.group('text')),
