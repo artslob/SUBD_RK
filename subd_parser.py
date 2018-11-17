@@ -38,33 +38,31 @@ def main():
             print('Error occurred:', e)
             sys.exit(1)
 
-    try:
-        with open('template.html') as template_file:
-            template = Template(template_file.read(), engine=Engine())
+    with open('template.html') as template_file:
+        template = Template(template_file.read(), engine=Engine())
 
-        with open(args.input) as file:
-            questions = [el[0] for el in question_regexp.findall(file.read())]
+    with open(args.input) as file:
+        questions = [el[0] for el in question_regexp.findall(file.read())]
 
-        length = len(questions)
-        for question in questions:
-            question = question_regexp.search(question)
-            options = [(el[1], line_breaks_to_spaces(el[2])) for el in options_regexp.findall(question.group('options'))]
-            number = int(question.group('number'))
-            context = Context({
-                'title': line_breaks_to_spaces(question.group('title')) if args.title else None,
-                'prev': str(number - 1) if number > 1 else None,
-                'next': str(number + 1) if number < length else None,
-                'text': line_breaks_to_spaces(question.group('text')),
-                'options': options,
-                'answer': line_breaks_to_spaces(question.group('answer')),
-                'explanation': line_breaks_to_spaces(question.group('explanation')),
-                'length': str(length),
-            })
-            with open(os.path.join(args.dir, f'question{question.group("number")}.html'), 'w') as html:
-                html.write(template.render(context))
-        print('done')
-    except (OSError, IOError) as e:
-        print('Error occurred:', e)
+    length = len(questions)
+    for question in questions:
+        question = question_regexp.search(question)
+        options = [(el[1], line_breaks_to_spaces(el[2])) for el in options_regexp.findall(question.group('options'))]
+        number = int(question.group('number'))
+        context = Context({
+            'title': line_breaks_to_spaces(question.group('title')) if args.title else None,
+            'prev': str(number - 1) if number > 1 else None,
+            'next': str(number + 1) if number < length else None,
+            'text': line_breaks_to_spaces(question.group('text')),
+            'options': options,
+            'answer': line_breaks_to_spaces(question.group('answer')),
+            'explanation': line_breaks_to_spaces(question.group('explanation')),
+            'length': str(length),
+        })
+        with open(os.path.join(args.dir, f'question{question.group("number")}.html'), 'w') as html:
+            html.write(template.render(context))
+
+    print('done')
 
 
 def line_breaks_to_spaces(s: str) -> str:
@@ -72,4 +70,8 @@ def line_breaks_to_spaces(s: str) -> str:
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except (OSError, IOError) as e:
+        print('Error occurred:', e)
+        sys.exit(1)
